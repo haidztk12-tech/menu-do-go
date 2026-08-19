@@ -208,7 +208,7 @@
   <header class="top-bar">
     <div class="top-container">
       <div class="top-left">
-        <a href="tel:0912208061" class="hotline-btn">📞 0912208061</a>
+        <a href="tel:0984650825" class="hotline-btn">📞 0984650825</a>
         <a href="#about" class="top-link">Giới thiệu</a>
         <a href="#map-section" class="top-link">Địa chỉ xưởng</a>
       </div>
@@ -314,9 +314,9 @@
         <div class="map-card">
           <h4>XƯỞNG ĐỒ GỖ ĐIỆN NGỌC</h4>
           <p>📍 Địa chỉ: Tỉnh Nam Định</p>
-          <p>📞 Hotline / Zalo: <strong>0912208061</strong></p>
+          <p>📞 Hotline / Zalo: <strong>0984650825</strong></p>
           <p>🕒 Giờ làm việc: 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
-          <a href="tel:0912208061" class="btn-call-outline">Gọi ngay cho Bố Tôi: 0912208061</a>
+          <a href="tel:0984650825" class="btn-call-outline">Gọi ngay: 0984650825</a>
         </div>
       </div>
     </section>
@@ -327,7 +327,7 @@
     <div class="footer-container">
       <div class="footer-col">
         <h3>CƠ SỞ NỘI THẤT ĐIỆN NGỌC</h3>
-        <p>Hotline/Zalo: <strong>0912208061</strong></p>
+        <p>Hotline/Zalo: <strong>0984650825</strong></p>
         <p>Địa chỉ: Nam Định</p>
       </div>
       <div class="footer-col">
@@ -395,10 +395,10 @@
 
   <!-- Dải 5 nút nổi bên phải -->
   <div class="floating-contact-bar">
-    <a href="tel:0912208061" class="btn-floating btn-phone" title="Gọi điện">
+    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
-    <a href="https://zalo.me/0912208061" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
+    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
       <span class="zalo-text">Zalo</span>
     </a>
     <a href="#map-section" class="btn-floating btn-map" title="Xem vị trí xưởng">
@@ -591,7 +591,7 @@
             <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại nhận hàng *" required></div>
             <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
             <div class="form-group"><textarea id="cartCustNote" rows="2" placeholder="Ghi chú thêm..."></textarea></div>
-            <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG QUA ZALO CHỦ XƯỞNG</button>
+            <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG QUA ZALO</button>
           </form>
         `;
       }
@@ -611,7 +611,7 @@
       openCartModal();
     }
 
-    // Gửi đơn trực tiếp từ Modal sản phẩm -> Chuyển thẳng nội dung đơn sang Zalo Bố ông (0912208061)
+    // Gửi đơn trực tiếp từ Modal sản phẩm -> Zalo 0984650825
     function submitDirectOrder() {
       const name = document.getElementById('directName').value.trim();
       const phone = document.getElementById('directPhone').value.trim();
@@ -620,12 +620,12 @@
 
       const message = `Chào Xưởng Đồ Gỗ Điện Ngọc! Tôi muốn đặt mua:\n- Sản phẩm: ${currentSelectedProduct.title} (${currentSelectedProduct.code})\n- Giá: ${currentSelectedProduct.price}\n- Khách hàng: ${name}\n- Số ĐT: ${phone}\n- Địa chỉ: ${address}\n- Ghi chú: ${note || 'Không có'}`;
 
-      alert("Đang chuyển tiếp thông tin đơn hàng tới số Zalo Bố tôi (0912208061) để xác nhận và giao lắp!");
-      window.open(`https://zalo.me/0912208061?text=${encodeURIComponent(message)}`, '_blank');
+      alert("Đang chuyển tiếp thông tin đơn hàng tới Zalo số 0984650825!");
+      window.open(`https://zalo.me/0984650825?text=${encodeURIComponent(message)}`, '_blank');
       closeModal('productModal');
     }
 
-    // Gửi toàn bộ đơn trong Giỏ Hàng -> Chuyển thẳng Zalo
+    // Gửi toàn bộ đơn trong Giỏ Hàng -> Zalo 0984650825
     function submitCartOrder() {
       const name = document.getElementById('cartCustName').value.trim();
       const phone = document.getElementById('cartCustPhone').value.trim();
@@ -637,8 +637,8 @@
 
       const message = `Chào Xưởng Đồ Gỗ Điện Ngọc! Tôi muốn đặt giỏ hàng gồm:\n${itemsText}\n==>\nTỔNG TIỀN: ${total.toLocaleString('vi-VN')} đ\n- Khách hàng: ${name}\n- Số ĐT: ${phone}\n- Địa chỉ: ${address}\n- Ghi chú: ${note || 'Không có'}`;
 
-      alert("Đang gửi chi tiết giỏ hàng sang Zalo xưởng (0912208061) để liên hệ giao hàng ngay!");
-      window.open(`https://zalo.me/0912208061?text=${encodeURIComponent(message)}`, '_blank');
+      alert("Đang gửi chi tiết giỏ hàng sang Zalo số 0984650825!");
+      window.open(`https://zalo.me/0984650825?text=${encodeURIComponent(message)}`, '_blank');
       cart = [];
       updateCartCount();
       closeModal('cartModal');
@@ -662,7 +662,7 @@
       input.value = "";
 
       setTimeout(() => {
-        let reply = "Xưởng nhận làm theo yêu cầu. Bác vui lòng liên hệ Hotline/Zalo 0912208061 của bố tôi để được tư vấn chính xác nhất ạ!";
+        let reply = "Xưởng nhận làm theo yêu cầu. Bác vui lòng liên hệ Hotline/Zalo 0984650825 để được tư vấn chính xác nhất ạ!";
         const t = text.toLowerCase();
         const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
 
