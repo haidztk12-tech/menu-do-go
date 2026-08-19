@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ĐỒ GỖ ĐIỆN NGỌC - Xưởng Nội Thất Nam Định</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
       </div>
       <div class="search-bar">
         <input type="text" placeholder="Tìm giường, tủ, bàn ghế...">
-        <button>🔍</button>
+        <button type="button">🔍</button>
       </div>
     </div>
   </header>
@@ -38,18 +39,18 @@
   </nav>
 
   <div class="container" id="products">
-    <div class="breadcrumb">Trang chủ > Danh mục sản phẩm > Bấm vào ảnh để xem chi tiết & Đặt mua</div>
+    <div class="breadcrumb">Trang chủ &gt; Danh mục sản phẩm &gt; Bấm vào ảnh để xem chi tiết &amp; Đặt mua</div>
 
     <!-- Tags -->
     <div class="category-tags">
-      <button class="tag-btn active">Tất cả sản phẩm</button>
-      <button class="tag-btn">Giường ngủ</button>
-      <button class="tag-btn">Tủ quần áo</button>
-      <button class="tag-btn">Bàn ghế ăn</button>
-      <button class="tag-btn">Bàn trang điểm</button>
+      <button type="button" class="tag-btn active">Tất cả sản phẩm</button>
+      <button type="button" class="tag-btn">Giường ngủ</button>
+      <button type="button" class="tag-btn">Tủ quần áo</button>
+      <button type="button" class="tag-btn">Bàn ghế ăn</button>
+      <button type="button" class="tag-btn">Bàn trang điểm</button>
     </div>
 
-    <!-- Danh sách sản phẩm (Bấm vào thẻ để bật bảng chi tiết) -->
+    <!-- Danh sách sản phẩm (script.js sẽ tự đổ dữ liệu vào đây) -->
     <div class="product-grid" id="productGrid"></div>
 
     <!-- Giới thiệu cam kết -->
@@ -105,7 +106,7 @@
   <!-- MODAL CHI TIẾT SẢN PHẨM & ĐẶT HÀNG (POPUP) -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">✕ Đóng</button>
+      <button type="button" class="modal-close" onclick="closeModal()">✕ Đóng</button>
       
       <div class="detail-container">
         <!-- Cột trái: Ảnh chính + Bộ ảnh các góc -->
@@ -155,9 +156,24 @@
     </div>
   </div>
 
-  <!-- Floating Call Button -->
-  <a href="tel:0912208061" class="float-btn"><span>📞</span> 0912208061</a>
+  <!-- Thanh nút bấm liên hệ nổi bên phải màn hình -->
+  <div class="floating-contact-bar">
+    <a href="tel:0912208061" class="btn-floating btn-phone" title="Gọi điện cho bố tôi">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
 
-  <script src="script.js"></script>
+    <a href="https://zalo.me/0912208061" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
+      <span class="zalo-text">Zalo</span>
+    </a>
+
+    <a href="#map-section" class="btn-floating btn-map" title="Xem vị trí xưởng">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </a>
+
+    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+  </div>
+
 </body>
 </html>
