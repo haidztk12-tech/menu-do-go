@@ -35,7 +35,7 @@
     .tag-btn { background: #881b1b; color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s; }
     .tag-btn.active, .tag-btn:hover { background: #cb7b26; }
 
-    /* Product Grid (6 Cột chuẩn) */
+    /* Product Grid */
     .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
     .product-card { background: #fff; border: 1px solid #eee; border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
     .product-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #cb7b26; }
@@ -95,17 +95,73 @@
     .footer-col ul { list-style: none; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 20px; padding-top: 10px; text-align: center; font-size: 12px; color: #ccc; }
 
-    /* Thanh Nút Bấm Nổi Bên Phải */
-    .floating-contact-bar { position: fixed; right: 15px; bottom: 15%; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
-    .btn-floating { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s ease; }
+    /* Thanh Nút Bấm Nổi Cố Định - Căn Thẳng Trục */
+    .floating-contact-bar {
+      position: fixed;
+      right: 15px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+    }
+    .btn-floating {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
     .btn-floating:hover { transform: scale(1.1); }
     .btn-phone { background-color: #ff0000; }
     .btn-zalo { background-color: #0088ff; }
     .zalo-text { color: #ffffff; font-weight: 900; font-size: 11px; }
     .btn-map { background-color: #00a651; }
     .btn-scrolltop { background-color: #636e72; border: none; }
+    .btn-ai-chat { background-color: #5c67f2; border: none; font-size: 20px; }
 
-    /* Responsive Mobile */
+    /* Hộp Chat AI Tích Hợp Nội Bộ */
+    .native-ai-box {
+      display: none;
+      position: fixed;
+      right: 70px;
+      bottom: 20px;
+      width: 320px;
+      height: 420px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+      z-index: 1000;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+    .ai-header {
+      background: #5c67f2;
+      color: white;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-header button { background: transparent; border: none; color: white; font-size: 15px; cursor: pointer; }
+    .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 8px; }
+    .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4; max-width: 85%; }
+    .msg-ai { background: #e9ecef; color: #222; align-self: flex-start; }
+    .msg-user { background: #cb7b26; color: white; align-self: flex-end; }
+    .ai-footer { display: flex; border-top: 1px solid #eee; padding: 6px; background: #fff; }
+    .ai-footer input { flex: 1; border: 1px solid #ccc; padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
+    .ai-footer button { background: #5c67f2; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+
     @media (max-width: 1024px) {
       .product-grid { grid-template-columns: repeat(3, 1fr); }
       .detail-container { flex-direction: column; }
@@ -116,6 +172,7 @@
       .nav-links { display: none; }
       .top-container { flex-direction: column; gap: 8px; }
       .search-bar input { width: 140px; }
+      .native-ai-box { width: 290px; right: 65px; }
     }
   </style>
 </head>
@@ -153,7 +210,7 @@
   <div class="container" id="products">
     <div class="breadcrumb">Trang chủ &gt; Danh mục sản phẩm &gt; Bấm vào ảnh để xem chi tiết &amp; Đặt mua</div>
 
-    <!-- Category Filter Tabs -->
+    <!-- Filter Tabs -->
     <div class="category-tags">
       <button type="button" class="tag-btn active" onclick="filterCategory('all', this)">Tất cả sản phẩm</button>
       <button type="button" class="tag-btn" onclick="filterCategory('giuong', this)">Giường ngủ</button>
@@ -163,10 +220,10 @@
       <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi &amp; Tủ Giày</button>
     </div>
 
-    <!-- Danh sách sản phẩm -->
+    <!-- Product Grid -->
     <div class="product-grid" id="productGrid"></div>
 
-    <!-- Giới thiệu cam kết -->
+    <!-- Intro -->
     <section class="intro-section" id="about">
       <h2>Nội Thất Gỗ Nam Định - Đồ Gỗ Điện Ngọc</h2>
       <p class="sub-text">Chuyên sản xuất, gia công lắp ráp giường, tủ, bàn ghế trực tiếp tại xưởng với giá gốc không qua trung gian.</p>
@@ -178,7 +235,7 @@
       </div>
     </section>
 
-    <!-- Địa chỉ xưởng -->
+    <!-- Map Section -->
     <section class="map-section" id="map-section">
       <h2>Địa chỉ xưởng của chúng tôi</h2>
       <p class="sub-text">Kính mời quý khách liên hệ hoặc ghé thăm xưởng để trao đổi kích thước thực tế</p>
@@ -216,19 +273,15 @@
     </div>
   </footer>
 
-  <!-- MODAL CHI TIẾT SẢN PHẨM & ĐẶT HÀNG (POPUP) -->
+  <!-- Modal Chi Tiết -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
       <button type="button" class="modal-close" onclick="closeModal()">✕ Đóng</button>
-      
       <div class="detail-container">
-        <!-- Cột trái: Ảnh chính + Bộ ảnh các góc -->
         <div class="detail-gallery">
           <img id="modalMainImg" src="" alt="Ảnh sản phẩm">
           <div class="thumbnail-list" id="modalThumbnails"></div>
         </div>
-
-        <!-- Cột phải: Giá khuyến mãi + Mô tả + Form đặt hàng -->
         <div class="detail-info">
           <h2 id="modalTitle">Tên sản phẩm</h2>
           <p class="product-sku">Mã: <span id="modalCode">DN-01</span> | <span class="stock-tag">✔ Còn hàng tại xưởng</span></p>
@@ -241,27 +294,15 @@
             <div class="promo-desc" id="modalDesc"></div>
           </div>
 
-          <!-- Form thanh toán COD -->
           <form class="order-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleOrderSubmit()">
             <h4>ĐẶT MUA LẮP ĐẶT TẬN NƠI</h4>
             <p class="note-cod">Thanh toán tiền mặt sau khi xưởng chở đến lắp đặt hoàn chỉnh!</p>
-
             <input type="hidden" name="Sản_Phẩm" id="orderProductName">
             <input type="hidden" name="Giá_Tiền" id="orderProductPrice">
-
-            <div class="form-group">
-              <input type="text" name="Họ_Tên" placeholder="Họ và tên của ông/bà *" required>
-            </div>
-            <div class="form-group">
-              <input type="tel" name="Số_Điện_Thoại" placeholder="Số điện thoại nhận hàng *" required>
-            </div>
-            <div class="form-group">
-              <input type="text" name="Địa_Chỉ_Lắp_Đặt" placeholder="Địa chỉ chi tiết tại Nam Định *" required>
-            </div>
-            <div class="form-group">
-              <textarea name="Ghi_Chú" rows="2" placeholder="Ghi chú thêm (kích thước, tầng mấy, giờ giao...)"></textarea>
-            </div>
-
+            <div class="form-group"><input type="text" name="Họ_Tên" placeholder="Họ và tên của ông/bà *" required></div>
+            <div class="form-group"><input type="tel" name="Số_Điện_Thoại" placeholder="Số điện thoại nhận hàng *" required></div>
+            <div class="form-group"><input type="text" name="Địa_Chỉ_Lắp_Đặt" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
+            <div class="form-group"><textarea name="Ghi_Chú" rows="2" placeholder="Ghi chú thêm (kích thước, tầng mấy, giờ giao...)"></textarea></div>
             <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG (THANH TOÁN KHI NHẬN)</button>
           </form>
         </div>
@@ -269,7 +310,7 @@
     </div>
   </div>
 
-  <!-- Thanh nút bấm liên hệ nổi bên phải -->
+  <!-- Dải 5 nút nổi căn thẳng hàng tuyệt đối -->
   <div class="floating-contact-bar">
     <a href="tel:0912208061" class="btn-floating btn-phone" title="Gọi điện">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -283,142 +324,38 @@
     <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
     </button>
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Hỏi giá nhanh với AI">
+      🤖
+    </button>
   </div>
 
-  <!-- JAVASCRIPT ĐIỀU KHIỂN SẢN PHẨM & MODAL -->
+  <!-- Box Chatbot AI nội bộ -->
+  <div class="native-ai-box" id="aiChatBox">
+    <div class="ai-header">
+      <span>Trợ lý Đồ Gỗ Điện Ngọc</span>
+      <button type="button" onclick="toggleAIChat()">✕</button>
+    </div>
+    <div class="ai-body" id="aiChatBody">
+      <div class="msg msg-ai">Chào ông/bà! Tôi là trợ lý ảo xưởng Đồ Gỗ Điện Ngọc. Bác cần tham khảo giá giường, tủ quần áo hay bàn ăn mẫu nào ạ?</div>
+    </div>
+    <div class="ai-footer">
+      <input type="text" id="aiInput" placeholder="Hỏi giá giường, tủ áo, ship..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <button type="button" onclick="handleAISend()">Gửi</button>
+    </div>
+  </div>
+
   <script>
     const products = [
-      {
-        id: 1,
-        category: "giuong",
-        title: "Giường Ngủ Hiện Đại MDF 1m6",
-        code: "DN-G01",
-        price: "1.800.000 đ",
-        oldPrice: "2.100.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80",
-          "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80"
-        ],
-        desc: "▶ Kích thước: 1m6 x 2m<br>▶ Gỗ MDF chống trầy xước, dát giường dày chắc chắn.<br>▶ Khuyến mãi: Miễn phí vận chuyển & LẮP ĐẶT TẬN NƠI tại Nam Định."
-      },
-      {
-        id: 2,
-        category: "giuong",
-        title: "Giường Ngủ MDF Cao Cấp 1m8",
-        code: "DN-G02",
-        price: "2.100.000 đ",
-        oldPrice: "2.450.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"
-        ],
-        desc: "▶ Kích thước: 1m8 x 2m (Rộng rãi cho gia đình)<br>▶ Bao thợ đến lắp ráp hoàn chỉnh mới thanh toán."
-      },
-      {
-        id: 3,
-        category: "tu",
-        title: "Tủ Áo 2 Cánh Cửa Mở Tiện Lợi",
-        code: "DN-T02",
-        price: "1.950.000 đ",
-        oldPrice: "2.300.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"
-        ],
-        desc: "▶ Kích thước: Rộng 1m2 x Cao 2m x Sâu 55cm<br>▶ Tối ưu không gian cho phòng ngủ nhỏ."
-      },
-      {
-        id: 4,
-        category: "tu",
-        title: "Tủ Quần Áo 3 Cánh Vân Gỗ Sồi",
-        code: "DN-T03",
-        price: "2.500.000 đ",
-        oldPrice: "2.900.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"
-        ],
-        desc: "▶ Kích thước: Rộng 1m6 x Cao 2m<br>▶ Bản lề hơi giảm chấn, êm ái chống ồn."
-      },
-      {
-        id: 5,
-        category: "tu",
-        title: "Tủ Quần Áo 4 Cánh Cỡ Lớn",
-        code: "DN-T04",
-        price: "3.400.000 đ",
-        oldPrice: "3.900.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"
-        ],
-        desc: "▶ Kích thước: Rộng 2m x Cao 2m x Sâu 55cm<br>▶ Sức chứa lớn cho gia đình nhiều đồ."
-      },
-      {
-        id: 6,
-        category: "ban-trang-diem",
-        title: "Bàn Trang Điểm Gương Tròn Mini",
-        code: "DN-BTD01",
-        price: "1.100.000 đ",
-        oldPrice: "1.350.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"
-        ],
-        desc: "▶ Gương tròn sang trọng, kèm 1 ghế đôn nhỏ gọn gàng."
-      },
-      {
-        id: 7,
-        category: "ban-an",
-        title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng",
-        code: "DN-BA04",
-        price: "2.800.000 đ",
-        oldPrice: "3.200.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"
-        ],
-        desc: "▶ Gồm 1 bàn ăn + 4 ghế tựa bọc đệm êm ái."
-      },
-      {
-        id: 8,
-        category: "ban-an",
-        title: "Bộ Bàn Ăn 6 Ghế Sang Trọng",
-        code: "DN-BA06",
-        price: "3.900.000 đ",
-        oldPrice: "4.500.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"
-        ],
-        desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế, phủ sơn bóng chống nước."
-      },
-      {
-        id: 9,
-        category: "khac",
-        title: "Kệ Tivi Phòng Khách Rút Gọn",
-        code: "DN-KTV01",
-        price: "1.200.000 đ",
-        oldPrice: "1.500.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80"
-        ],
-        desc: "▶ Chiều dài thay đổi linh hoạt theo kích thước phòng khách."
-      },
-      {
-        id: 10,
-        category: "khac",
-        title: "Tủ Giày Dép Cánh Lật Thông Minh",
-        code: "DN-TG01",
-        price: "950.000 đ",
-        oldPrice: "1.200.000 đ",
-        mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80",
-        images: [
-          "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"
-        ],
-        desc: "▶ Sức chứa tới 20-25 đôi giày dép, bề dày chỉ 30cm siêu gọn."
-      }
+      { id: 1, category: "giuong", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m<br>▶ Gỗ MDF chống trầy xước, dát giường dày chắc chắn.<br>▶ Khuyến mãi: Miễn phí vận chuyển & LẮP ĐẶT TẬN NƠI tại Nam Định." },
+      { id: 2, category: "giuong", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước: 1m8 x 2m (Rộng rãi cho gia đình)<br>▶ Bao thợ đến lắp ráp hoàn chỉnh mới thanh toán." },
+      { id: 3, category: "tu", title: "Tủ Áo 2 Cánh Cửa Mở Tiện Lợi", code: "DN-T02", price: "1.950.000 đ", oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m2 x Cao 2m x Sâu 55cm<br>▶ Tối ưu không gian cho phòng ngủ nhỏ." },
+      { id: 4, category: "tu", title: "Tủ Quần Áo 3 Cánh Vân Gỗ Sồi", code: "DN-T03", price: "2.500.000 đ", oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m6 x Cao 2m<br>▶ Bản lề hơi giảm chấn, êm ái chống ồn." },
+      { id: 5, category: "tu", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước: Rộng 2m x Cao 2m x Sâu 55cm<br>▶ Sức chứa lớn cho gia đình nhiều đồ." },
+      { id: 6, category: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn Mini", code: "DN-BTD01", price: "1.100.000 đ", oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tròn sang trọng, kèm 1 ghế đôn nhỏ gọn gàng." },
+      { id: 7, category: "ban-an", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Gồm 1 bàn ăn + 4 ghế tựa bọc đệm êm ái." },
+      { id: 8, category: "ban-an", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế, phủ sơn bóng chống nước." },
+      { id: 9, category: "khac", title: "Kệ Tivi Phòng Khách Rút Gọn", code: "DN-KTV01", price: "1.200.000 đ", oldPrice: "1.500.000 đ", mainImg: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80", images: ["https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80"], desc: "▶ Chiều dài thay đổi linh hoạt theo kích thước phòng khách." },
+      { id: 10, category: "khac", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Sức chứa tới 20-25 đôi giày dép, bề dày chỉ 30cm siêu gọn." }
     ];
 
     function renderProducts(list) {
@@ -443,28 +380,20 @@
     function filterCategory(cat, btn) {
       document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-
-      if (cat === "all") {
-        renderProducts(products);
-      } else {
-        const filtered = products.filter(p => p.category === cat);
-        renderProducts(filtered);
-      }
+      if (cat === "all") renderProducts(products);
+      else renderProducts(products.filter(p => p.category === cat));
     }
 
     function openModal(id) {
       const p = products.find(item => item.id === id);
       if (!p) return;
-
       document.getElementById("modalTitle").innerText = p.title;
       document.getElementById("modalCode").innerText = p.code;
       document.getElementById("modalPrice").innerText = p.price;
       document.getElementById("modalOldPrice").innerText = p.oldPrice;
       document.getElementById("modalDesc").innerHTML = p.desc;
-      
       const mainImg = document.getElementById("modalMainImg");
       mainImg.src = p.mainImg;
-
       const thumbBox = document.getElementById("modalThumbnails");
       thumbBox.innerHTML = "";
       p.images.forEach((imgSrc, index) => {
@@ -478,56 +407,53 @@
         };
         thumbBox.appendChild(thumb);
       });
-
       document.getElementById("orderProductName").value = p.title + " (" + p.code + ")";
       document.getElementById("orderProductPrice").value = p.price;
-
       document.getElementById("productModal").style.display = "block";
     }
 
-    function closeModal() {
-      document.getElementById("productModal").style.display = "none";
+    function closeModal() { document.getElementById("productModal").style.display = "none"; }
+    function handleOrderSubmit() { alert("Cảm ơn ông/bà đã đặt hàng! Bố tôi (0912208061) sẽ gọi điện xác nhận và hẹn giờ chở đến lắp ráp tận nơi."); }
+
+    function toggleAIChat() {
+      const box = document.getElementById("aiChatBox");
+      box.style.display = (box.style.display === "flex") ? "none" : "flex";
     }
 
-    function handleOrderSubmit() {
-      alert("Cảm ơn ông/bà đã đặt hàng! Xưởng Đồ Gỗ Điện Ngọc (Bố tôi - 0912208061) sẽ gọi điện thoại lại ngay để xác nhận và hẹn giờ chở đến lắp ráp tận nơi.");
+    function handleAISend() {
+      const input = document.getElementById("aiInput");
+      const text = input.value.trim();
+      if (!text) return;
+      const body = document.getElementById("aiChatBody");
+      const userMsg = document.createElement("div");
+      userMsg.className = "msg msg-user";
+      userMsg.innerText = text;
+      body.appendChild(userMsg);
+      input.value = "";
+
+      setTimeout(() => {
+        let reply = "Xưởng nhận làm theo yêu cầu. Bác vui lòng liên hệ Hotline/Zalo 0912208061 của bố tôi để được tư vấn chính xác nhất ạ!";
+        const t = text.toLowerCase();
+        const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
+
+        if (found) {
+          reply = `Dạ mẫu <b>${found.title}</b> giá bán là <b>${found.price}</b> (Đã bao trọn gói công chở và thợ lắp ráp tận nơi tại Nam Định). Bác bấm vào sản phẩm để xem ảnh chi tiết nhé!`;
+        } else if (t.includes("giường")) {
+          reply = "Xưởng có Giường 1m6 giá 1.800.000đ và Giường 1m8 giá 2.100.000đ. Giá đều đã bao gồm công vận chuyển và lắp đặt tận phòng tại Nam Định ạ!";
+        } else if (t.includes("tủ")) {
+          reply = "Tủ áo có loại 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ), có thợ dựng hoàn thiện tận nhà ạ.";
+        } else if (t.includes("ship") || t.includes("vận chuyển") || t.includes("lắp")) {
+          reply = "Xưởng miễn phí vận chuyển và thợ trực tiếp đến lắp ráp tận phòng tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền (COD) ạ!";
+        }
+        const aiMsg = document.createElement("div");
+        aiMsg.className = "msg msg-ai";
+        aiMsg.innerHTML = reply;
+        body.appendChild(aiMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 350);
     }
 
-    // Chạy lần đầu
     renderProducts(products);
   </script>
-
-  <!-- TÍCH HỢP AI CHATBOT COZE THÔNG MINH -->
-  <script src="https://lf-cdn.coze.com/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.6/libs/oversea/index.js"></script>
-  <script>
-    new CozeWebSDK.WebChatClient({
-      config: {
-        bot_id: '7675643646666424373',
-    },',
-      },
-      componentProps: {
-        title: 'Tư Vấn Đồ Gỗ Điện Ngọc',
-      },
-    });
-  </script>
 </body>
-  
-<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-<script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7675643646666424373',
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_********',
-      onRefreshToken: function () {
-        return 'pat_********'
-      }
-    }
-  });
-</script>
 </html>
