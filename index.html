@@ -35,7 +35,7 @@
     .tag-btn { background: #881b1b; color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s; }
     .tag-btn.active, .tag-btn:hover { background: #cb7b26; }
 
-    /* Product Grid (6 Cột chuẩn đẹp) */
+    /* Product Grid (6 Cột chuẩn) */
     .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
     .product-card { background: #fff; border: 1px solid #eee; border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
     .product-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #cb7b26; }
@@ -104,19 +104,6 @@
     .zalo-text { color: #ffffff; font-weight: 900; font-size: 11px; }
     .btn-map { background-color: #00a651; }
     .btn-scrolltop { background-color: #636e72; border: none; }
-    .btn-ai-bot { background-color: #8e44ad; font-size: 20px; border: none; }
-
-    /* Hộp Chatbot AI Mini */
-    .ai-chat-box { display: none; position: fixed; right: 70px; bottom: 80px; width: 320px; height: 400px; background: #ffffff; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
-    .ai-chat-header { background: #8e44ad; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-    .ai-chat-header button { background: transparent; border: none; color: white; font-size: 14px; cursor: pointer; }
-    .ai-chat-messages { flex: 1; padding: 12px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 8px; }
-    .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4; max-width: 85%; }
-    .msg-ai { background: #e8e8e8; align-self: flex-start; color: #222; }
-    .msg-user { background: #cb7b26; color: white; align-self: flex-end; }
-    .ai-chat-input { display: flex; border-top: 1px solid #eee; padding: 6px; background: #fff; }
-    .ai-chat-input input { flex: 1; border: 1px solid #ccc; padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
-    .ai-chat-input button { background: #8e44ad; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
 
     /* Responsive Mobile */
     @media (max-width: 1024px) {
@@ -296,27 +283,9 @@
     <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
     </button>
-    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-bot" title="Hỏi giá nhanh với AI">
-      🤖
-    </button>
   </div>
 
-  <!-- Hộp chat AI mini -->
-  <div class="ai-chat-box" id="aiChatBox">
-    <div class="ai-chat-header">
-      <span>Trợ lý tư vấn Xưởng Điện Ngọc</span>
-      <button type="button" onclick="toggleAIChat()">✕</button>
-    </div>
-    <div class="ai-chat-messages" id="aiChatMessages">
-      <div class="msg msg-ai">Chào ông/bà! Tôi là trợ lý xưởng Đồ Gỗ Điện Ngọc. Ông/bà đang cần tìm mua mẫu giường, tủ hay bàn ghế nào ạ?</div>
-    </div>
-    <div class="ai-chat-input">
-      <input type="text" id="aiUserInput" placeholder="Nhập câu hỏi (VD: giá giường 1m6)..." onkeypress="if(event.key === 'Enter') sendAIMessage()">
-      <button type="button" onclick="sendAIMessage()">Gửi</button>
-    </div>
-  </div>
-
-  <!-- TOÀN BỘ LOGIC JAVASCRIPT XỬ LÝ LỌC TAB, MODAL VÀ CHATBOT -->
+  <!-- JAVASCRIPT ĐIỀU KHIỂN SẢN PHẨM & MODAL -->
   <script>
     const products = [
       {
@@ -452,7 +421,6 @@
       }
     ];
 
-    // Render danh sách sản phẩm
     function renderProducts(list) {
       const grid = document.getElementById("productGrid");
       grid.innerHTML = "";
@@ -472,7 +440,6 @@
       });
     }
 
-    // Lọc theo Tab
     function filterCategory(cat, btn) {
       document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
@@ -485,7 +452,6 @@
       }
     }
 
-    // Modal Popup
     function openModal(id) {
       const p = products.find(item => item.id === id);
       if (!p) return;
@@ -527,49 +493,21 @@
       alert("Cảm ơn ông/bà đã đặt hàng! Xưởng Đồ Gỗ Điện Ngọc (Bố tôi - 0912208061) sẽ gọi điện thoại lại ngay để xác nhận và hẹn giờ chở đến lắp ráp tận nơi.");
     }
 
-    // Chatbot AI Mini
-    function toggleAIChat() {
-      const box = document.getElementById("aiChatBox");
-      box.style.display = (box.style.display === "flex") ? "none" : "flex";
-    }
-
-    function sendAIMessage() {
-      const input = document.getElementById("aiUserInput");
-      const text = input.value.trim();
-      if (!text) return;
-
-      const msgBox = document.getElementById("aiChatMessages");
-
-      const userMsg = document.createElement("div");
-      userMsg.className = "msg msg-user";
-      userMsg.innerText = text;
-      msgBox.appendChild(userMsg);
-      input.value = "";
-
-      setTimeout(() => {
-        let reply = "Xưởng nhận làm theo yêu cầu. Bác vui lòng liên hệ hotline/Zalo 0912208061 của bố tôi để được tư vấn chính xác nhất ạ!";
-        const lower = text.toLowerCase();
-
-        const matched = products.filter(p => lower.split(" ").some(word => word.length > 2 && p.title.toLowerCase().includes(word)));
-
-        if (matched.length > 0) {
-          reply = `Xưởng hiện có mẫu: <b>${matched[0].title}</b> giá chỉ <b>${matched[0].price}</b> (Đã bao gồm công vận chuyển & lắp đặt tại Nam Định). Bác bấm vào sản phẩm trên web để xem thêm ảnh các góc nhé!`;
-        } else if (lower.includes("giá") || lower.includes("bao nhiêu")) {
-          reply = "Dạ giường xưởng làm từ 1.800.000đ, tủ áo từ 1.950.000đ tuỳ kích thước, giá đều đã bao gồm trọn gói công chở và lắp đặt tận phòng tại Nam Định ạ!";
-        } else if (lower.includes("ship") || lower.includes("vận chuyển") || lower.includes("lắp")) {
-          reply = "Dạ bên em bao vận chuyển và thợ trực tiếp đến lắp ráp hoàn chỉnh tận nơi tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền ạ!";
-        }
-
-        const aiMsg = document.createElement("div");
-        aiMsg.className = "msg msg-ai";
-        aiMsg.innerHTML = reply;
-        msgBox.appendChild(aiMsg);
-        msgBox.scrollTop = msgBox.scrollHeight;
-      }, 400);
-    }
-
     // Chạy lần đầu
     renderProducts(products);
+  </script>
+
+  <!-- TÍCH HỢP AI CHATBOT COZE THÔNG MINH -->
+  <script src="https://lf-cdn.coze.com/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.6/libs/oversea/index.js"></script>
+  <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7675643646666424373',
+      },
+      componentProps: {
+        title: 'Tư Vấn Đồ Gỗ Điện Ngọc',
+      },
+    });
   </script>
 </body>
 </html>
