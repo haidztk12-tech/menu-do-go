@@ -7,7 +7,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: #ffffff; color: #333; line-height: 1.5; }
+    body { background-color: #f7f7f7; color: #333; line-height: 1.5; }
 
     /* Top Bar */
     .top-bar { background-color: #cb7b26; padding: 8px 15px; }
@@ -19,70 +19,51 @@
     .search-bar input { border: none; outline: none; padding: 4px 8px; font-size: 13px; width: 180px; }
     .search-bar button { border: none; background: transparent; cursor: pointer; }
 
-    /* Main Nav & Dropdown */
+    /* Main Nav */
     .main-nav { background: #fff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
     .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
     .logo { font-size: 22px; font-weight: 900; color: #cb7b26; letter-spacing: 1px; padding: 12px 0; cursor: pointer; }
-    
     .nav-right-box { display: flex; align-items: center; gap: 15px; }
     .nav-links { display: flex; list-style: none; margin: 0; }
     .nav-item { position: relative; }
     .nav-item > a { display: block; padding: 16px 12px; text-decoration: none; color: #222; font-weight: 600; font-size: 14px; transition: 0.2s; cursor: pointer; }
     .nav-item:hover > a, .nav-item.active > a { color: #cb7b26; }
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 220px;
-      background: #ffffff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      border-radius: 4px;
-      border-top: 3px solid #cb7b26;
-      list-style: none;
-      padding: 6px 0;
-      z-index: 500;
-    }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: #ffffff; box-shadow: 0 5px 15px rgba(0,0,0,0.15); border-radius: 4px; border-top: 3px solid #cb7b26; list-style: none; padding: 6px 0; z-index: 500; }
     .nav-item:hover .dropdown-menu { display: block; }
-    .dropdown-menu li a {
-      display: block;
-      padding: 9px 16px;
-      color: #333;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      border-bottom: 1px solid #f2f2f2;
-      transition: background 0.2s, color 0.2s;
-      cursor: pointer;
-    }
-    .dropdown-menu li:last-child a { border-bottom: none; }
+    .dropdown-menu li a { display: block; padding: 9px 16px; color: #333; text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 1px solid #f2f2f2; cursor: pointer; }
     .dropdown-menu li a:hover { background: #fdfaf6; color: #cb7b26; padding-left: 20px; }
 
-    .cart-btn-header {
-      position: relative;
-      background: #fdfaf6;
-      border: 1px solid #cb7b26;
-      color: #cb7b26;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .cart-btn-header { position: relative; background: #fdfaf6; border: 1px solid #cb7b26; color: #cb7b26; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; }
     .cart-badge { background: #c0392b; color: #fff; font-size: 11px; border-radius: 10px; padding: 2px 6px; font-weight: bold; }
 
-    .container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
-    .breadcrumb { font-size: 13px; color: #888; margin-bottom: 15px; }
+    /* Hero Section */
+    .hero-section { max-width: 1250px; margin: 15px auto; padding: 0 15px; display: flex; gap: 15px; }
+    .hero-sidebar { width: 250px; background: #fff; border-radius: 6px; border: 1px solid #eee; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .hero-sidebar-title { background: #881b1b; color: #fff; padding: 12px 15px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+    .hero-sidebar-list { list-style: none; }
+    .hero-sidebar-list li a { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; font-size: 13px; color: #333; text-decoration: none; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+    .hero-sidebar-list li a:hover { background: #fdfaf6; color: #cb7b26; font-weight: 600; }
 
-    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; }
+    .hero-banner { flex: 1; position: relative; border-radius: 6px; overflow: hidden; min-height: 340px; display: flex; align-items: center; background: url('https://i.postimg.cc/85z2K7Z0/xuong-dien-ngoc.jpg') center/cover no-repeat; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%); display: flex; align-items: center; padding: 30px 40px; }
+    .hero-text-content { max-width: 550px; color: #fff; }
+    .hero-badge-tag { background: #cb7b26; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
+    .hero-title { font-size: 28px; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .hero-desc { font-size: 14px; margin-bottom: 20px; color: #f0f0f0; line-height: 1.5; }
+    .hero-buttons { display: flex; gap: 12px; }
+    .btn-hero-primary { background: #c0392b; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; transition: 0.2s; }
+    .btn-hero-primary:hover { background: #a93226; }
+    .btn-hero-outline { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; border: 1px solid rgba(255,255,255,0.6); }
+
+    /* Main Container */
+    .container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
+    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .tag-btn { background: #881b1b; color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s; }
     .tag-btn.active, .tag-btn:hover { background: #cb7b26; }
 
-    .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
+    /* Product Grid */
+    .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 35px; }
     .product-card { background: #fff; border: 1px solid #eee; border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
     .product-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #cb7b26; }
     .product-card img { width: 100%; height: 140px; object-fit: cover; }
@@ -91,60 +72,58 @@
     .price { color: #c0392b; font-size: 14px; font-weight: bold; }
     .view-detail-hint { font-size: 11px; color: #0984e3; margin-top: 4px; display: block; }
 
+    /* Section Giới Thiệu & Map */
+    .intro-section { background: #fff; padding: 25px; border-radius: 8px; margin-bottom: 25px; text-align: center; border: 1px solid #eee; }
+    .intro-section h2 { font-size: 20px; margin-bottom: 8px; }
+    .why-choose { background: #fdfaf6; padding: 15px; border-radius: 6px; text-align: left; border-left: 4px solid #cb7b26; font-size: 13px; line-height: 1.6; margin-top: 15px; }
+    
+    .map-section { text-align: center; margin-bottom: 30px; }
+    .map-box { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; max-width: 1000px; margin: auto; }
+    .map-card { background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; text-align: left; flex: 1; min-width: 300px; }
+    .btn-call-outline { display: inline-block; margin-top: 10px; background: #27ae60; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; }
+
+    /* FOOTER NỀN ĐỎ PHỦ ẢNH XƯỞNG MỜ */
+    .footer {
+      position: relative;
+      background: linear-gradient(rgba(110, 15, 15, 0.92), rgba(110, 15, 15, 0.95)), url('https://i.postimg.cc/85z2K7Z0/xuong-dien-ngoc.jpg') center/cover no-repeat;
+      color: #fff;
+      padding: 40px 15px 20px 15px;
+      border-top: 3px solid #cb7b26;
+    }
+    .footer-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; position: relative; z-index: 2; }
+    .footer-col { flex: 1; min-width: 280px; font-size: 13.5px; line-height: 1.7; }
+    .footer-col h3 { font-size: 15px; margin-bottom: 12px; border-bottom: 2px solid #cb7b26; display: inline-block; padding-bottom: 4px; }
+    .footer-col ul { list-style: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 25px; padding-top: 15px; text-align: center; font-size: 12px; color: #ddd; position: relative; z-index: 2; }
+
+    /* Modal & Float Buttons */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 20px; }
     .modal-content { background: #fff; max-width: 950px; margin: 30px auto; border-radius: 8px; padding: 25px; position: relative; }
     .modal-close { position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-
     .detail-container { display: flex; gap: 30px; margin-top: 15px; }
     .detail-gallery { flex: 1.2; }
     #modalMainImg { width: 100%; height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; }
     .thumbnail-list { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; }
     .thumbnail-list img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid #ddd; }
-    .thumbnail-list img:hover, .thumbnail-list img.active-thumb { border-color: #c0392b; }
-
+    .thumbnail-list img.active-thumb { border-color: #c0392b; }
     .detail-info { flex: 1.2; }
-    .product-sku { font-size: 13px; color: #777; margin-bottom: 12px; }
-    .stock-tag { color: #27ae60; font-weight: bold; }
-
     .promo-box { background: #c0392b; color: white; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
-    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 10px; }
+    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 8px; }
     .sale-price { font-size: 24px; font-weight: 900; }
     .old-price { font-size: 15px; text-decoration: line-through; color: #ffcccc; }
-    .promo-desc { font-size: 13px; border-top: 1px dashed rgba(255,255,255,0.4); padding-top: 10px; line-height: 1.6; }
-
+    .promo-desc { font-size: 13px; border-top: 1px dashed rgba(255,255,255,0.4); padding-top: 8px; line-height: 1.5; }
     .modal-actions { display: flex; gap: 10px; margin-bottom: 15px; }
     .btn-add-cart { flex: 1; background: #cb7b26; color: #fff; border: none; padding: 10px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 13px; }
-    .btn-add-cart:hover { background: #b56c1f; }
-
     .order-form { background: #fdfaf6; border: 1px solid #eedec8; padding: 15px; border-radius: 6px; }
-    .order-form h4 { font-size: 14px; color: #881b1b; margin-bottom: 4px; }
-    .note-cod { font-size: 12px; color: #27ae60; font-weight: bold; margin-bottom: 10px; }
     .form-group { margin-bottom: 8px; }
     .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; outline: none; }
-    .btn-submit-order { width: 100%; background: #c0392b; color: white; border: none; padding: 12px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 5px; }
-    .btn-submit-order:hover { background: #a93226; }
-
+    .btn-submit-order { width: 100%; background: #c0392b; color: white; border: none; padding: 12px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }
     .cart-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
     .cart-table th { background: #f5f5f5; padding: 10px; text-align: left; border-bottom: 2px solid #ddd; }
     .cart-table td { padding: 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
     .cart-qty-btn { background: #ddd; border: none; padding: 2px 8px; font-weight: bold; cursor: pointer; border-radius: 3px; }
     .cart-del-btn { color: #e74c3c; background: none; border: none; cursor: pointer; font-weight: bold; }
     .cart-total-box { text-align: right; font-size: 16px; margin: 15px 0; font-weight: bold; color: #c0392b; }
-
-    .intro-section { background: #fafafa; padding: 25px; border-radius: 8px; margin-bottom: 30px; text-align: center; border: 1px solid #eee; }
-    .intro-section h2 { font-size: 20px; margin-bottom: 8px; }
-    .intro-section .sub-text { font-size: 13px; color: #555; margin-bottom: 15px; }
-    .why-choose { background: #fff; padding: 15px; border-radius: 6px; text-align: left; border-left: 4px solid #cb7b26; font-size: 13px; line-height: 1.6; }
-    .map-section { text-align: center; margin-bottom: 30px; }
-    .map-box { display: flex; justify-content: center; }
-    .map-card { background: #fdfaf6; border: 1px dashed #cb7b26; padding: 20px; border-radius: 8px; text-align: left; max-width: 450px; width: 100%; }
-    .btn-call-outline { display: inline-block; margin-top: 10px; background: #27ae60; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; }
-    .footer { background: #881b1b; color: #fff; padding: 30px 15px 15px 15px; }
-    .footer-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .footer-col { flex: 1; min-width: 250px; font-size: 13px; }
-    .footer-col h3 { font-size: 14px; margin-bottom: 10px; border-bottom: 2px solid #cb7b26; display: inline-block; }
-    .footer-col ul { list-style: none; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 20px; padding-top: 10px; text-align: center; font-size: 12px; color: #ccc; }
 
     .floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
     .btn-floating { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s ease; }
@@ -168,6 +147,8 @@
     .ai-footer button { background: #5c67f2; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
 
     @media (max-width: 1024px) {
+      .hero-section { flex-direction: column; }
+      .hero-sidebar { width: 100%; display: none; }
       .product-grid { grid-template-columns: repeat(3, 1fr); }
       .detail-container { flex-direction: column; }
       #modalMainImg { height: 250px; }
@@ -177,7 +158,8 @@
       .nav-links { display: none; }
       .top-container { flex-direction: column; gap: 8px; }
       .search-bar input { width: 140px; }
-      .native-ai-box { width: 290px; right: 65px; }
+      .hero-banner { min-height: 260px; }
+      .hero-title { font-size: 20px; }
     }
   </style>
 </head>
@@ -188,11 +170,11 @@
     <div class="top-container">
       <div class="top-left">
         <a href="tel:0984650825" class="hotline-btn">📞 0984650825</a>
-        <a href="#about" class="top-link">Giới thiệu</a>
-        <a href="#map-section" class="top-link">Địa chỉ xưởng</a>
+        <a href="#about" class="top-link">Giới thiệu xưởng</a>
+        <a href="#map-section" class="top-link">Chỉ đường tới xưởng</a>
       </div>
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="handleSearch()">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm giường, tủ, bàn..." onkeyup="handleSearch()">
         <button type="button">🔍</button>
       </div>
     </div>
@@ -232,7 +214,7 @@
           </li>
 
           <li class="nav-item">
-            <a onclick="filterCategory('sofa')">Sofa &amp; Bàn Ghế Khách ▾</a>
+            <a onclick="filterCategory('sofa')">Sofa &amp; Bàn Khách ▾</a>
             <ul class="dropdown-menu">
               <li><a onclick="filterCategory('sofa-vang')">Sofa Văng Hiện Đại</a></li>
               <li><a onclick="filterCategory('sofa-da')">Sofa Da Phòng Khách</a></li>
@@ -255,10 +237,38 @@
     </div>
   </nav>
 
-  <div class="container" id="products">
-    <div class="breadcrumb" id="breadcrumbText">Trang chủ &gt; Danh mục sản phẩm &gt; Bấm vào ảnh để xem chi tiết &amp; Đặt mua</div>
+  <!-- HERO BANNER -->
+  <div class="hero-section">
+    <div class="hero-sidebar">
+      <div class="hero-sidebar-title">☰ DANH MỤC NỘI THẤT</div>
+      <ul class="hero-sidebar-list">
+        <li><a onclick="filterCategory('giuong')">🛏️ Giường Ngủ MDF <span>›</span></a></li>
+        <li><a onclick="filterCategory('tu')">🚪 Tủ Quần Áo Cánh Mở <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-an')">🪑 Bàn Ghế Ăn Gia Đình <span>›</span></a></li>
+        <li><a onclick="filterCategory('sofa')">🛋️ Ghế Sofa Phòng Khách <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-trang-diem')">🪞 Bàn Trang Điểm Hiện Đại <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-hoc')">📚 Bàn Học / Làm Việc <span>›</span></a></li>
+        <li><a onclick="filterCategory('khac')">👟 Kệ Tivi &amp; Tủ Giày <span>›</span></a></li>
+      </ul>
+    </div>
 
-    <!-- Category Filter Tags -->
+    <div class="hero-banner">
+      <div class="hero-overlay">
+        <div class="hero-text-content">
+          <span class="hero-badge-tag">XƯỞNG MỘC GIA ĐÌNH NAM ĐỊNH</span>
+          <h1 class="hero-title">ĐỒ GỖ ĐIỆN NGỌC</h1>
+          <p class="hero-desc">Sản xuất tận gốc tại xưởng - Bao phí vận chuyển và thợ lắp ráp tận phòng ngủ tại Nam Định. Kiểm tra chắc chắn mới thanh toán tiền (Ship COD).</p>
+          <div class="hero-buttons">
+            <a href="tel:0984650825" class="btn-hero-primary">📞 Gọi Ngay: 0984650825</a>
+            <a href="#map-section" class="btn-hero-outline">🧭 Xem Vị Trí Xưởng</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Danh Sách Sản Phẩm -->
+  <div class="container" id="products">
     <div class="category-tags">
       <button type="button" class="tag-btn active" onclick="filterCategory('all', this)">Tất cả sản phẩm</button>
       <button type="button" class="tag-btn" onclick="filterCategory('giuong', this)">Giường ngủ</button>
@@ -269,30 +279,27 @@
       <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi &amp; Tủ Giày</button>
     </div>
 
-    <!-- Product Grid -->
     <div class="product-grid" id="productGrid"></div>
 
-    <!-- Intro -->
+    <!-- Giới thiệu -->
     <section class="intro-section" id="about">
       <h2>Nội Thất Gỗ Nam Định - Đồ Gỗ Điện Ngọc</h2>
-      <p class="sub-text">Chuyên sản xuất, gia công lắp ráp giường, tủ, bàn ghế trực tiếp tại xưởng với giá gốc không qua trung gian[cite: 1].</p>
+      <p class="sub-text">Chuyên sản xuất, gia công lắp ráp giường, tủ, bàn ghế trực tiếp tại xưởng với giá gốc không qua trung gian.</p>
       <div class="why-choose">
         <h3>Tại sao nên chọn Đồ Gỗ Điện Ngọc?</h3>
-        <p>- Lấy công làm lãi, trực tiếp vận chuyển và lắp ráp tận phòng tại Nam Định[cite: 1].<br>
-           - Báo giá minh bạch, kiểm tra hàng ưng ý mới thanh toán tiền (Ship COD uy tín)[cite: 1].<br>
-           - Cam kết ván gỗ chuẩn kích thước, ray trượt bản lề giảm chấn chắc chắn[cite: 1].</p>
+        <p>- Lấy công làm lãi, trực tiếp vận chuyển và lắp ráp tận phòng tại Nam Định.<br>
+           - Báo giá minh bạch, kiểm tra hàng ưng ý mới thanh toán tiền (Ship COD uy tín).<br>
+           - Cam kết ván gỗ chuẩn kích thước, ray trượt bản lề giảm chấn chắc chắn.</p>
       </div>
     </section>
 
-    <!-- Map Section -->
-    <!-- Địa chỉ xưởng & Bản đồ chỉ đường Google Maps -->
+    <!-- Địa chỉ xưởng & Bản đồ Google Maps -->
     <section class="map-section" id="map-section">
       <h2>Địa chỉ xưởng của chúng tôi</h2>
       <p class="sub-text">Kính mời quý khách liên hệ hoặc ghé thăm xưởng để trao đổi kích thước thực tế</p>
       
-      <div class="map-box" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: stretch; max-width: 950px; margin: auto;">
-        <!-- Khối thông tin liên hệ -->
-        <div class="map-card" style="flex: 1; min-width: 300px;">
+      <div class="map-box">
+        <div class="map-card">
           <h4>XƯỞNG ĐỒ GỖ ĐIỆN NGỌC</h4>
           <p>📍 <strong>Địa chỉ:</strong> Đường Tỉnh 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
           <p>📞 <strong>Hotline / Zalo:</strong> 0984650825</p>
@@ -300,16 +307,15 @@
           
           <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
             <a href="tel:0984650825" class="btn-call-outline" style="flex: 1; text-align: center; margin-top: 0;">📞 Gọi ngay: 0984650825</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ,Điện+Ngọc" target="_blank" style="flex: 1; text-align: center; background: #cb7b26; color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc,+Trực+Ninh,+Nam+Định" target="_blank" style="flex: 1; text-align: center; background: #cb7b26; color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
               🧭 Chỉ đường tới xưởng
             </a>
           </div>
         </div>
 
-        <!-- Bản đồ Google Map nhúng trực tiếp -->
         <div style="flex: 1.2; min-width: 320px; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; min-height: 220px;">
           <iframe 
-            src="https://maps.google.com/maps?q=Đường+Tỉnh+490C,+Trực+Thuận,+Trực+Ninh,+Nam+Định&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc,+Trực+Ninh,+Nam+Định&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="100%" 
             style="border:0; min-height: 220px;" 
@@ -321,25 +327,25 @@
     </section>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
         <h3>CƠ SỞ NỘI THẤT ĐIỆN NGỌC</h3>
-        <p>Hotline/Zalo: <strong>0984650825</strong></p>
-        <p>Địa chỉ:Đường Tỉnh 490C - Trực Thuận - Trưc Ninh - Nam Định(Cách cổng chào Liễu Đề 500m)[cite: 1]</p>
+        <p>📞 Hotline / Zalo: <strong>0984650825</strong></p>
+        <p>📍 Địa chỉ: Đường Tỉnh 490C - Trực Thuận - Trực Ninh - Nam Định (Cách cổng chào Liễu Đề 500m)</p>
       </div>
       <div class="footer-col">
         <h3>HÌNH THỨC THANH TOÁN</h3>
         <ul>
-          <li>- Nhận hàng, kiểm tra lắp đặt xong mới trả tiền (COD)[cite: 1].</li>
-          <li>- Hỗ trợ chuyển khoản trực tiếp sau khi hoàn thiện[cite: 1].</li>
+          <li>- Nhận hàng, kiểm tra lắp đặt xong mới trả tiền (COD).</li>
+          <li>- Hỗ trợ chuyển khoản trực tiếp sau khi hoàn thiện.</li>
           <li>- Không cần đặt cọc trước với đơn hàng phổ thông.</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      © 2026 Đồ Gỗ Điện Ngọc
+      © 2026 Đồ Gỗ Điện Ngọc - Xưởng Mộc Gia Đình Nam Định
     </div>
   </footer>
 
@@ -368,10 +374,9 @@
             <button type="button" class="btn-add-cart" onclick="addToCartFromModal()">🛒 Thêm Vào Giỏ Hàng</button>
           </div>
 
-          <!-- Form Mua Nhanh COD -->
           <form class="order-form" onsubmit="event.preventDefault(); submitDirectOrder();">
             <h4>ĐẶT MUA LẮP ĐẶT TẬN NƠI (SHIP COD)</h4>
-            <p class="note-cod">Thanh toán tiền mặt sau khi xưởng chở đến lắp đặt hoàn chỉnh[cite: 1]!</p>
+            <p class="note-cod">Thanh toán tiền mặt sau khi xưởng chở đến lắp đặt hoàn chỉnh!</p>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên của ông/bà *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại nhận hàng *" required></div>
             <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
@@ -400,7 +405,7 @@
     <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
       <span class="zalo-text">Zalo</span>
     </a>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ,Điện+Ngọc" target="_blank" class="btn-floating btn-map" title="Chỉ đường Google Map đến xưởng">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc,+Trực+Ninh,+Nam+Định" target="_blank" class="btn-floating btn-map" title="Chỉ đường Google Map">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
     </a>
     <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
@@ -427,24 +432,21 @@
   </div>
 
   <script>
-    // CẤU HÌNH LIÊN KẾT NHẬN MAIL TỪ FORMSPREE
-    // (Đăng ký tài khoản Formspree bằng Google, tạo Form và thay ID vào chuỗi bên dưới)
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwlewgqe";
 
-    // Danh sách 12 sản phẩm chuẩn
     const products = [
-      { id: 1, sub: "giuong-1m6", category: "giuong", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", rawPrice: 1800000, oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m<br>▶ Gỗ MDF chống trầy xước, dát giường dày chắc chắn[cite: 1].<br>▶ Khuyến mãi: Miễn phí vận chuyển & LẮP ĐẶT TẬN NƠI tại Nam Định[cite: 1]." },
-      { id: 2, sub: "giuong-1m8", category: "giuong", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", rawPrice: 2100000, oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước: 1m8 x 2m (Rộng rãi cho gia đình)<br>▶ Bao thợ đến lắp ráp hoàn chỉnh mới thanh toán[cite: 1]." },
-      { id: 3, sub: "tu-2canh", category: "tu", title: "Tủ Áo 2 Cánh Cửa Mở Tiện Lợi", code: "DN-T02", price: "1.950.000 đ", rawPrice: 1950000, oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m2 x Cao 2m x Sâu 55cm<br>▶ Tối ưu không gian cho phòng ngủ nhỏ[cite: 1]." },
-      { id: 4, sub: "tu-3canh", category: "tu", title: "Tủ Quần Áo 3 Cánh Vân Gỗ Sồi", code: "DN-T03", price: "2.500.000 đ", rawPrice: 2500000, oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m6 x Cao 2m<br>▶ Bản lề hơi giảm chấn, êm ái chống ồn[cite: 1]." },
-      { id: 5, sub: "tu-4canh", category: "tu", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", rawPrice: 3400000, oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước: Rộng 2m x Cao 2m x Sâu 55cm<br>▶ Sức chứa lớn cho gia đình nhiều đồ[cite: 1]." },
-      { id: 6, sub: "ban-trang-diem", category: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn Mini", code: "DN-BTD01", price: "1.100.000 đ", rawPrice: 1100000, oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tròn sang trọng, kèm 1 ghế đôn nhỏ gọn gàng[cite: 1]." },
-      { id: 7, sub: "ban-an-4ghe", category: "ban-an", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", rawPrice: 2800000, oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Gồm 1 bàn ăn + 4 ghế tựa bọc đệm êm ái[cite: 1]." },
-      { id: 8, sub: "ban-an-6ghe", category: "ban-an", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", rawPrice: 3900000, oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế, phủ sơn bóng chống nước[cite: 1]." },
+      { id: 1, sub: "giuong-1m6", category: "giuong", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", rawPrice: 1800000, oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m<br>▶ Gỗ MDF chống trầy xước, dát giường dày chắc chắn.<br>▶ Khuyến mãi: Miễn phí vận chuyển & LẮP ĐẶT TẬN NƠI tại Nam Định." },
+      { id: 2, sub: "giuong-1m8", category: "giuong", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", rawPrice: 2100000, oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước: 1m8 x 2m (Rộng rãi cho gia đình)<br>▶ Bao thợ đến lắp ráp hoàn chỉnh mới thanh toán." },
+      { id: 3, sub: "tu-2canh", category: "tu", title: "Tủ Áo 2 Cánh Cửa Mở Tiện Lợi", code: "DN-T02", price: "1.950.000 đ", rawPrice: 1950000, oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m2 x Cao 2m x Sâu 55cm<br>▶ Tối ưu không gian cho phòng ngủ nhỏ." },
+      { id: 4, sub: "tu-3canh", category: "tu", title: "Tủ Quần Áo 3 Cánh Vân Gỗ Sồi", code: "DN-T03", price: "2.500.000 đ", rawPrice: 2500000, oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m6 x Cao 2m<br>▶ Bản lề hơi giảm chấn, êm ái chống ồn." },
+      { id: 5, sub: "tu-4canh", category: "tu", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", rawPrice: 3400000, oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước: Rộng 2m x Cao 2m x Sâu 55cm<br>▶ Sức chứa lớn cho gia đình nhiều đồ." },
+      { id: 6, sub: "ban-trang-diem", category: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn Mini", code: "DN-BTD01", price: "1.100.000 đ", rawPrice: 1100000, oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tròn sang trọng, kèm 1 ghế đôn nhỏ gọn gàng." },
+      { id: 7, sub: "ban-an-4ghe", category: "ban-an", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", rawPrice: 2800000, oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Gồm 1 bàn ăn + 4 ghế tựa bọc đệm êm ái." },
+      { id: 8, sub: "ban-an-6ghe", category: "ban-an", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", rawPrice: 3900000, oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế, phủ sơn bóng chống nước." },
       { id: 9, sub: "sofa-vang", category: "sofa", title: "Sofa Văng Nệm Xanh Hiện Đại", code: "DN-SF01", price: "3.200.000 đ", rawPrice: 3200000, oldPrice: "3.800.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Khung gỗ dầu chịu lực, đệm mút D40 chống xẹp lún cực tốt." },
       { id: 10, sub: "sofa-da", category: "sofa", title: "Bộ Sofa Da Phòng Khách Cao Cấp", code: "DN-SF02", price: "4.800.000 đ", rawPrice: 4800000, oldPrice: "5.600.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Da công nghiệp nhập khẩu cao cấp, dễ lau chùi, êm ái." },
-      { id: 11, sub: "ban-hoc", category: "ban-trang-diem", title: "Bàn Học Liền Giá Sách Tiện Lợi", code: "DN-BH01", price: "850.000 đ", rawPrice: 850000, oldPrice: "1.000.000 đ", mainImg: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80", images: ["https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80"], desc: "▶ Kích thước: 1m x 50cm, mặt bàn rộng rãi kèm kệ sách tiện dụng[cite: 1]." },
-      { id: 12, sub: "khac", category: "khac", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", rawPrice: 950000, oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Sức chứa tới 20-25 đôi giày dép, bề dày chỉ 30cm siêu gọn[cite: 1]." }
+      { id: 11, sub: "ban-hoc", category: "ban-trang-diem", title: "Bàn Học Liền Giá Sách Tiện Lợi", code: "DN-BH01", price: "850.000 đ", rawPrice: 850000, oldPrice: "1.000.000 đ", mainImg: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80", images: ["https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80"], desc: "▶ Kích thước: 1m x 50cm, mặt bàn rộng rãi kèm kệ sách tiện dụng." },
+      { id: 12, sub: "khac", category: "khac", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", rawPrice: 950000, oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Sức chứa tới 20-25 đôi giày dép, bề dày chỉ 30cm siêu gọn." }
     ];
 
     let currentSelectedProduct = null;
@@ -486,10 +488,8 @@
       let filtered = [];
       if (cat === "all") {
         filtered = products;
-        document.getElementById("breadcrumbText").innerText = "Trang chủ > Tất cả sản phẩm";
       } else {
         filtered = products.filter(p => p.category === cat || p.sub === cat);
-        document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
       }
       renderProducts(filtered);
       document.getElementById("products").scrollIntoView({ behavior: 'smooth' });
@@ -539,11 +539,8 @@
     function addToCartFromModal() {
       if (!currentSelectedProduct) return;
       const exist = cart.find(i => i.id === currentSelectedProduct.id);
-      if (exist) {
-        exist.qty += 1;
-      } else {
-        cart.push({ ...currentSelectedProduct, qty: 1 });
-      }
+      if (exist) exist.qty += 1;
+      else cart.push({ ...currentSelectedProduct, qty: 1 });
       updateCartCount();
       alert(`Đã thêm [${currentSelectedProduct.title}] vào Giỏ Hàng thành công!`);
     }
@@ -587,7 +584,7 @@
           <div class="cart-total-box">TỔNG CỘNG: ${total.toLocaleString('vi-VN')} đ</div>
           <form class="order-form" onsubmit="event.preventDefault(); submitCartOrder();">
             <h4>ĐẶT HÀNG TẤT CẢ SẢN PHẨM TRONG GIỎ</h4>
-            <p class="note-cod">Miễn phí giao hàng &amp; Lắp ráp hoàn thiện mới thanh toán (COD)[cite: 1]!</p>
+            <p class="note-cod">Miễn phí giao hàng &amp; Lắp ráp hoàn thiện mới thanh toán (COD)!</p>
             <div class="form-group"><input type="text" id="cartCustName" placeholder="Họ và tên của ông/bà *" required></div>
             <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại nhận hàng *" required></div>
             <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
@@ -612,7 +609,6 @@
       openCartModal();
     }
 
-    // Hàm gửi ngầm về Email
     async function sendDataToGmail(payload) {
       return fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
@@ -621,7 +617,6 @@
       });
     }
 
-    // Gửi đơn mua 1 món
     function submitDirectOrder() {
       const btn = document.getElementById('directSubmitBtn');
       btn.innerText = "Đang xử lý...";
@@ -657,7 +652,6 @@
         });
     }
 
-    // Gửi đơn toàn bộ giỏ hàng
     function submitCartOrder() {
       const btn = document.getElementById('cartSubmitBtn');
       btn.innerText = "Đang xử lý...";
@@ -683,7 +677,7 @@
 
       sendDataToGmail(payload)
         .then(() => {
-          alert("Đặt giỏ hàng thành công! Xưởng đã nhận được danh sách món và sẽ chuẩn bị thợ chở đến lắp ráp[cite: 1].");
+          alert("Đặt giỏ hàng thành công! Xưởng đã nhận được danh sách món và sẽ chuẩn bị thợ chở đến lắp ráp.");
           cart = [];
           updateCartCount();
           closeModal('cartModal');
@@ -700,7 +694,6 @@
         });
     }
 
-    // AI Chatbot Mini
     function toggleAIChat() {
       const box = document.getElementById("aiChatBox");
       box.style.display = (box.style.display === "flex") ? "none" : "flex";
@@ -718,20 +711,20 @@
       input.value = "";
 
       setTimeout(() => {
-        let reply = "Xưởng nhận làm theo yêu cầu[cite: 1]. Bác vui lòng liên hệ Hotline/Zalo 0984650825 để được tư vấn chính xác nhất ạ!";
+        let reply = "Xưởng nhận làm theo yêu cầu. Bác vui lòng liên hệ Hotline/Zalo 0984650825 để được tư vấn chính xác nhất ạ!";
         const t = text.toLowerCase();
         const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
 
         if (found) {
-          reply = `Dạ mẫu <b>${found.title}</b> giá bán là <b>${found.price}</b> (Đã bao trọn gói công chở và thợ lắp ráp tận nơi tại Nam Định)[cite: 1]. Bác bấm vào sản phẩm để thêm vào giỏ hàng hoặc đặt mua nhé!`;
+          reply = `Dạ mẫu <b>${found.title}</b> giá bán là <b>${found.price}</b> (Đã bao trọn gói công chở và thợ lắp ráp tận nơi tại Nam Định). Bác bấm vào sản phẩm để thêm vào giỏ hàng hoặc đặt mua nhé!`;
         } else if (t.includes("giường")) {
-          reply = "Xưởng có Giường 1m6 giá 1.800.000đ và Giường 1m8 giá 2.100.000đ[cite: 1]. Giá đều đã bao gồm công vận chuyển và lắp đặt tận phòng tại Nam Định ạ[cite: 1]!";
+          reply = "Xưởng có Giường 1m6 giá 1.800.000đ và Giường 1m8 giá 2.100.000đ. Giá đều đã bao gồm công vận chuyển và lắp đặt tận phòng tại Nam Định ạ!";
         } else if (t.includes("tủ")) {
-          reply = "Tủ áo có loại 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ)[cite: 1], có thợ dựng hoàn thiện tận nhà ạ[cite: 1].";
+          reply = "Tủ áo có loại 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ), có thợ dựng hoàn thiện tận nhà ạ.";
         } else if (t.includes("sofa")) {
           reply = "Xưởng có Sofa văng hiện đại giá 3.200.000đ và Sofa da phòng khách giá 4.800.000đ ạ.";
         } else if (t.includes("ship") || t.includes("vận chuyển") || t.includes("lắp")) {
-          reply = "Xưởng miễn phí vận chuyển và thợ trực tiếp đến lắp ráp tận phòng tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền (COD) ạ[cite: 1]!";
+          reply = "Xưởng miễn phí vận chuyển và thợ trực tiếp đến lắp ráp tận phòng tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền (COD) ạ!";
         }
         const aiMsg = document.createElement("div");
         aiMsg.className = "msg msg-ai";
