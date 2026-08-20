@@ -44,6 +44,9 @@
     .cart-btn-header { position: relative; background: #f9f5f0; border: 1.5px solid #5c3821; color: #5c3821; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; }
     .cart-badge { background: #9e2a2b; color: #fff; font-size: 11px; border-radius: 10px; padding: 2px 6px; font-weight: bold; }
 
+    /* Hamburger button - chỉ hiện trên mobile */
+    .hamburger-btn { display: none; background: none; border: 1.5px solid #5c3821; color: #5c3821; width: 38px; height: 38px; border-radius: 6px; font-size: 18px; cursor: pointer; align-items: center; justify-content: center; }
+
     /* Hero Section */
     .hero-section { max-width: 1250px; margin: 15px auto; padding: 0 15px; display: flex; gap: 15px; }
     .hero-sidebar { width: 250px; background: #fff; border-radius: 6px; border: 1px solid #e7ded7; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
@@ -192,6 +195,26 @@
     .ai-footer input { flex: 1; border: 1px solid #d5c8be; padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
     .ai-footer button { background: #5c3821; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
 
+    /* Mobile Slide Menu */
+    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20,10,5,0.6); z-index: 1200; }
+    .mobile-menu-overlay.open { display: block; }
+    .mobile-menu-panel {
+      position: fixed; top: 0; left: 0; width: 82%; max-width: 320px; height: 100%; background: #fff;
+      z-index: 1201; transform: translateX(-100%); transition: transform 0.25s ease; overflow-y: auto;
+      box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+    }
+    .mobile-menu-overlay.open .mobile-menu-panel { transform: translateX(0); }
+    .mobile-menu-header { background: #5c3821; color: #fff; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .mobile-menu-header span { font-weight: bold; font-size: 15px; }
+    .mobile-menu-header button { background: transparent; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+    .mobile-menu-list { list-style: none; }
+    .mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 14.5px; font-weight: 600; color: #3d3028; text-decoration: none; border-bottom: 1px solid #f0e9e3; cursor: pointer; }
+    .mobile-submenu { list-style: none; background: #faf7f4; display: none; }
+    .mobile-submenu.open { display: block; }
+    .mobile-submenu li a { display: block; padding: 11px 16px 11px 30px; font-size: 13.5px; color: #5c4a3f; text-decoration: none; border-bottom: 1px solid #f0e9e3; cursor: pointer; }
+    .mobile-menu-contact { padding: 16px; border-top: 2px solid #eae2db; margin-top: 8px; }
+    .mobile-menu-contact a { display: block; text-align: center; background: #8b4a24; color: #fff; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .hero-section { flex-direction: column; }
@@ -200,16 +223,28 @@
       .detail-container { flex-direction: column; }
       .main-view-box { height: 280px; }
     }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger-btn { display: flex; }
+    }
     @media (max-width: 600px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
       .top-container { flex-direction: column; gap: 8px; }
-      .search-bar input { width: 140px; }
+      .search-bar { width: 100%; }
+      .search-bar input { width: 100%; }
       .hero-banner { min-height: 260px; }
       .hero-title { font-size: 20px; }
-      .toast-msg { min-width: 250px; font-size: 12.5px; }
+      .toast-msg { min-width: 250px; font-size: 12.5px; max-width: calc(100vw - 40px); }
+      .toast-container { right: 10px; left: 10px; }
       .logo-text { font-size: 17px; }
       .logo-img { width: 36px; height: 36px; }
+      .floating-contact-bar { right: 10px; bottom: 15px; gap: 8px; }
+      .btn-floating { width: 40px; height: 40px; }
+      .native-ai-box { width: calc(100vw - 30px); right: 15px; height: 65vh; max-height: 460px; }
+      .modal-content { padding: 16px; margin: 10px auto; }
+      .promo-header { flex-wrap: wrap; gap: 6px; }
+      .cart-table { font-size: 12px; }
+      .cart-table th, .cart-table td { padding: 7px 5px; }
     }
   </style>
 </head>
@@ -291,9 +326,74 @@
         <button type="button" class="cart-btn-header" onclick="openCartModal()">
           🛒 Giỏ hàng <span class="cart-badge" id="cartCountBadge">0</span>
         </button>
+
+        <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)" aria-label="Mở menu danh mục">☰</button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Slide Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <span>☰ Danh mục nội thất</span>
+        <button type="button" onclick="toggleMobileMenu(false)">✕</button>
+      </div>
+      <ul class="mobile-menu-list">
+        <li><a onclick="filterCategory('all'); toggleMobileMenu(false);">Trang chủ / Tất cả</a></li>
+
+        <li>
+          <a onclick="toggleMobileSubmenu(this)">Giường Ngủ <span>▾</span></a>
+          <ul class="mobile-submenu">
+            <li><a onclick="filterCategory('giuong'); toggleMobileMenu(false);">Tất cả giường ngủ</a></li>
+            <li><a onclick="filterCategory('giuong-1m6'); toggleMobileMenu(false);">Giường Hiện Đại 1m6</a></li>
+            <li><a onclick="filterCategory('giuong-1m8'); toggleMobileMenu(false);">Giường Cao Cấp 1m8</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a onclick="toggleMobileSubmenu(this)">Tủ Quần Áo <span>▾</span></a>
+          <ul class="mobile-submenu">
+            <li><a onclick="filterCategory('tu'); toggleMobileMenu(false);">Tất cả tủ quần áo</a></li>
+            <li><a onclick="filterCategory('tu-2canh'); toggleMobileMenu(false);">Tủ Áo 2 Cánh</a></li>
+            <li><a onclick="filterCategory('tu-3canh'); toggleMobileMenu(false);">Tủ Áo 3 Cánh Gỗ Sồi</a></li>
+            <li><a onclick="filterCategory('tu-4canh'); toggleMobileMenu(false);">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a onclick="toggleMobileSubmenu(this)">Bàn Ghế Ăn <span>▾</span></a>
+          <ul class="mobile-submenu">
+            <li><a onclick="filterCategory('ban-an'); toggleMobileMenu(false);">Tất cả bàn ghế ăn</a></li>
+            <li><a onclick="filterCategory('ban-an-4ghe'); toggleMobileMenu(false);">Bộ Bàn Ăn 4 Ghế</a></li>
+            <li><a onclick="filterCategory('ban-an-6ghe'); toggleMobileMenu(false);">Bộ Bàn Ăn 6 Ghế</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a onclick="toggleMobileSubmenu(this)">Sofa &amp; Bàn Khách <span>▾</span></a>
+          <ul class="mobile-submenu">
+            <li><a onclick="filterCategory('sofa'); toggleMobileMenu(false);">Tất cả sofa</a></li>
+            <li><a onclick="filterCategory('sofa-vang'); toggleMobileMenu(false);">Sofa Văng Hiện Đại</a></li>
+            <li><a onclick="filterCategory('sofa-da'); toggleMobileMenu(false);">Sofa Da Phòng Khách</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a onclick="toggleMobileSubmenu(this)">Bàn Trang Điểm &amp; Học <span>▾</span></a>
+          <ul class="mobile-submenu">
+            <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm Gương Tròn</a></li>
+            <li><a onclick="filterCategory('ban-hoc'); toggleMobileMenu(false);">Bàn Học Liền Giá Sách</a></li>
+          </ul>
+        </li>
+
+        <li><a onclick="filterCategory('khac'); toggleMobileMenu(false);">Kệ Tivi &amp; Tủ Giày</a></li>
+      </ul>
+      <div class="mobile-menu-contact">
+        <a href="tel:0984650825">📞 Gọi ngay: 0984650825</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <div class="hero-section">
@@ -536,6 +636,13 @@
     let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
     let pendingOrderPayload = null; // Lưu đơn hàng chờ khách bấm đồng ý
 
+    // Escape chuỗi trước khi chèn vào innerHTML để tránh XSS từ dữ liệu khách nhập
+    function esc(str) {
+      const d = document.createElement('div');
+      d.innerText = (str === null || str === undefined) ? '' : String(str);
+      return d.innerHTML;
+    }
+
     function showToast(message, isSuccess = true) {
       const container = document.getElementById("toastContainer");
       const toast = document.createElement("div");
@@ -629,10 +736,10 @@
         card.className = "product-card";
         card.onclick = () => openModal(p.id);
         card.innerHTML = `
-          <img src="${p.mainImg}" alt="${p.title}">
+          <img src="${p.mainImg}" alt="${esc(p.title)}" loading="lazy">
           <div class="card-body">
-            <h4 class="product-title">${p.title}</h4>
-            <p class="price">${p.price}</p>
+            <h4 class="product-title">${esc(p.title)}</h4>
+            <p class="price">${esc(p.price)}</p>
             <span class="view-detail-hint">🔍 Xem chi tiết &amp; Đặt mua</span>
           </div>
         `;
@@ -642,7 +749,15 @@
 
     function filterCategory(cat, btn) {
       document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
-      if (btn) btn.classList.add("active");
+      if (btn) {
+        btn.classList.add("active");
+      } else {
+        // Nếu gọi từ sidebar/menu mobile (không truyền nút bấm), tự tìm nút tag tương ứng để giữ trạng thái active đồng bộ
+        const matchBtn = Array.from(document.querySelectorAll(".category-tags .tag-btn"))
+          .find(b => b.getAttribute("onclick") && b.getAttribute("onclick").includes(`'${cat}'`));
+        if (matchBtn) matchBtn.classList.add("active");
+        else document.querySelector(".category-tags .tag-btn").classList.add("active");
+      }
 
       let filtered = [];
       if (cat === "all") {
@@ -656,7 +771,9 @@
 
     function handleSearch() {
       const query = document.getElementById("searchInput").value.toLowerCase().trim();
-      const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.code.toLowerCase().includes(query));
+      const filtered = products.filter(p =>
+        (p.title || '').toLowerCase().includes(query) || (p.code || '').toLowerCase().includes(query)
+      );
       renderProducts(filtered);
     }
 
@@ -731,7 +848,7 @@
       if (exist) exist.qty += 1;
       else cart.push({ ...currentSelectedProduct, qty: 1 });
       updateCartCount();
-      showToast(`Đã thêm <b>${currentSelectedProduct.title}</b> vào Giỏ Hàng!`);
+      showToast(`Đã thêm <b>${esc(currentSelectedProduct.title)}</b> vào Giỏ Hàng!`);
     }
 
     function openCartModal() {
@@ -750,8 +867,8 @@
           total += itemTotal;
           return `
             <tr>
-              <td><b>${item.title}</b> (${item.code})</td>
-              <td>${item.price}</td>
+              <td><b>${esc(item.title)}</b> (${esc(item.code)})</td>
+              <td>${esc(item.price)}</td>
               <td>
                 <button class="cart-qty-btn" onclick="changeQty(${index}, -1)">-</button>
                 <span style="margin: 0 8px; font-weight: bold;">${item.qty}</span>
@@ -764,12 +881,14 @@
         }).join('');
 
         area.innerHTML = `
+          <div style="overflow-x: auto;">
           <table class="cart-table">
             <thead>
               <tr><th>Sản phẩm</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th><th></th></tr>
             </thead>
             <tbody>${rows}</tbody>
           </table>
+          </div>
           <div class="cart-total-box">TỔNG CỘNG: ${total.toLocaleString('vi-VN')} đ</div>
           <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalCart();">
             <h4>ĐẶT HÀNG TẤT CẢ SẢN PHẨM TRONG GIỎ</h4>
@@ -825,11 +944,11 @@
       };
 
       document.getElementById('confirmOrderSummary').innerHTML = `
-        <p>• <b>Sản phẩm:</b> ${currentSelectedProduct.title} (Mã: ${currentSelectedProduct.code})</p>
-        <p>• <b>Tổng tiền thanh toán khi nhận hàng:</b> <span style="color:#9e2a2b; font-weight:bold; font-size:15px;">${currentSelectedProduct.price}</span></p>
-        <p>• <b>Người nhận:</b> ${name} - <b>SĐT:</b> ${phone}</p>
-        <p>• <b>Địa chỉ giao:</b> ${address}</p>
-        ${note ? `<p>• <b>Ghi chú:</b> ${note}</p>` : ''}
+        <p>• <b>Sản phẩm:</b> ${esc(currentSelectedProduct.title)} (Mã: ${esc(currentSelectedProduct.code)})</p>
+        <p>• <b>Tổng tiền thanh toán khi nhận hàng:</b> <span style="color:#9e2a2b; font-weight:bold; font-size:15px;">${esc(currentSelectedProduct.price)}</span></p>
+        <p>• <b>Người nhận:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p>
+        <p>• <b>Địa chỉ giao:</b> ${esc(address)}</p>
+        ${note ? `<p>• <b>Ghi chú:</b> ${esc(note)}</p>` : ''}
       `;
 
       document.getElementById('confirmOrderModal').style.display = 'block';
@@ -856,15 +975,15 @@
         "isCart": true
       };
 
-      let cartItemsHtml = cart.map(i => `<div>- ${i.title} (SL: ${i.qty})</div>`).join('');
+      let cartItemsHtml = cart.map(i => `<div>- ${esc(i.title)} (SL: ${i.qty})</div>`).join('');
 
       document.getElementById('confirmOrderSummary').innerHTML = `
         <div style="margin-bottom: 6px;"><b>Các sản phẩm đã chọn:</b></div>
         <div style="margin-left: 8px; margin-bottom: 8px; color: #4a2c16;">${cartItemsHtml}</div>
         <p>• <b>Tổng thanh toán khi nhận hàng:</b> <span style="color:#9e2a2b; font-weight:bold; font-size:16px;">${total.toLocaleString('vi-VN')} đ</span></p>
-        <p>• <b>Người nhận:</b> ${name} - <b>SĐT:</b> ${phone}</p>
-        <p>• <b>Địa chỉ giao:</b> ${address}</p>
-        ${note ? `<p>• <b>Ghi chú:</b> ${note}</p>` : ''}
+        <p>• <b>Người nhận:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p>
+        <p>• <b>Địa chỉ giao:</b> ${esc(address)}</p>
+        ${note ? `<p>• <b>Ghi chú:</b> ${esc(note)}</p>` : ''}
       `;
 
       document.getElementById('confirmOrderModal').style.display = 'block';
@@ -933,7 +1052,7 @@
         const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
 
         if (found) {
-          reply = `Dạ mẫu <b>${found.title}</b> giá bán là <b>${found.price}</b> (Đã bao trọn gói công chở và thợ lắp ráp tận nơi tại Nam Định). Bác bấm vào sản phẩm để thêm vào giỏ hàng hoặc đặt mua nhé!`;
+          reply = `Dạ mẫu <b>${esc(found.title)}</b> giá bán là <b>${esc(found.price)}</b> (Đã bao trọn gói công chở và thợ lắp ráp tận nơi tại Nam Định). Bác bấm vào sản phẩm để thêm vào giỏ hàng hoặc đặt mua nhé!`;
         } else if (t.includes("giường")) {
           reply = "Xưởng có Giường 1m6 giá 1.800.000đ và Giường 1m8 giá 2.100.000đ. Giá đều đã bao gồm công vận chuyển và lắp đặt tận phòng tại Nam Định ạ!";
         } else if (t.includes("tủ")) {
@@ -949,6 +1068,22 @@
         body.appendChild(aiMsg);
         body.scrollTop = body.scrollHeight;
       }, 350);
+    }
+
+    // Mở / đóng menu mobile dạng slide-in
+    function toggleMobileMenu(open) {
+      const overlay = document.getElementById('mobileMenuOverlay');
+      overlay.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    // Bung / thu submenu trong menu mobile
+    function toggleMobileSubmenu(linkEl) {
+      const submenu = linkEl.nextElementSibling;
+      const isOpen = submenu.classList.contains('open');
+      // Đóng các submenu khác đang mở để danh sách gọn gàng
+      document.querySelectorAll('.mobile-submenu.open').forEach(s => { if (s !== submenu) s.classList.remove('open'); });
+      submenu.classList.toggle('open', !isOpen);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
