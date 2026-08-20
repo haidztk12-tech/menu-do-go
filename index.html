@@ -6,230 +6,231 @@
   <title>ĐỒ GỖ ĐIỆN NGỌC - Xưởng Nội Thất Nam Định</title>
   <link rel="icon" type="image/png" href="logodogodienngoc.png">
 
-  <!-- Tích hợp Phông chữ Vintage & Sang trọng từ Google Fonts -->
+  <!-- Phông chữ: Playfair (Tiêu đề sang trọng) & Roboto (Nội dung nét dày, rõ ràng, dễ đọc) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
+    /* ================= CƠ BẢN ================= */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* Chữ nội dung dùng phông Lora */
-    body { background-color: #f9f7f4; color: #2c2523; line-height: 1.6; font-family: 'Lora', serif; font-size: 14.5px; }
+    /* Chữ nội dung dùng Roboto/Segoe UI nét dày dặn */
+    body { background-color: #f4f0ec; color: #222; line-height: 1.6; font-family: 'Roboto', 'Segoe UI', sans-serif; font-size: 14.5px; }
 
-    /* Tiêu đề dùng phông Playfair Display */
-    h1, h2, h3, h4, h5, h6, .logo-text, .hero-title, .product-title, .sale-price { 
-      font-family: 'Playfair Display', serif; 
-    }
+    /* Tiêu đề dùng Playfair */
+    h1, h2, h3, .logo-text, .hero-title { font-family: 'Playfair Display', serif; }
 
-    /* Top Bar - Nâu Gỗ Đậm */
-    .top-bar { background-color: #4a2c16; padding: 8px 15px; }
+    /* ================= TOP BAR ================= */
+    .top-bar { background-color: #5c3a21; padding: 10px 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; z-index: 101;}
     .top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
     .top-left { display: flex; align-items: center; gap: 20px; }
-    .hotline-btn { color: #fdfaf6; font-weight: 600; text-decoration: none; font-size: 14px; letter-spacing: 0.5px;}
-    .top-link { color: #d5c8be; text-decoration: none; font-size: 13.5px; transition: 0.2s; }
-    .top-link:hover { color: #fff; }
+    .hotline-btn { color: #fff; font-weight: 700; text-decoration: none; font-size: 14px; background: #c0392b; padding: 4px 12px; border-radius: 20px; box-shadow: 0 2px 4px rgba(192,57,43,0.3);}
+    .top-link { color: #e5dbd3; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: 0.2s; }
+    .top-link:hover { color: #fff; text-decoration: underline; }
     
-    .search-bar { display: flex; background: #fff; border-radius: 4px; overflow: hidden; padding: 4px 12px; border: 1px solid #d5c8be; align-items: center;}
-    .search-bar input { border: none; outline: none; padding: 4px 8px; font-size: 13.5px; width: 200px; font-family: 'Lora', serif; }
-    .search-bar button { border: none; background: transparent; cursor: pointer; color: #5c3821; display: flex; align-items: center;}
+    .search-bar { display: flex; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); align-items: center;}
+    .search-bar input { border: none; outline: none; padding: 8px 12px; font-size: 14px; width: 220px; font-family: 'Roboto', sans-serif; font-weight: 500; color: #333;}
+    .search-bar button { border: none; background: #eae2db; cursor: pointer; color: #5c3a21; padding: 0 12px; height: 100%; display: flex; align-items: center; transition: 0.2s;}
+    .search-bar button:hover { background: #d5c8be; }
 
-    /* Main Nav */
-    .main-nav { background: #ffffff; border-bottom: 1px solid #eae2db; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(74,44,22,0.04); }
+    /* ================= MAIN NAV ================= */
+    .main-nav { background: #ffffff; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid #eaeaea;}
     .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
 
-    /* Logo & Tên Xưởng */
-    .logo { display: flex; align-items: center; gap: 12px; padding: 12px 0; cursor: pointer; text-decoration: none; }
-    .logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; border: 1px solid #eae2db; padding: 2px; }
-    .logo-text { font-size: 24px; font-weight: 800; color: #4a2c16; letter-spacing: 1px; text-transform: uppercase;}
+    .logo { display: flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; text-decoration: none; }
+    .logo-img { width: 45px; height: 45px; object-fit: contain; }
+    .logo-text { font-size: 24px; font-weight: 900; color: #5c3a21; text-transform: uppercase; letter-spacing: 0.5px;}
 
-    .nav-right-box { display: flex; align-items: center; gap: 15px; }
-    .nav-links { display: flex; list-style: none; margin: 0; }
+    .nav-right-box { display: flex; align-items: center; gap: 10px; }
+    .nav-links { display: flex; list-style: none; margin: 0; gap: 5px;}
     .nav-item { position: relative; }
-    .nav-item > a { display: block; padding: 22px 14px; text-decoration: none; color: #3d3028; font-weight: 600; font-size: 14px; transition: 0.2s; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;}
-    .nav-item:hover > a, .nav-item.active > a { color: #8b4a24; }
+    /* CHỐNG VỠ DÒNG MENU: white-space: nowrap */
+    .nav-item > a { display: block; padding: 18px 10px; text-decoration: none; color: #333; font-weight: 700; font-size: 14px; transition: 0.2s; cursor: pointer; white-space: nowrap;}
+    .nav-item:hover > a, .nav-item.active > a { color: #c0392b; }
 
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-radius: 0 0 4px 4px; border-top: 2px solid #5c3821; list-style: none; padding: 10px 0; z-index: 500; }
-    .nav-item:hover .dropdown-menu { display: block; }
-    .dropdown-menu li a { display: block; padding: 10px 20px; color: #44352f; text-decoration: none; font-size: 14px; border-bottom: 1px solid #f9f7f4; cursor: pointer; transition: 0.2s;}
-    .dropdown-menu li a:hover { background: #fdfaf6; color: #8b4a24; padding-left: 25px; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; border-top: 3px solid #c0392b; list-style: none; padding: 8px 0; z-index: 500; }
+    .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-menu li a { display: block; padding: 10px 20px; color: #444; text-decoration: none; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f5f0ec; cursor: pointer; transition: 0.2s;}
+    .dropdown-menu li a:hover { background: #fdfaf6; color: #c0392b; padding-left: 25px; }
 
-    .cart-btn-header { background: #fdfaf6; border: 1px solid #d5c8be; color: #4a2c16; padding: 8px 16px; border-radius: 4px; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s; font-family: 'Lora', serif;}
-    .cart-btn-header:hover { background: #4a2c16; color: #fff; border-color: #4a2c16;}
-    .cart-badge { background: #9e2a2b; color: #fff; font-size: 12px; border-radius: 12px; padding: 2px 8px; font-weight: bold; }
+    /* Nút giỏ hàng nổi bật */
+    .cart-btn-header { background: #fff; border: 2px solid #5c3a21; color: #5c3a21; padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s; font-family: 'Roboto', sans-serif;}
+    .cart-btn-header:hover { background: #5c3a21; color: #fff; box-shadow: 0 4px 8px rgba(92,58,33,0.2);}
+    .cart-badge { background: #c0392b; color: #fff; font-size: 12px; border-radius: 12px; padding: 2px 8px; font-weight: 900; }
 
-    .hamburger-btn { display: none; background: none; border: 1px solid #d5c8be; color: #4a2c16; width: 40px; height: 40px; border-radius: 4px; cursor: pointer; align-items: center; justify-content: center; }
+    .hamburger-btn { display: none; background: #f4f0ec; border: none; color: #333; width: 40px; height: 40px; border-radius: 6px; cursor: pointer; align-items: center; justify-content: center; }
 
-    /* Hero Section */
-    .hero-section { max-width: 1250px; margin: 25px auto; padding: 0 15px; display: flex; gap: 20px; }
-    .hero-sidebar { width: 260px; background: #fff; border-radius: 4px; border: 1px solid #eae2db; overflow: hidden; }
-    .hero-sidebar-title { background: #fdfaf6; color: #4a2c16; padding: 15px 18px; font-size: 15px; font-weight: 700; border-bottom: 1px solid #eae2db; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* ================= HERO SECTION ================= */
+    .hero-section { max-width: 1250px; margin: 20px auto; padding: 0 15px; display: flex; gap: 20px; }
+    .hero-sidebar { width: 260px; background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+    .hero-sidebar-title { background: #5c3a21; color: #fff; padding: 15px; font-size: 15px; font-weight: 700; text-transform: uppercase; }
     .hero-sidebar-list { list-style: none; }
-    .hero-sidebar-list li a { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; font-size: 14px; color: #44352f; text-decoration: none; border-bottom: 1px solid #f9f7f4; cursor: pointer; transition: 0.2s; }
-    .hero-sidebar-list li a:hover { background: #fdfaf6; color: #8b4a24; padding-left: 24px; }
+    .hero-sidebar-list li a { display: flex; align-items: center; justify-content: space-between; padding: 14px 15px; font-size: 14px; font-weight: 600; color: #444; text-decoration: none; border-bottom: 1px solid #f4f0ec; cursor: pointer; transition: 0.2s; }
+    .hero-sidebar-list li a:hover { background: #fdfaf6; color: #c0392b; padding-left: 20px; }
 
-    .hero-banner { 
-      flex: 1; position: relative; border-radius: 4px; overflow: hidden; min-height: 380px; display: flex; align-items: center; 
-      background: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png') center/cover no-repeat; 
-    }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(25,12,5,0.92) 0%, rgba(25,12,5,0.6) 50%, rgba(25,12,5,0.1) 100%); display: flex; align-items: center; padding: 40px 50px; }
-    .hero-text-content { max-width: 600px; color: #fff; }
-    .hero-badge-tag { background: transparent; border: 1px solid #d5c8be; color: #d5c8be; font-size: 11px; padding: 5px 12px; border-radius: 2px; display: inline-block; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-    .hero-title { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: #fff; letter-spacing: 1px;}
-    .hero-desc { font-size: 15px; margin-bottom: 25px; color: #e5ded8; line-height: 1.7; font-weight: 300; }
+    .hero-banner { flex: 1; position: relative; border-radius: 10px; overflow: hidden; min-height: 380px; display: flex; align-items: center; background: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png') center/cover no-repeat; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(20,10,0,0.9) 0%, rgba(20,10,0,0.6) 55%, rgba(20,10,0,0.1) 100%); display: flex; align-items: center; padding: 40px; }
+    .hero-text-content { max-width: 550px; color: #fff; }
+    .hero-badge-tag { background: #e67e22; color: #fff; font-size: 12px; font-weight: 900; padding: 5px 12px; border-radius: 4px; display: inline-block; margin-bottom: 15px; text-transform: uppercase; box-shadow: 0 2px 5px rgba(230,126,34,0.4);}
+    .hero-title { font-size: 38px; font-weight: 900; line-height: 1.2; margin-bottom: 15px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .hero-desc { font-size: 15px; margin-bottom: 25px; color: #e0e0e0; font-weight: 500; }
+    
+    /* Nút bấm trực quan */
     .hero-buttons { display: flex; gap: 15px; }
-    .btn-hero-primary { background: #8b4a24; color: white; padding: 12px 25px; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 13.5px; transition: 0.2s; border: none; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Lora', serif;}
-    .btn-hero-primary:hover { background: #5c3821; }
-    .btn-hero-outline { background: transparent; color: white; padding: 12px 25px; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 13.5px; border: 1px solid rgba(255,255,255,0.6); transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Lora', serif;}
-    .btn-hero-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .btn-hero-primary { background: #c0392b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.2s; box-shadow: 0 4px 10px rgba(192,57,43,0.3); display: flex; align-items: center; justify-content: center;}
+    .btn-hero-primary:hover { background: #a93226; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(192,57,43,0.4);}
+    .btn-hero-outline { background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 2px solid white; transition: 0.2s; display: flex; align-items: center; justify-content: center;}
+    .btn-hero-outline:hover { background: white; color: #333; transform: translateY(-2px); }
 
-    /* Main Container */
+    /* ================= MAIN CONTAINER ================= */
     .container { max-width: 1250px; margin: 30px auto; padding: 0 15px; }
-    .category-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; justify-content: center;}
-    .tag-btn { background: #fff; border: 1px solid #d5c8be; color: #5c3821; padding: 8px 18px; border-radius: 30px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Lora', serif;}
-    .tag-btn.active, .tag-btn:hover { background: #4a2c16; color: #fff; border-color: #4a2c16; }
+    .category-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; justify-content: center;}
+    .tag-btn { background: #fff; border: 1px solid #ddd; color: #444; padding: 10px 20px; border-radius: 30px; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02);}
+    .tag-btn.active, .tag-btn:hover { background: #5c3a21; color: #fff; border-color: #5c3a21; box-shadow: 0 4px 8px rgba(92,58,33,0.3); transform: translateY(-2px);}
 
     /* Product Grid */
     .product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 40px; }
-    .product-card { background: #fff; border: 1px solid #eae2db; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(74,44,22,0.08); border-color: #d5c8be; }
-    .product-card img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #f9f7f4;}
+    .product-card { background: #fff; border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid transparent;}
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: #e67e22; }
+    .product-card img { width: 100%; height: 190px; object-fit: cover; border-bottom: 1px solid #f0f0f0;}
     .card-body { padding: 15px; text-align: center; }
-    .product-title { font-size: 15px; color: #2c2523; font-weight: 600; margin-bottom: 8px; line-height: 1.4; min-height: 42px; }
-    .price { color: #9e2a2b; font-size: 15px; font-weight: 700; letter-spacing: 0.5px;}
-    .view-detail-hint { font-size: 12px; color: #8b4a24; margin-top: 10px; display: inline-block; font-style: italic; border-bottom: 1px solid #8b4a24; padding-bottom: 2px;}
+    .product-title { font-size: 15px; color: #222; font-weight: 700; margin-bottom: 8px; line-height: 1.4; min-height: 42px; font-family: 'Roboto', sans-serif;}
+    .price { color: #c0392b; font-size: 16px; font-weight: 900; }
+    .view-detail-hint { font-size: 12px; font-weight: 700; color: #fff; background: #e67e22; padding: 4px 10px; border-radius: 4px; margin-top: 12px; display: inline-block; transition: 0.2s;}
+    .product-card:hover .view-detail-hint { background: #c0392b; }
 
-    /* Section Giới Thiệu & Bản Đồ */
-    .intro-section { background: #fff; padding: 40px; margin-bottom: 40px; text-align: center; border-top: 1px solid #eae2db; border-bottom: 1px solid #eae2db; }
-    .intro-section h2 { font-size: 26px; margin-bottom: 12px; color: #4a2c16; text-transform: uppercase; letter-spacing: 1px;}
-    .sub-text { color: #6a5a52; font-size: 15px; max-width: 700px; margin: 0 auto; }
-    .why-choose { background: #fdfaf6; padding: 25px; text-align: left; border-left: 3px solid #8b4a24; font-size: 14.5px; line-height: 1.8; margin: 25px auto 0; max-width: 800px; color: #44352f;}
-    .why-choose h3 { font-size: 18px; margin-bottom: 10px; color: #4a2c16;}
+    /* Intro & Map */
+    .intro-section { background: #fff; padding: 40px; border-radius: 12px; margin-bottom: 40px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+    .intro-section h2 { font-size: 28px; margin-bottom: 12px; color: #5c3a21; }
+    .sub-text { color: #555; font-size: 15px; font-weight: 500; max-width: 700px; margin: 0 auto; }
+    .why-choose { background: #fdfaf6; padding: 25px; border-radius: 8px; text-align: left; border-left: 4px solid #e67e22; font-size: 14.5px; font-weight: 500; line-height: 1.8; margin: 25px auto 0; max-width: 800px; color: #333;}
+    .why-choose h3 { font-size: 18px; margin-bottom: 10px; color: #222;}
 
     .map-section { text-align: center; margin-bottom: 50px; }
-    .map-section h2 { color: #4a2c16; margin-bottom: 10px; font-size: 26px; text-transform: uppercase; letter-spacing: 1px;}
+    .map-section h2 { color: #5c3a21; margin-bottom: 10px; font-size: 28px; }
     .map-box { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; margin: 25px auto 0 auto; }
-    .map-card { background: #fff; border: 1px solid #eae2db; padding: 30px; text-align: left; flex: 1; min-width: 320px; }
-    .map-card h4 { color: #4a2c16; margin-bottom: 15px; font-size: 18px; letter-spacing: 0.5px;}
-    .map-card p { margin-bottom: 10px; color: #5c4a3f;}
-    .btn-call-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; background: #fff; color: #4a2c16; padding: 10px 20px; border: 1px solid #4a2c16; text-decoration: none; font-weight: 600; font-size: 13.5px; font-family: 'Lora', serif; transition: 0.2s;}
-    .btn-call-outline:hover { background: #4a2c16; color: #fff;}
-    .btn-map-dir { flex: 1; text-align: center; background: #4a2c16; color: white; padding: 10px 20px; text-decoration: none; font-weight: 600; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; font-family: 'Lora', serif;}
-    .btn-map-dir:hover { background: #2c1a0d; }
+    .map-card { background: #fff; border-radius: 12px; padding: 30px; text-align: left; flex: 1; min-width: 320px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+    .map-card h4 { color: #222; margin-bottom: 15px; font-size: 18px; font-weight: 900; font-family: 'Roboto', sans-serif;}
+    .map-card p { margin-bottom: 10px; color: #444; font-weight: 500;}
+    .btn-call-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; background: #fff; color: #c0392b; padding: 12px 20px; border: 2px solid #c0392b; border-radius: 8px; font-weight: 700; font-size: 14px; transition: 0.2s;}
+    .btn-call-outline:hover { background: #c0392b; color: #fff;}
+    .btn-map-dir { flex: 1; text-align: center; background: #27ae60; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 6px rgba(39,174,96,0.3);}
+    .btn-map-dir:hover { background: #219653; transform: translateY(-2px);}
 
     /* Footer */
-    .footer { position: relative; background: #1a100b; color: #e5ded8; padding: 60px 15px 30px 15px; }
+    .footer { background: #2c1a0d; color: #ddd; padding: 60px 15px 30px 15px; }
     .footer-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-    .footer-col { flex: 1; min-width: 280px; font-size: 14px; line-height: 1.8; color: #bfb2a8;}
-    .footer-col h3 { font-size: 16px; margin-bottom: 20px; color: #fff; letter-spacing: 1px; text-transform: uppercase;}
+    .footer-col { flex: 1; min-width: 280px; font-size: 14px; line-height: 1.8; font-weight: 500;}
+    .footer-col h3 { font-size: 16px; margin-bottom: 20px; color: #fff; font-family: 'Roboto', sans-serif; font-weight: 900; text-transform: uppercase;}
     .footer-col ul { list-style: none; }
     .footer-col p, .footer-col li { margin-bottom: 8px; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 20px; text-align: center; font-size: 13px; color: #8c7a6e; letter-spacing: 0.5px;}
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px; text-align: center; font-size: 13px; color: #aaa; font-weight: 600;}
 
-    /* Modals */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20,12,8,0.85); z-index: 1000; overflow-y: auto; padding: 20px 10px; }
-    .modal-content { background: #fff; max-width: 1050px; margin: auto; border-radius: 2px; padding: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .modal-close { position: absolute; top: 15px; right: 15px; background: transparent; color: #888; border: none; font-size: 24px; cursor: pointer; z-index: 10; transition: 0.2s;}
-    .modal-close:hover { color: #9e2a2b; }
+    /* ================= MODALS ================= */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; overflow-y: auto; padding: 20px 10px; backdrop-filter: blur(3px);}
+    .modal-content { background: #fff; max-width: 1050px; margin: auto; border-radius: 12px; padding: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .modal-close { position: absolute; top: 15px; right: 20px; background: #f0f0f0; color: #333; border: none; font-size: 20px; font-weight: bold; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; z-index: 10; transition: 0.2s; display: flex; align-items: center; justify-content: center;}
+    .modal-close:hover { background: #c0392b; color: white; }
 
     .detail-container { display: flex; gap: 40px; margin-top: 10px; }
     .detail-gallery { flex: 1.1; display: flex; flex-direction: column; }
-    .main-view-box { width: 100%; height: 420px; border: 1px solid #eae2db; background: #fdfaf6; display: flex; align-items: center; justify-content: center; }
+    .main-view-box { width: 100%; height: 420px; border-radius: 8px; border: 1px solid #eee; background: #fafafa; display: flex; align-items: center; justify-content: center; overflow: hidden;}
     #modalMainImg { width: 100%; height: 100%; object-fit: contain; }
     #modalVideoFrame { width: 100%; height: 100%; border: none; display: none; }
 
     .thumbnail-list { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 5px; }
-    .thumb-item { width: 80px; height: 80px; min-width: 80px; object-fit: cover; cursor: pointer; border: 1px solid #d5c8be; opacity: 0.7; transition: 0.2s; }
-    .thumb-item:hover, .thumb-item.active-thumb { opacity: 1; border-color: #4a2c16; }
-    .thumb-video-btn { width: 80px; height: 80px; min-width: 80px; background: #fdfaf6; color: #4a2c16; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #d5c8be; text-align: center; text-transform: uppercase;}
-    .thumb-video-btn.active-thumb { border-color: #4a2c16; background: #4a2c16; color: #fff; }
+    .thumb-item { width: 80px; height: 80px; min-width: 80px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 6px; opacity: 0.6; transition: 0.2s; }
+    .thumb-item:hover, .thumb-item.active-thumb { opacity: 1; border-color: #e67e22; box-shadow: 0 2px 8px rgba(230,126,34,0.3);}
+    .thumb-video-btn { width: 80px; height: 80px; min-width: 80px; background: #fdfaf6; color: #222; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid #ddd; text-align: center;}
+    .thumb-video-btn.active-thumb { border-color: #c0392b; background: #c0392b; color: #fff; }
 
     .detail-info { flex: 1.4; }
-    .product-sku { font-size: 13.5px; color: #8c7a6e; margin-bottom: 15px; font-family: 'Lora', serif;}
-    .stock-tag { color: #4a2c16; font-style: italic; }
-    .promo-box { background: #fdfaf6; border-left: 3px solid #8b4a24; padding: 20px; margin-bottom: 25px; }
-    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 8px; }
-    .sale-price { font-size: 28px; font-weight: 700; color: #9e2a2b; letter-spacing: 0.5px;}
-    .old-price { font-size: 15px; text-decoration: line-through; color: #a89f98; }
+    .product-sku { font-size: 14px; color: #666; margin-bottom: 15px; font-weight: 500;}
+    .stock-tag { color: #27ae60; font-weight: 700; background: #e8f8f5; padding: 2px 8px; border-radius: 4px; font-size: 12px;}
+    .promo-box { background: #fff8e1; border-left: 4px solid #f39c12; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;}
+    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 5px; }
+    .sale-price { font-size: 28px; font-weight: 900; color: #c0392b; font-family: 'Roboto', sans-serif;}
+    .old-price { font-size: 15px; text-decoration: line-through; color: #999; font-weight: 600;}
 
-    .specs-box { background: transparent; padding: 0; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; max-height: 250px; overflow-y: auto; color: #44352f;}
-    .specs-box b { color: #2c2523; font-weight: 600;}
+    .specs-box { background: transparent; font-size: 15px; line-height: 1.8; margin-bottom: 25px; max-height: 250px; overflow-y: auto; color: #333; font-weight: 500;}
+    .specs-box b { color: #000; font-weight: 800;}
 
     .modal-actions { display: flex; gap: 15px; margin-bottom: 30px; }
-    .btn-add-cart { flex: 1; background: #fff; color: #4a2c16; border: 1px solid #4a2c16; padding: 12px; font-weight: 600; cursor: pointer; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; font-family: 'Lora', serif; display: flex; justify-content: center; align-items: center; gap: 8px;}
-    .btn-add-cart:hover { background: #fdfaf6; }
+    .btn-add-cart { flex: 1; background: #fff; color: #e67e22; border: 2px solid #e67e22; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 15px; transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px;}
+    .btn-add-cart:hover { background: #e67e22; color: #fff; box-shadow: 0 4px 10px rgba(230,126,34,0.3); transform: translateY(-2px);}
     
-    .order-form { background: #fff; border: 1px solid #eae2db; padding: 25px; }
-    .order-form h4 { font-size: 16px; margin-bottom: 5px; color: #4a2c16; text-transform: uppercase; letter-spacing: 0.5px;}
+    .order-form { background: #f8f9fa; border: 1px solid #e9ecef; padding: 25px; border-radius: 12px;}
+    .order-form h4 { font-size: 16px; margin-bottom: 5px; color: #222; font-family: 'Roboto', sans-serif; font-weight: 900;}
     .form-group { margin-bottom: 12px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 10px 12px; border: 1px solid #d5c8be; font-size: 14px; outline: none; background: #fdfaf6; font-family: 'Lora', serif; color: #2c2523;}
-    .form-group input:focus, .form-group textarea:focus { border-color: #4a2c16; background: #fff;}
-    .btn-submit-order { width: 100%; background: #4a2c16; color: white; border: none; padding: 14px; font-size: 14px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; transition: 0.2s; font-family: 'Lora', serif;}
-    .btn-submit-order:hover { background: #2c1a0d; }
+    .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; background: #fff; font-family: 'Roboto', sans-serif; font-weight: 500; transition: 0.2s;}
+    .form-group input:focus, .form-group textarea:focus { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,0.1);}
+    .btn-submit-order { width: 100%; background: #c0392b; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 10px; transition: 0.2s; box-shadow: 0 4px 10px rgba(192,57,43,0.3);}
+    .btn-submit-order:hover { background: #a93226; transform: translateY(-2px);}
 
-    .cart-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
-    .cart-table th { background: #fdfaf6; padding: 12px; text-align: left; border-bottom: 1px solid #d5c8be; color: #4a2c16; font-family: 'Playfair Display', serif; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;}
-    .cart-table td { padding: 15px 12px; border-bottom: 1px solid #eae2db; vertical-align: middle; color: #44352f;}
-    .cart-qty-btn { background: #fff; border: 1px solid #d5c8be; color: #4a2c16; padding: 2px 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s;}
-    .cart-qty-btn:hover { background: #fdfaf6; }
-    .cart-del-btn { color: #8c7a6e; text-decoration: underline; background: none; border: none; cursor: pointer; font-size: 13px; font-family: 'Lora', serif;}
-    .cart-del-btn:hover { color: #9e2a2b; }
-    .cart-total-box { text-align: right; font-size: 18px; margin: 20px 0; color: #4a2c16; font-family: 'Playfair Display', serif;}
+    .cart-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14.5px; }
+    .cart-table th { background: #f1f3f5; padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6; color: #333; font-weight: 800;}
+    .cart-table td { padding: 15px 12px; border-bottom: 1px solid #eee; vertical-align: middle; font-weight: 500;}
+    .cart-qty-btn { background: #fff; border: 1px solid #ccc; color: #333; padding: 4px 12px; border-radius: 4px; font-weight: 900; cursor: pointer; font-size: 16px; transition: 0.2s;}
+    .cart-qty-btn:hover { background: #e9ecef; }
+    .cart-del-btn { color: #dc3545; background: #fff1f0; padding: 6px 12px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; font-size: 13px; transition: 0.2s;}
+    .cart-del-btn:hover { background: #dc3545; color: #fff; }
+    .cart-total-box { text-align: right; font-size: 20px; margin: 20px 0; color: #c0392b; font-weight: 900;}
 
+    #confirmOrderSummary { background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+    
     /* Toast Notification */
     .toast-container { position: fixed; top: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-    .toast-msg {
-      background: #ffffff; padding: 16px 20px; display: flex; align-items: center; gap: 15px;
-      font-size: 14px; color: #2c2523; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #4a2c16;
-      min-width: 320px; max-width: 450px; transform: translateX(120%); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+    .toast-msg { background: #333; padding: 16px 20px; border-radius: 8px; display: flex; align-items: center; gap: 15px; font-size: 14px; font-weight: 600; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.2); min-width: 320px; max-width: 450px; transform: translateX(120%); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .toast-msg.show { transform: translateX(0); opacity: 1; }
 
     /* Floating Buttons */
     .floating-contact-bar { position: fixed; right: 20px; bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 999; }
-    .btn-floating { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer; transition: transform 0.2s ease; border: none;}
-    .btn-floating:hover { transform: translateY(-3px); }
-    .btn-phone { background-color: #fff; border: 1px solid #eae2db;}
+    .btn-floating { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s ease; border: none;}
+    .btn-floating:hover { transform: translateY(-4px); }
+    .btn-phone { background-color: #27ae60; }
     .btn-zalo { background-color: #0068ff; }
-    .zalo-text { color: #ffffff; font-weight: 800; font-size: 13px; font-family: sans-serif; letter-spacing: 0.5px;}
-    .btn-scrolltop { background-color: #4a2c16; }
-    .btn-ai-chat { background-color: #2c2523; }
+    .zalo-text { color: #ffffff; font-weight: 900; font-size: 13px; font-family: sans-serif;}
+    .btn-scrolltop { background-color: #555; }
+    .btn-ai-chat { background-color: #c0392b; }
 
     /* Mini AI Chat */
-    .native-ai-box { display: none; position: fixed; right: 80px; bottom: 30px; width: 340px; height: 450px; background: #ffffff; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1000; flex-direction: column; border: 1px solid #eae2db; }
-    .ai-header { background: #4a2c16; color: white; padding: 15px; font-size: 14px; font-family: 'Playfair Display', serif; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; }
-    .ai-header button { background: transparent; border: none; color: white; font-size: 18px; cursor: pointer; }
-    .ai-body { flex: 1; padding: 15px; overflow-y: auto; background: #fdfaf6; display: flex; flex-direction: column; gap: 10px; }
-    .msg { padding: 10px 14px; font-size: 14px; line-height: 1.5; max-width: 85%; }
-    .msg-ai { background: #fff; color: #44352f; align-self: flex-start; border: 1px solid #eae2db; border-radius: 0 12px 12px 12px;}
-    .msg-user { background: #4a2c16; color: white; align-self: flex-end; border-radius: 12px 0 12px 12px;}
-    .ai-footer { display: flex; border-top: 1px solid #eae2db; padding: 10px; background: #fff; gap: 8px;}
-    .ai-footer input { flex: 1; border: 1px solid #d5c8be; padding: 10px; outline: none; font-size: 13.5px; font-family: 'Lora', serif; background: #fdfaf6;}
-    .ai-footer input:focus { border-color: #4a2c16; background: #fff;}
-    .ai-footer button { background: #4a2c16; color: white; border: none; padding: 0 15px; cursor: pointer; font-size: 13px; font-weight: 600; text-transform: uppercase; font-family: 'Lora', serif;}
+    .native-ai-box { display: none; position: fixed; right: 80px; bottom: 30px; width: 340px; height: 460px; background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid #eee; }
+    .ai-header { background: #5c3a21; color: white; padding: 15px; font-size: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+    .ai-header button { background: transparent; border: none; color: white; font-size: 20px; font-weight: bold; cursor: pointer; }
+    .ai-body { flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; display: flex; flex-direction: column; gap: 12px; }
+    .msg { padding: 12px 15px; font-size: 14px; font-weight: 500; line-height: 1.5; max-width: 85%; }
+    .msg-ai { background: #fff; color: #222; align-self: flex-start; border: 1px solid #ddd; border-radius: 0 12px 12px 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);}
+    .msg-user { background: #c0392b; color: white; align-self: flex-end; border-radius: 12px 0 12px 12px; box-shadow: 0 2px 5px rgba(192,57,43,0.2);}
+    .ai-footer { display: flex; border-top: 1px solid #eee; padding: 10px; background: #fff; gap: 10px;}
+    .ai-footer input { flex: 1; border: 1px solid #ccc; padding: 12px; border-radius: 6px; outline: none; font-size: 14px; font-family: 'Roboto', sans-serif; font-weight: 500; background: #fdfaf6;}
+    .ai-footer input:focus { border-color: #c0392b; background: #fff;}
+    .ai-footer button { background: #c0392b; color: white; border: none; border-radius: 6px; padding: 0 18px; cursor: pointer; font-size: 14px; font-weight: 700; transition: 0.2s;}
+    .ai-footer button:hover { background: #a93226; }
 
     /* Mobile Slide Menu */
-    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20,12,8,0.7); z-index: 1200; }
+    .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1200; backdrop-filter: blur(2px);}
     .mobile-menu-overlay.open { display: block; }
-    .mobile-menu-panel { position: fixed; top: 0; left: 0; width: 85%; max-width: 320px; height: 100%; background: #fff; z-index: 1201; transform: translateX(-100%); transition: transform 0.3s ease; overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.1); }
+    .mobile-menu-panel { position: fixed; top: 0; left: 0; width: 85%; max-width: 320px; height: 100%; background: #fff; z-index: 1201; transform: translateX(-100%); transition: transform 0.3s ease; overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.2); }
     .mobile-menu-overlay.open .mobile-menu-panel { transform: translateX(0); }
-    .mobile-menu-header { background: #fdfaf6; color: #4a2c16; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eae2db;}
-    .mobile-menu-header span { font-weight: 700; font-size: 15px; font-family: 'Playfair Display', serif; text-transform: uppercase; letter-spacing: 0.5px;}
-    .mobile-menu-header button { background: transparent; border: none; color: #888; font-size: 22px; cursor: pointer; }
+    .mobile-menu-header { background: #f8f9fa; color: #222; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee;}
+    .mobile-menu-header span { font-weight: 900; font-size: 16px; text-transform: uppercase; }
+    .mobile-menu-header button { background: #eee; border: none; color: #333; font-size: 18px; font-weight: bold; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
     .mobile-menu-list { list-style: none; }
-    .mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; font-size: 14px; font-weight: 600; color: #3d3028; text-decoration: none; border-bottom: 1px solid #f9f7f4; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;}
-    .mobile-submenu { list-style: none; background: #fdfaf6; display: none; }
+    .mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; font-size: 15px; font-weight: 700; color: #333; text-decoration: none; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+    .mobile-submenu { list-style: none; background: #fdfaf6; display: none; border-bottom: 1px solid #eee;}
     .mobile-submenu.open { display: block; }
-    .mobile-submenu li a { display: block; padding: 12px 20px 12px 30px; font-size: 14px; color: #5c4a3f; text-decoration: none; border-bottom: 1px solid #f9f7f4; cursor: pointer; }
-    .mobile-menu-contact { padding: 20px; border-top: 1px solid #eae2db; margin-top: 10px; }
-    .mobile-menu-contact a { display: block; text-align: center; background: #4a2c16; color: #fff; padding: 14px; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;}
+    .mobile-submenu li a { display: block; padding: 12px 20px 12px 30px; font-size: 14px; font-weight: 600; color: #555; text-decoration: none; border-bottom: 1px solid #f9f9f9; cursor: pointer; }
+    .mobile-menu-contact { padding: 20px; margin-top: 10px; }
+    .mobile-menu-contact a { display: block; text-align: center; background: #c0392b; color: #fff; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 15px; box-shadow: 0 4px 10px rgba(192,57,43,0.3);}
 
     /* Responsive */
     @media (max-width: 1024px) {
       .hero-section { flex-direction: column; }
       .hero-sidebar { width: 100%; display: none; }
       .product-grid { grid-template-columns: repeat(3, 1fr); }
-      .detail-container { flex-direction: column; }
+      .detail-container { flex-direction: column; gap: 20px;}
       .main-view-box { height: 320px; }
     }
     @media (max-width: 768px) {
@@ -237,30 +238,31 @@
       .hamburger-btn { display: flex; }
     }
     @media (max-width: 600px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px;}
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px;}
       .top-container { flex-direction: column; gap: 12px; }
       .search-bar { width: 100%; }
       .search-bar input { width: 100%; }
       .hero-banner { min-height: 280px; }
-      .hero-title { font-size: 24px; }
+      .hero-title { font-size: 28px; }
       .hero-overlay { padding: 30px 20px; }
       .toast-msg { min-width: 250px; font-size: 13px; max-width: calc(100vw - 40px); }
       .toast-container { right: 10px; left: 10px; top: 10px;}
-      .logo-text { font-size: 18px; }
-      .logo-img { width: 40px; height: 40px; }
+      .logo-text { font-size: 20px; }
+      .logo-img { width: 38px; height: 38px; }
       .floating-contact-bar { right: 15px; bottom: 20px; gap: 10px; }
-      .btn-floating { width: 42px; height: 42px; }
+      .btn-floating { width: 44px; height: 44px; }
       .native-ai-box { width: calc(100vw - 30px); right: 15px; height: 65vh; max-height: 460px; }
       .modal-content { padding: 20px 15px; margin: 0; border-radius: 0; min-height: 100vh;}
       .promo-header { flex-wrap: wrap; gap: 8px; }
       .cart-table { font-size: 13px; }
       .cart-table th, .cart-table td { padding: 10px 5px; }
+      .cart-qty-btn { padding: 4px 8px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Khung thông báo Toast -->
+  <!-- Toast Notification -->
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Top Bar -->
@@ -268,13 +270,13 @@
     <div class="top-container">
       <div class="top-left">
         <span class="hotline-btn">0984650825</span>
-        <a href="#about" class="top-link">Giới thiệu xưởng</a>
+        <a href="#about" class="top-link">Giới thiệu</a>
         <a href="#map-section" class="top-link">Chỉ đường</a>
       </div>
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="handleSearch()">
         <button type="button" aria-label="Tìm kiếm">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
       </div>
     </div>
@@ -304,7 +306,7 @@
             <a onclick="filterCategory('tu')">Tủ Quần Áo</a>
             <ul class="dropdown-menu">
               <li><a onclick="filterCategory('tu-2canh')">Tủ Áo 2 Cánh</a></li>
-              <li><a onclick="filterCategory('tu-3canh')">Tủ Áo 3 Cánh Gỗ Sồi</a></li>
+              <li><a onclick="filterCategory('tu-3canh')">Tủ Áo 3 Cánh</a></li>
               <li><a onclick="filterCategory('tu-4canh')">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
             </ul>
           </li>
@@ -318,7 +320,7 @@
           </li>
 
           <li class="nav-item">
-            <a onclick="filterCategory('sofa')">Sofa &amp; Phòng Khách</a>
+            <a onclick="filterCategory('sofa')">Sofa Phòng Khách</a>
             <ul class="dropdown-menu">
               <li><a onclick="filterCategory('sofa-vang')">Sofa Văng Hiện Đại</a></li>
               <li><a onclick="filterCategory('sofa-da')">Sofa Da Phòng Khách</a></li>
@@ -326,7 +328,7 @@
           </li>
 
           <li class="nav-item">
-            <a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm &amp; Học</a>
+            <a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm & Học</a>
             <ul class="dropdown-menu">
               <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm Gương Tròn</a></li>
               <li><a onclick="filterCategory('ban-hoc')">Bàn Học Liền Giá Sách</a></li>
@@ -335,12 +337,12 @@
         </ul>
 
         <button type="button" class="cart-btn-header" onclick="openCartModal()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
           Giỏ hàng <span class="cart-badge" id="cartCountBadge">0</span>
         </button>
 
         <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
     </div>
@@ -350,7 +352,7 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-header">
-        <span>Danh mục sản phẩm</span>
+        <span>Danh Mục Nội Thất</span>
         <button type="button" onclick="toggleMobileMenu(false)">✕</button>
       </div>
       <ul class="mobile-menu-list">
@@ -370,7 +372,7 @@
           <ul class="mobile-submenu">
             <li><a onclick="filterCategory('tu'); toggleMobileMenu(false);">Tất cả tủ quần áo</a></li>
             <li><a onclick="filterCategory('tu-2canh'); toggleMobileMenu(false);">Tủ Áo 2 Cánh</a></li>
-            <li><a onclick="filterCategory('tu-3canh'); toggleMobileMenu(false);">Tủ Áo 3 Cánh Gỗ Sồi</a></li>
+            <li><a onclick="filterCategory('tu-3canh'); toggleMobileMenu(false);">Tủ Áo 3 Cánh</a></li>
             <li><a onclick="filterCategory('tu-4canh'); toggleMobileMenu(false);">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
           </ul>
         </li>
@@ -385,26 +387,26 @@
         </li>
 
         <li>
-          <a onclick="toggleMobileSubmenu(this)">Sofa &amp; Bàn Khách <span>+</span></a>
+          <a onclick="toggleMobileSubmenu(this)">Sofa Phòng Khách <span>+</span></a>
           <ul class="mobile-submenu">
             <li><a onclick="filterCategory('sofa'); toggleMobileMenu(false);">Tất cả sofa</a></li>
             <li><a onclick="filterCategory('sofa-vang'); toggleMobileMenu(false);">Sofa Văng Hiện Đại</a></li>
-            <li><a onclick="filterCategory('sofa-da'); toggleMobileMenu(false);">Sofa Da Phòng Khách</a></li>
+            <li><a onclick="filterCategory('sofa-da'); toggleMobileMenu(false);">Sofa Da</a></li>
           </ul>
         </li>
 
         <li>
-          <a onclick="toggleMobileSubmenu(this)">Bàn Trang Điểm &amp; Học <span>+</span></a>
+          <a onclick="toggleMobileSubmenu(this)">Bàn Trang Điểm & Học <span>+</span></a>
           <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm Gương Tròn</a></li>
+            <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm</a></li>
             <li><a onclick="filterCategory('ban-hoc'); toggleMobileMenu(false);">Bàn Học Liền Giá Sách</a></li>
           </ul>
         </li>
 
-        <li><a onclick="filterCategory('khac'); toggleMobileMenu(false);">Kệ Tivi &amp; Tủ Giày</a></li>
+        <li><a onclick="filterCategory('khac'); toggleMobileMenu(false);">Kệ Tivi & Tủ Giày</a></li>
       </ul>
       <div class="mobile-menu-contact">
-        <a href="tel:0984650825">Liên hệ: 0984650825</a>
+        <a href="tel:0984650825">Gọi Tư Vấn Lắp Đặt</a>
       </div>
     </div>
   </div>
@@ -414,25 +416,25 @@
     <div class="hero-sidebar">
       <div class="hero-sidebar-title">Danh Mục Nội Thất</div>
       <ul class="hero-sidebar-list">
-        <li><a onclick="filterCategory('giuong')">Giường Ngủ MDF <span>&rsaquo;</span></a></li>
+        <li><a onclick="filterCategory('giuong')">Giường Ngủ Hiện Đại <span>&rsaquo;</span></a></li>
         <li><a onclick="filterCategory('tu')">Tủ Quần Áo Cánh Mở <span>&rsaquo;</span></a></li>
         <li><a onclick="filterCategory('ban-an')">Bàn Ghế Ăn Gia Đình <span>&rsaquo;</span></a></li>
         <li><a onclick="filterCategory('sofa')">Ghế Sofa Phòng Khách <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm Hiện Đại <span>&rsaquo;</span></a></li>
+        <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm / Gương <span>&rsaquo;</span></a></li>
         <li><a onclick="filterCategory('ban-hoc')">Bàn Học / Bàn Làm Việc <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('khac')">Kệ Tivi &amp; Tủ Giày <span>&rsaquo;</span></a></li>
+        <li><a onclick="filterCategory('khac')">Kệ Tivi & Tủ Giày <span>&rsaquo;</span></a></li>
       </ul>
     </div>
 
     <div class="hero-banner">
       <div class="hero-overlay">
         <div class="hero-text-content">
-          <span class="hero-badge-tag">Xưởng Mộc Truyền Thống Nam Định</span>
-          <h1 class="hero-title">Giá Trị Thực Từ Xưởng</h1>
-          <p class="hero-desc">Trực tiếp sản xuất, không qua trung gian. Miễn phí vận chuyển và thợ lắp ráp tận phòng tại khu vực Nam Định. Kiểm tra chất lượng kỹ lưỡng trước khi thanh toán.</p>
+          <span class="hero-badge-tag">Xưởng Sản Xuất Đồ Gỗ Nam Định</span>
+          <h1 class="hero-title">Giá Trị Thực, Chất Lượng Tốt</h1>
+          <p class="hero-desc">Bán hàng trực tiếp không qua trung gian. Miễn phí vận chuyển và có thợ lắp ráp tận phòng tại khu vực Nam Định. Bác kiểm tra ưng ý mới nhận tiền.</p>
           <div class="hero-buttons">
             <a href="tel:0984650825" class="btn-hero-primary">Gọi Ngay: 0984650825</a>
-            <a href="#map-section" class="btn-hero-outline">Xem Chỉ Đường</a>
+            <a href="#map-section" class="btn-hero-outline">Xem Chỉ Đường Tới Xưởng</a>
           </div>
         </div>
       </div>
@@ -448,46 +450,46 @@
       <button type="button" class="tag-btn" onclick="filterCategory('ban-an', this)">Bàn ghế ăn</button>
       <button type="button" class="tag-btn" onclick="filterCategory('sofa', this)">Ghế Sofa</button>
       <button type="button" class="tag-btn" onclick="filterCategory('ban-trang-diem', this)">Bàn trang điểm</button>
-      <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi &amp; Khác</button>
+      <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi & Khác</button>
     </div>
 
     <div class="product-grid" id="productGrid"></div>
 
     <!-- Giới thiệu -->
     <section class="intro-section" id="about">
-      <h2>Về Đồ Gỗ Điện Ngọc</h2>
-      <p class="sub-text">Cơ sở sản xuất và gia công nội thất gỗ uy tín tại Nam Định, mang đến không gian sống hoàn hảo với chi phí tối ưu nhất.</p>
+      <h2>Về Xưởng Đồ Gỗ Điện Ngọc</h2>
+      <p class="sub-text">Cơ sở sản xuất và gia công nội thất uy tín tại Nam Định, mang đến không gian sống hoàn hảo với mức chi phí tối ưu nhất.</p>
       <div class="why-choose">
-        <h3>Cam kết từ xưởng sản xuất:</h3>
-        <p>• Lấy công làm lãi, giá bán tận gốc không chịu phí mặt bằng trung tâm.<br>
-           • Trực tiếp thợ mộc của xưởng vận chuyển và bốc vác lắp ráp tận phòng.<br>
-           • Chất liệu ván chuẩn, phụ kiện ray trượt và bản lề giảm chấn loại tốt.<br>
-           • Báo giá minh bạch, khách hàng kiểm tra ưng ý mới nhận tiền thanh toán (COD).</p>
+        <h3>Cam kết từ xưởng:</h3>
+        <p>• Lấy công làm lãi, giá bán tận gốc xưởng không chịu phí mặt bằng showroom trung tâm.<br>
+           • Trực tiếp thợ mộc của xưởng bốc vác, vận chuyển và lắp ráp tận phòng.<br>
+           • Chất liệu chuẩn xác, phụ kiện ray trượt bản lề loại tốt chống ồn.<br>
+           • Báo giá minh bạch, khách hàng kiểm tra chắc chắn mới nhận tiền (Ship COD).</p>
       </div>
     </section>
 
     <!-- Địa chỉ xưởng & Bản đồ Google Maps -->
     <section class="map-section" id="map-section">
       <h2>Vị Trí Xưởng Sản Xuất</h2>
-      <p class="sub-text">Kính mời quý khách liên hệ hoặc ghé thăm trực tiếp xưởng để xem chất lượng gỗ và trao đổi kích thước.</p>
+      <p class="sub-text">Kính mời các bác liên hệ hoặc ghé thăm trực tiếp xưởng để trao đổi kích thước chuẩn nhất.</p>
       
       <div class="map-box">
         <div class="map-card">
           <h4>Cơ Sở Đồ Gỗ Điện Ngọc</h4>
           <p><strong>Địa chỉ:</strong> Đường Tỉnh 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
           <p><strong>Điện thoại / Zalo:</strong> 0984650825</p>
-          <p><strong>Thời gian mở cửa:</strong> 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
+          <p><strong>Giờ làm việc:</strong> 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
           
-          <div style="display: flex; gap: 10px; margin-top: 25px; flex-wrap: wrap;">
-            <a href="tel:0984650825" class="btn-call-outline" style="flex: 1;">Liên Hệ Tư Vấn</a>
+          <div style="display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap;">
+            <a href="tel:0984650825" class="btn-call-outline" style="flex: 1;">Gọi Tư Vấn</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-map-dir">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-              Mở Bản Đồ
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+              Mở Google Maps
             </a>
           </div>
         </div>
 
-        <div style="flex: 1.2; min-width: 320px; border-radius: 4px; overflow: hidden; border: 1px solid #eae2db; min-height: 250px;">
+        <div style="flex: 1.2; min-width: 320px; border-radius: 12px; overflow: hidden; border: 1px solid #eae2db; min-height: 250px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
           <iframe 
             src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
@@ -507,19 +509,19 @@
       <div class="footer-col">
         <h3>Cơ Sở Nội Thất Điện Ngọc</h3>
         <p>Điện thoại / Zalo: <strong>0984650825</strong></p>
-        <p>Địa chỉ: Đường Tỉnh 490C - Trực Thuận - Trực Ninh - Nam Định (Cách cổng chào Liễu Đề 500m)</p>
+        <p>Địa chỉ: Đường Tỉnh 490C - Trực Thuận - Trực Ninh - Nam Định</p>
       </div>
       <div class="footer-col">
         <h3>Chính Sách Khách Hàng</h3>
         <ul>
-          <li>Nhận hàng, kiểm tra lắp đặt hoàn thiện mới thanh toán (COD).</li>
+          <li>Nhận hàng, kiểm tra lắp đặt hoàn thiện mới thanh toán.</li>
           <li>Hỗ trợ chuyển khoản hoặc tiền mặt trực tiếp cho thợ.</li>
-          <li>Đơn hàng phổ thông tiêu chuẩn không yêu cầu đặt cọc trước.</li>
+          <li>Không yêu cầu đặt cọc trước với đơn hàng kích thước phổ thông.</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Đồ Gỗ Điện Ngọc - Xưởng Mộc Truyền Thống Nam Định.
+      &copy; 2026 Đồ Gỗ Điện Ngọc - Xưởng Mộc Gia Đình Nam Định.
     </div>
   </footer>
 
@@ -537,34 +539,34 @@
         </div>
 
         <div class="detail-info">
-          <h2 id="modalTitle" style="font-size: 24px; margin-bottom: 5px;">Tên sản phẩm</h2>
-          <p class="product-sku">Mã sản phẩm: <span id="modalCode" style="font-weight: 600; color: #4a2c16;">DN-01</span> | <span class="stock-tag">Có sẵn tại xưởng</span></p>
+          <h2 id="modalTitle" style="font-size: 26px; margin-bottom: 5px;">Tên sản phẩm</h2>
+          <p class="product-sku">Mã sản phẩm: <span id="modalCode" style="font-weight: 800; color: #222;">DN-01</span> | <span class="stock-tag">Có sẵn tại xưởng</span></p>
 
           <div class="promo-box">
             <div class="promo-header">
               <div class="sale-price" id="modalPrice">0 đ</div>
               <div class="old-price" id="modalOldPrice">0 đ</div>
             </div>
-            <div style="font-size: 13.5px; opacity: 0.9; color: #44352f;">Chính sách: Miễn phí vận chuyển &amp; thợ lắp ráp tận nơi tại khu vực Nam Định.</div>
+            <div style="font-size: 14px; font-weight: 600; color: #5c3a21;">Hỗ trợ: Miễn phí vận chuyển & thợ kê lắp tận nhà tại Nam Định.</div>
           </div>
 
           <div class="specs-box" id="modalDesc"></div>
 
           <div class="modal-actions">
             <button type="button" class="btn-add-cart" onclick="addToCartFromModal()">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
               Thêm Vào Giỏ Hàng
             </button>
           </div>
 
           <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalDirect();">
-            <h4>Thông Tin Đặt Hàng Nhanh</h4>
-            <p style="font-size: 13px; color: #6a5a52; margin-bottom: 15px;">Thanh toán sau khi lắp đặt hoàn thiện, không cần đặt cọc.</p>
+            <h4>Thông Tin Đặt Mua Nhanh</h4>
+            <p style="font-size: 13.5px; color: #555; margin-bottom: 15px; font-weight: 500;">Thanh toán tiền sau khi thợ dựng xong hoàn thiện.</p>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
             <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
-            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (tầng mấy, yêu cầu giờ giao...)"></textarea></div>
-            <button type="submit" class="btn-submit-order">Xác Nhận Đặt Hàng</button>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (Tầng mấy, ngõ xe tải vào được không...)"></textarea></div>
+            <button type="submit" class="btn-submit-order">Xác Nhận Mẫu Này</button>
           </form>
         </div>
       </div>
@@ -573,36 +575,36 @@
 
   <!-- Modal Giỏ Hàng -->
   <div class="modal-overlay" id="cartModal">
-    <div class="modal-content" style="max-width: 800px;">
+    <div class="modal-content" style="max-width: 850px;">
       <button type="button" class="modal-close" onclick="closeModal('cartModal')">&times;</button>
-      <h2 style="margin-bottom: 20px; color: #4a2c16; font-size: 22px;">Giỏ Hàng Của Bạn</h2>
+      <h2 style="margin-bottom: 20px; color: #222; font-size: 26px;">Giỏ Hàng Của Bác</h2>
       <div id="cartContentArea"></div>
     </div>
   </div>
 
   <!-- Modal Xác Nhận Đơn Hàng -->
   <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
-    <div class="modal-content" style="max-width: 500px; padding: 30px;">
+    <div class="modal-content" style="max-width: 550px; padding: 30px;">
       <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">&times;</button>
-      <h3 style="color: #4a2c16; margin-bottom: 20px; font-size: 20px; border-bottom: 1px solid #eae2db; padding-bottom: 10px;">
-        Xác Nhận Thông Tin Đơn Hàng
+      <h3 style="color: #222; margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid #eae2db; padding-bottom: 10px;">
+        Phiếu Xác Nhận Đơn Hàng
       </h3>
 
-      <div id="confirmOrderSummary" style="font-size: 14.5px; line-height: 1.7; background: #fdfaf6; padding: 20px; border: 1px solid #eae2db; margin-bottom: 20px; color: #2c2523;"></div>
+      <div id="confirmOrderSummary"></div>
 
-      <div style="background: #f9f7f4; border-left: 3px solid #4a2c16; padding: 15px; font-size: 13.5px; line-height: 1.6; color: #44352f; margin-bottom: 25px;">
-        <b style="color: #2c2523;">Lưu ý từ xưởng:</b><br>
-        - Đơn hàng không yêu cầu thanh toán hay chuyển cọc trước.<br>
-        - Xưởng sẽ liên hệ trực tiếp qua điện thoại để xác nhận lịch giao.<br>
-        - Thợ lắp đặt hoàn thiện, khách hàng kiểm tra ưng ý mới thanh toán.
+      <div style="background: #fff8e1; border-left: 4px solid #f39c12; padding: 15px; font-size: 14px; line-height: 1.6; color: #333; margin-bottom: 25px; border-radius: 0 8px 8px 0; font-weight: 500;">
+        <b style="color: #222; font-size: 15px;">Cam kết từ xưởng:</b><br>
+        - Đơn hàng không yêu cầu chuyển tiền cọc trước.<br>
+        - Xưởng sẽ chủ động gọi điện thoại hẹn giờ với bác trước khi bốc hàng lên xe tải.<br>
+        - Thợ lắp đặt hoàn thiện, bác kiểm tra ưng ý mới thanh toán tiền.
       </div>
 
       <div style="display: flex; gap: 15px;">
-        <button type="button" onclick="closeModal('confirmOrderModal')" style="flex: 1; background: #fff; color: #4a2c16; border: 1px solid #4a2c16; padding: 12px; font-weight: 600; cursor: pointer; font-size: 13.5px; font-family: 'Lora', serif;">
+        <button type="button" onclick="closeModal('confirmOrderModal')" style="flex: 1; background: #fff; color: #555; border: 2px solid #ccc; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 14px; transition: 0.2s;">
           Quay Lại Sửa
         </button>
-        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" style="flex: 1.5; background: #4a2c16; color: white; border: none; padding: 12px; font-weight: 600; cursor: pointer; font-size: 13.5px; font-family: 'Lora', serif;">
-          Đồng Ý Gửi Đơn
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" style="flex: 1.5; background: #c0392b; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 14px; box-shadow: 0 4px 10px rgba(192,57,43,0.3); transition: 0.2s;">
+          ĐỒNG Ý GỬI ĐƠN
         </button>
       </div>
     </div>
@@ -610,31 +612,31 @@
 
   <!-- Float Buttons -->
   <div class="floating-contact-bar">
-    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#4a2c16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện thoại">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </a>
     <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
       <span class="zalo-text">Zalo</span>
     </a>
     <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
-    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Hỏi tư vấn">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Mở hộp chat tư vấn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     </button>
   </div>
 
   <!-- Chat Box -->
   <div class="native-ai-box" id="aiChatBox">
     <div class="ai-header">
-      <span>Tư Vấn Trực Tuyến</span>
+      <span>Tư Vấn Nhanh</span>
       <button type="button" onclick="toggleAIChat()">&times;</button>
     </div>
     <div class="ai-body" id="aiChatBody">
-      <div class="msg msg-ai">Kính chào quý khách! Hệ thống hỗ trợ tư vấn kích thước và báo giá của Đồ Gỗ Điện Ngọc. Quý khách cần hỗ trợ sản phẩm nào ạ?</div>
+      <div class="msg msg-ai">Chào bác! Xưởng em chuyên đóng giường tủ gỗ ván công nghiệp và gỗ tự nhiên. Bác cần tìm kích thước mẫu nào ạ?</div>
     </div>
     <div class="ai-footer">
-      <input type="text" id="aiInput" placeholder="Nhập câu hỏi..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <input type="text" id="aiInput" placeholder="Nhập câu hỏi tại đây..." onkeypress="if(event.key === 'Enter') handleAISend()">
       <button type="button" onclick="handleAISend()">Gửi</button>
     </div>
   </div>
@@ -658,15 +660,16 @@
       const container = document.getElementById("toastContainer");
       const toast = document.createElement("div");
       toast.className = "toast-msg";
-      toast.style.borderLeftColor = isSuccess ? "#4a2c16" : "#9e2a2b";
       
       toast.innerHTML = `
-        <div style="font-weight: 600;">${message}</div>
+        <div style="display: flex; align-items: center; justify-content: center; background: ${isSuccess ? '#27ae60' : '#c0392b'}; border-radius: 50%; width: 24px; height: 24px; color: white;">
+           ${isSuccess ? '✓' : '!'}
+        </div>
+        <div>${message}</div>
       `;
       
       container.appendChild(toast);
       setTimeout(() => toast.classList.add("show"), 10);
-      
       setTimeout(() => {
         toast.classList.remove("show");
         setTimeout(() => toast.remove(), 400);
@@ -694,7 +697,7 @@
 
     async function loadProductsFromSheet() {
       const grid = document.getElementById("productGrid");
-      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #6a5a52; font-style: italic;">Đang tải dữ liệu sản phẩm từ xưởng...</div>`;
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: bold; font-size: 16px;">Đang tải dữ liệu sản phẩm từ xưởng...</div>`;
 
       try {
         const response = await fetch(GOOGLE_SHEET_DATA_URL);
@@ -724,7 +727,7 @@
 
         renderProducts(products);
       } catch (err) {
-        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #9e2a2b;">Hệ thống tải dữ liệu đang gián đoạn. Xin vui lòng tải lại trang.</div>`;
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #c0392b; font-weight: bold;">Hệ thống tải dữ liệu bị lỗi. Xin vui lòng tải lại trang.</div>`;
       }
     }
 
@@ -732,7 +735,7 @@
       const grid = document.getElementById("productGrid");
       grid.innerHTML = "";
       if (list.length === 0) {
-        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #6a5a52;">Chưa có sản phẩm phù hợp.</div>`;
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: bold;">Chưa có sản phẩm phù hợp.</div>`;
         return;
       }
       list.forEach(p => {
@@ -744,7 +747,7 @@
           <div class="card-body">
             <h4 class="product-title">${esc(p.title)}</h4>
             <p class="price">${esc(p.price)}</p>
-            <span class="view-detail-hint">Xem chi tiết</span>
+            <span class="view-detail-hint">XEM CHI TIẾT</span>
           </div>
         `;
         grid.appendChild(card);
@@ -844,16 +847,16 @@
       if (exist) exist.qty += 1;
       else cart.push({ ...currentSelectedProduct, qty: 1 });
       updateCartCount();
-      showToast(`Đã lưu "${esc(currentSelectedProduct.title)}" vào Giỏ hàng.`);
+      showToast(`Đã thêm "${esc(currentSelectedProduct.title)}" vào Giỏ hàng.`);
     }
 
     function openCartModal() {
       const area = document.getElementById('cartContentArea');
       if (cart.length === 0) {
         area.innerHTML = `
-          <div style="text-align: center; padding: 40px; color: #8c7a6e;">
-            <p style="margin-bottom: 20px;">Giỏ hàng của quý khách đang trống.</p>
-            <button class="tag-btn active" onclick="closeModal('cartModal')">Xem Sản Phẩm</button>
+          <div style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 8px;">
+            <p style="font-size: 16px; margin-bottom: 20px; font-weight: 600; color: #555;">Giỏ hàng của bác đang trống.</p>
+            <button class="btn-hero-primary" style="margin: auto;" onclick="closeModal('cartModal')">Xem Thêm Sản Phẩm</button>
           </div>
         `;
       } else {
@@ -863,37 +866,37 @@
           total += itemTotal;
           return `
             <tr>
-              <td><b style="color: #2c2523;">${esc(item.title)}</b><br><span style="font-size: 12.5px; color: #8c7a6e;">Mã: ${esc(item.code)}</span></td>
-              <td>${esc(item.price)}</td>
+              <td><b style="color: #222; font-size: 15px;">${esc(item.title)}</b><br><span style="font-size: 13px; color: #777;">Mã SP: ${esc(item.code)}</span></td>
+              <td style="font-weight: 700; color: #555;">${esc(item.price)}</td>
               <td>
-                <div style="display: inline-flex; align-items: center; border: 1px solid #d5c8be; border-radius: 3px; overflow: hidden;">
+                <div style="display: inline-flex; align-items: center; border: 1px solid #ccc; border-radius: 4px; overflow: hidden;">
                   <button class="cart-qty-btn" style="border:none;" onclick="changeQty(${index}, -1)">-</button>
-                  <span style="padding: 0 12px; font-weight: bold; background: #fff;">${item.qty}</span>
+                  <span style="padding: 0 12px; font-weight: 900; background: #fff; font-size: 16px;">${item.qty}</span>
                   <button class="cart-qty-btn" style="border:none;" onclick="changeQty(${index}, 1)">+</button>
                 </div>
               </td>
-              <td><b style="color: #9e2a2b;">${itemTotal.toLocaleString('vi-VN')} đ</b></td>
-              <td><button class="cart-del-btn" onclick="removeItem(${index})">Bỏ</button></td>
+              <td><b style="color: #c0392b; font-size: 16px;">${itemTotal.toLocaleString('vi-VN')} đ</b></td>
+              <td><button class="cart-del-btn" onclick="removeItem(${index})">Xóa</button></td>
             </tr>
           `;
         }).join('');
 
         area.innerHTML = `
-          <div style="overflow-x: auto;">
-          <table class="cart-table">
+          <div style="overflow-x: auto; background: #fff; border: 1px solid #eee; border-radius: 8px; margin-bottom: 20px;">
+          <table class="cart-table" style="margin: 0;">
             <thead><tr><th>Sản phẩm</th><th>Đơn giá</th><th>Số lượng</th><th>Tổng cộng</th><th></th></tr></thead>
             <tbody>${rows}</tbody>
           </table>
           </div>
-          <div class="cart-total-box">Tổng Đơn: ${total.toLocaleString('vi-VN')} đ</div>
+          <div class="cart-total-box">Tổng Đơn Hàng: ${total.toLocaleString('vi-VN')} đ</div>
           <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalCart();">
-            <h4>Thông Tin Giao Hàng</h4>
-            <p style="font-size: 13px; color: #6a5a52; margin-bottom: 15px;">Xưởng hỗ trợ giao và lắp đặt tận nơi (Miễn phí Nam Định).</p>
-            <div class="form-group"><input type="text" id="cartCustName" placeholder="Họ và tên người nhận *" required></div>
-            <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại liên hệ *" required></div>
-            <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ nhận hàng *" required></div>
-            <div class="form-group"><textarea id="cartCustNote" rows="2" placeholder="Ghi chú thêm..."></textarea></div>
-            <button type="submit" class="btn-submit-order">Xác Nhận Đặt Hàng</button>
+            <h4>Thông Tin Nhận Hàng</h4>
+            <p style="font-size: 14px; color: #555; margin-bottom: 15px; font-weight: 500;">Bác cứ điền thông tin, xưởng trực tiếp giao và lắp đặt miễn phí tại Nam Định.</p>
+            <div class="form-group"><input type="text" id="cartCustName" placeholder="Họ và tên bác *" required></div>
+            <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại gọi hàng *" required></div>
+            <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ chi tiết (Thôn/Xóm/Xã/Huyện) *" required></div>
+            <div class="form-group"><textarea id="cartCustNote" rows="2" placeholder="Ghi chú thêm cho thợ..."></textarea></div>
+            <button type="submit" class="btn-submit-order">Tiến Hành Đặt Hàng</button>
           </form>
         `;
       }
@@ -939,12 +942,18 @@
       };
 
       document.getElementById('confirmOrderSummary').innerHTML = `
-        <p>• Sản phẩm: <b>${esc(currentSelectedProduct.title)}</b> (Mã: ${esc(currentSelectedProduct.code)})</p>
-        <p>• Thanh toán (Khi nhận): <span style="color:#9e2a2b; font-weight:700; font-size:16px;">${esc(currentSelectedProduct.price)}</span></p>
-        <hr style="border: 0; border-top: 1px dashed #eae2db; margin: 10px 0;">
-        <p>• Khách hàng: <b>${esc(name)}</b> - SĐT: <b>${esc(phone)}</b></p>
-        <p>• Địa chỉ: ${esc(address)}</p>
-        ${note ? `<p>• Ghi chú: ${esc(note)}</p>` : ''}
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+           <span style="font-weight: bold;">Sản phẩm:</span> 
+           <span style="text-align: right;">${esc(currentSelectedProduct.title)}<br><small style="color: #777;">(Mã: ${esc(currentSelectedProduct.code)})</small></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+           <span style="font-weight: bold;">Thanh toán (khi nhận):</span> 
+           <span style="color:#c0392b; font-weight:900; font-size:18px;">${esc(currentSelectedProduct.price)}</span>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+        <p style="margin-bottom: 6px;"><b>Khách hàng:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p>
+        <p style="margin-bottom: 6px;"><b>Địa chỉ:</b> ${esc(address)}</p>
+        ${note ? `<p><b>Ghi chú:</b> ${esc(note)}</p>` : ''}
       `;
 
       document.getElementById('confirmOrderModal').style.display = 'block';
@@ -970,16 +979,19 @@
         "isCart": true
       };
 
-      let cartItemsHtml = cart.map(i => `<div style="margin-bottom: 5px;">- ${esc(i.title)} <span style="color:#8c7a6e;">(SL: ${i.qty})</span></div>`).join('');
+      let cartItemsHtml = cart.map(i => `<div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 500;"><span>${esc(i.title)} <b style="color: #c0392b;">x${i.qty}</b></span> <span>${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join('');
 
       document.getElementById('confirmOrderSummary').innerHTML = `
-        <div style="margin-bottom: 10px;"><b>Sản phẩm đã chọn:</b></div>
-        <div style="margin-left: 10px; margin-bottom: 15px;">${cartItemsHtml}</div>
-        <p>• Thanh toán (Khi nhận): <span style="color:#9e2a2b; font-weight:700; font-size:16px;">${total.toLocaleString('vi-VN')} đ</span></p>
-        <hr style="border: 0; border-top: 1px dashed #eae2db; margin: 10px 0;">
-        <p>• Khách hàng: <b>${esc(name)}</b> - SĐT: <b>${esc(phone)}</b></p>
-        <p>• Địa chỉ: ${esc(address)}</p>
-        ${note ? `<p>• Ghi chú: ${esc(note)}</p>` : ''}
+        <div style="margin-bottom: 10px; font-weight: 800;">Danh sách món:</div>
+        <div style="background: #fff; padding: 10px; border: 1px solid #eee; border-radius: 6px; margin-bottom: 15px;">${cartItemsHtml}</div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+           <span style="font-weight: 800;">Tổng thanh toán (Khi nhận):</span> 
+           <span style="color:#c0392b; font-weight:900; font-size:20px;">${total.toLocaleString('vi-VN')} đ</span>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+        <p style="margin-bottom: 6px;"><b>Khách hàng:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p>
+        <p style="margin-bottom: 6px;"><b>Địa chỉ:</b> ${esc(address)}</p>
+        ${note ? `<p><b>Ghi chú:</b> ${esc(note)}</p>` : ''}
       `;
 
       document.getElementById('confirmOrderModal').style.display = 'block';
@@ -989,7 +1001,7 @@
       if (!pendingOrderPayload) return;
 
       const btn = document.getElementById('finalConfirmBtn');
-      btn.innerText = "Đang xử lý...";
+      btn.innerText = "Đang lên đơn...";
       btn.disabled = true;
 
       const isCart = pendingOrderPayload.isCart;
@@ -997,7 +1009,7 @@
 
       sendDataToGmail(pendingOrderPayload)
         .then(() => {
-          showToast("Đơn hàng đã được gửi thành công. Xưởng sẽ liên hệ sớm nhất.");
+          showToast("Đã gửi đơn hàng thành công! Xưởng sẽ gọi cho bác sớm nhất.");
           closeModal('confirmOrderModal');
           if (isCart) {
             cart = [];
@@ -1008,7 +1020,7 @@
           }
         })
         .catch(() => {
-          showToast("Hệ thống đã ghi nhận đơn hàng.");
+          showToast("Đã ghi nhận đơn hàng thành công!");
           closeModal('confirmOrderModal');
           if (isCart) {
             cart = [];
@@ -1019,7 +1031,7 @@
           }
         })
         .finally(() => {
-          btn.innerText = "Đồng Ý Gửi Đơn";
+          btn.innerText = "ĐỒNG Ý GỬI ĐƠN";
           btn.disabled = false;
           pendingOrderPayload = null;
         });
@@ -1042,20 +1054,20 @@
       input.value = "";
 
       setTimeout(() => {
-        let reply = "Xưởng nhận làm theo yêu cầu kích thước riêng. Quý khách vui lòng liên hệ Hotline/Zalo 0984650825 để được tư vấn chi tiết.";
+        let reply = "Xưởng nhận đóng theo kích thước yêu cầu của bác. Bác vui lòng liên hệ Hotline/Zalo 0984650825 để thợ tư vấn kỹ hơn nhé.";
         const t = text.toLowerCase();
         const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
 
         if (found) {
-          reply = `Sản phẩm <b>${esc(found.title)}</b> hiện có giá <b>${esc(found.price)}</b>. Giá đã bao gồm chi phí vận chuyển và lắp ráp tận nơi tại khu vực Nam Định.`;
+          reply = `Dạ mẫu <b>${esc(found.title)}</b> hiện xưởng đang bán giá <b>${esc(found.price)}</b>. Giá này đã bao trọn gói công vận chuyển và thợ ráp tận phòng ở Nam Định rồi bác nhé.`;
         } else if (t.includes("giường")) {
-          reply = "Xưởng hiện phân phối Giường 1m6 (1.800.000đ) và Giường 1m8 (2.100.000đ), giá đã bao gồm chi phí lắp đặt tận nhà tại Nam Định.";
+          reply = "Xưởng đang sẵn mộc Giường 1m6 (giá 1.800.000đ) và Giường 1m8 (giá 2.100.000đ). Trực tiếp xưởng chở đến lắp đặt tận nhà, bác không phải lo khoản vận chuyển.";
         } else if (t.includes("tủ")) {
-          reply = "Các dòng tủ áo bao gồm: 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ). Bao thợ vận chuyển và dựng hoàn thiện.";
+          reply = "Tủ quần áo bên xưởng có dòng 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ). Bao thợ mang đến tận phòng dựng cho bác.";
         } else if (t.includes("sofa")) {
-          reply = "Sofa văng nỉ có giá 3.200.000đ và dòng Sofa da phòng khách là 4.800.000đ.";
+          reply = "Bộ Sofa văng hiện đại xưởng đang ra giá 3.200.000đ, dòng Sofa góc chữ L hoặc Da thì 4.800.000đ bác nhé.";
         } else if (t.includes("ship") || t.includes("vận chuyển") || t.includes("lắp")) {
-          reply = "Chính sách của xưởng là miễn phí vận chuyển và cung cấp thợ lắp ráp tận nhà tại Nam Định. Nhận hàng ưng ý mới thanh toán.";
+          reply = "Bác ở Nam Định thì xưởng em bao phí vận chuyển và thợ đến kê ráp hoàn chỉnh tận nơi. Bác nghiệm thu chắc chắn mới phải thanh toán tiền cho thợ.";
         }
         const aiMsg = document.createElement("div");
         aiMsg.className = "msg msg-ai";
