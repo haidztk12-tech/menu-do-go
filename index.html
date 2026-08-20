@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 
-  <!-- Thư viện Swiper (Làm Slide trượt kiểu Dora-world) -->
+  <!-- Thư viện Swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <link rel="stylesheet" href="style.css">
@@ -92,7 +92,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu (Ẩn mặc định) -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-header">
@@ -113,9 +113,8 @@
     </div>
   </div>
 
-  <!-- Hero Slider (Hiệu ứng trượt) -->
+  <!-- Hero Slider -->
   <div class="hero-section reveal">
-    <!-- Swiper Container -->
     <div class="swiper hero-swiper">
       <div class="swiper-wrapper">
         <!-- Slide 1 -->
@@ -150,7 +149,6 @@
           </div>
         </div>
       </div>
-      <!-- Nút chuyển Slide -->
       <div class="swiper-pagination"></div>
     </div>
   </div>
@@ -166,9 +164,7 @@
       <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi & Khác</button>
     </div>
 
-    <div class="product-grid" id="productGrid">
-      <!-- Mảng sản phẩm sẽ render vào đây -->
-    </div>
+    <div class="product-grid" id="productGrid"></div>
 
     <!-- Giới thiệu -->
     <section class="intro-section reveal" id="about">
@@ -225,7 +221,7 @@
     </div>
   </footer>
 
-  <!-- Các Modal (Popup) -->
+  <!-- Các Modal -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
       <button type="button" class="modal-close" onclick="closeModal('productModal')">&times;</button>
