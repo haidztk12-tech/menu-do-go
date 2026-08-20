@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ĐỒ GỖ ĐIỆN NGỌC - Xưởng Nội Thất Nam Định</title>
-  <!-- Favicon Tab Trình Duyệt -->
+  <!-- Favicon Logo Thương Hiệu -->
   <link rel="icon" type="image/png" href="logodogodienngoc.png">
 
   <style>
@@ -155,7 +155,7 @@
     .cart-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
     .cart-table th { background: #f5ede6; padding: 10px; text-align: left; border-bottom: 2px solid #d5c8be; color: #4a2c16; }
     .cart-table td { padding: 10px; border-bottom: 1px solid #ede4dc; vertical-align: middle; }
-    .cart-qty-btn { background: #e7ded7; border: none; padding: 2px 8px; font-weight: bold; cursor: border-radius: 3px; }
+    .cart-qty-btn { background: #e7ded7; border: none; padding: 2px 8px; font-weight: bold; cursor: pointer; border-radius: 3px; }
     .cart-del-btn { color: #9e2a2b; background: none; border: none; cursor: pointer; font-weight: bold; }
     .cart-total-box { text-align: right; font-size: 16px; margin: 15px 0; font-weight: bold; color: #9e2a2b; }
 
@@ -438,14 +438,14 @@
             <button type="button" class="btn-add-cart" onclick="addToCartFromModal()">🛒 Thêm Vào Giỏ Hàng</button>
           </div>
 
-          <form class="order-form" onsubmit="event.preventDefault(); submitDirectOrder();">
+          <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalDirect();">
             <h4>ĐẶT MUA LẮP ĐẶT TẬN NƠI (SHIP COD)</h4>
             <p style="font-size: 12px; color: #27ae60; font-weight: bold; margin-bottom: 8px;">Thanh toán sau khi thợ dựng xong hoàn thiện!</p>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên của ông/bà *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại nhận hàng *" required></div>
             <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
             <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (tầng mấy, hẹn giờ...)"></textarea></div>
-            <button type="submit" class="btn-submit-order" id="directSubmitBtn">XÁC NHẬN GỬI ĐƠN HÀNG</button>
+            <button type="submit" class="btn-submit-order">XÁC NHẬN GỬI ĐƠN HÀNG</button>
           </form>
         </div>
       </div>
@@ -458,6 +458,36 @@
       <button type="button" class="modal-close" onclick="closeModal('cartModal')">✕ Đóng</button>
       <h2>Giỏ Hàng Của Bạn</h2>
       <div id="cartContentArea"></div>
+    </div>
+  </div>
+
+  <!-- Modal Xác Nhận Lại Thông Tin Đơn Hàng (Chống bấm nhầm & Hiển thị lưu ý) -->
+  <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
+    <div class="modal-content" style="max-width: 520px; padding: 22px;">
+      <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">✕</button>
+      <h3 style="color: #4a2c16; margin-bottom: 12px; font-size: 18px; border-bottom: 2px solid #5c3821; padding-bottom: 6px;">
+        📋 XÁC NHẬN THÔNG TIN ĐƠN HÀNG
+      </h3>
+
+      <!-- Bảng tóm tắt thông tin khách vừa điền -->
+      <div id="confirmOrderSummary" style="font-size: 13.5px; line-height: 1.6; background: #faf7f4; padding: 14px; border-radius: 6px; border: 1px solid #e7ded7; margin-bottom: 14px;"></div>
+
+      <!-- Khung lưu ý an tâm cho khách hàng -->
+      <div style="background: #fff8e7; border-left: 4px solid #cb7b26; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: #5c3821; margin-bottom: 16px; border-radius: 4px;">
+        📌 <b>LƯU Ý TỪ XƯỞNG ĐỒ GỖ ĐIỆN NGỌC:</b><br>
+        • Quý khách <b>không cần chuyển cọc trước</b>.<br>
+        • Xưởng sẽ gọi điện thoại xác nhận đơn và hẹn giờ trước khi bốc hàng lên xe tải chở đến.<br>
+        • Thợ kê lắp hoàn chỉnh, bác kiểm tra chắc chắn và ưng ý mới thanh toán tiền!
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="closeModal('confirmOrderModal')" style="flex: 1; background: #8c827a; color: white; border: none; padding: 11px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 13px;">
+          Quay lại sửa
+        </button>
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" style="flex: 1.4; background: #9e2a2b; color: white; border: none; padding: 11px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 13px;">
+          ✅ ĐỒNG Ý GỬI ĐƠN
+        </button>
+      </div>
     </div>
   </div>
 
@@ -504,6 +534,7 @@
     let products = [];
     let currentSelectedProduct = null;
     let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
+    let pendingOrderPayload = null; // Lưu đơn hàng chờ khách bấm đồng ý
 
     function showToast(message, isSuccess = true) {
       const container = document.getElementById("toastContainer");
@@ -688,8 +719,10 @@
 
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = "none";
-      const videoFrame = document.getElementById("modalVideoFrame");
-      if (videoFrame) videoFrame.src = "";
+      if (modalId === "productModal") {
+        const videoFrame = document.getElementById("modalVideoFrame");
+        if (videoFrame) videoFrame.src = "";
+      }
     }
 
     function addToCartFromModal() {
@@ -738,14 +771,14 @@
             <tbody>${rows}</tbody>
           </table>
           <div class="cart-total-box">TỔNG CỘNG: ${total.toLocaleString('vi-VN')} đ</div>
-          <form class="order-form" onsubmit="event.preventDefault(); submitCartOrder();">
+          <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalCart();">
             <h4>ĐẶT HÀNG TẤT CẢ SẢN PHẨM TRONG GIỎ</h4>
             <p style="font-size: 12px; color: #27ae60; font-weight: bold; margin-bottom: 8px;">Miễn phí giao hàng &amp; Lắp ráp hoàn thiện mới thanh toán (COD)!</p>
             <div class="form-group"><input type="text" id="cartCustName" placeholder="Họ và tên của ông/bà *" required></div>
             <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại nhận hàng *" required></div>
             <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
             <div class="form-group"><textarea id="cartCustNote" rows="2" placeholder="Ghi chú thêm..."></textarea></div>
-            <button type="submit" class="btn-submit-order" id="cartSubmitBtn">XÁC NHẬN GỬI ĐƠN HÀNG</button>
+            <button type="submit" class="btn-submit-order">XÁC NHẬN GỬI ĐƠN HÀNG</button>
           </form>
         `;
       }
@@ -773,46 +806,37 @@
       });
     }
 
-    function submitDirectOrder() {
-      const btn = document.getElementById('directSubmitBtn');
-      btn.innerText = "Đang xử lý...";
-      btn.disabled = true;
-
+    // 1. Mở bước xác nhận khi mua trực tiếp từ bảng sản phẩm
+    function openConfirmModalDirect() {
       const name = document.getElementById('directName').value.trim();
       const phone = document.getElementById('directPhone').value.trim();
       const address = document.getElementById('directAddress').value.trim();
       const note = document.getElementById('directNote').value.trim();
 
-      const payload = {
+      pendingOrderPayload = {
         "Loai_Don": "MUA TRỰC TIẾP",
         "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`,
         "Gia_Tien": currentSelectedProduct.price,
         "Ho_Ten_Khach": name,
         "So_Dien_Thoai": phone,
         "Dia_Chi_Giao": address,
-        "Ghi_Chu": note || "Không có"
+        "Ghi_Chu": note || "Không có",
+        "isCart": false
       };
 
-      sendDataToGmail(payload)
-        .then(() => {
-          showToast("Đặt hàng thành công! Xưởng (0984650825) sẽ gọi xác nhận sớm nhất.");
-          closeModal('productModal');
-        })
-        .catch(() => {
-          showToast("Đã gửi đơn hàng thành công!");
-          closeModal('productModal');
-        })
-        .finally(() => {
-          btn.innerText = "XÁC NHẬN GỬI ĐƠN HÀNG";
-          btn.disabled = false;
-        });
+      document.getElementById('confirmOrderSummary').innerHTML = `
+        <p>• <b>Sản phẩm:</b> ${currentSelectedProduct.title} (Mã: ${currentSelectedProduct.code})</p>
+        <p>• <b>Tổng tiền thanh toán khi nhận hàng:</b> <span style="color:#9e2a2b; font-weight:bold; font-size:15px;">${currentSelectedProduct.price}</span></p>
+        <p>• <b>Người nhận:</b> ${name} - <b>SĐT:</b> ${phone}</p>
+        <p>• <b>Địa chỉ giao:</b> ${address}</p>
+        ${note ? `<p>• <b>Ghi chú:</b> ${note}</p>` : ''}
+      `;
+
+      document.getElementById('confirmOrderModal').style.display = 'block';
     }
 
-    function submitCartOrder() {
-      const btn = document.getElementById('cartSubmitBtn');
-      btn.innerText = "Đang xử lý...";
-      btn.disabled = true;
-
+    // 2. Mở bước xác nhận khi đặt toàn bộ giỏ hàng
+    function openConfirmModalCart() {
       const name = document.getElementById('cartCustName').value.trim();
       const phone = document.getElementById('cartCustPhone').value.trim();
       const address = document.getElementById('cartCustAddress').value.trim();
@@ -821,32 +845,69 @@
       let itemsText = cart.map(i => `${i.title} (${i.code}) x SL:${i.qty} = ${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ`).join(' | ');
       let total = cart.reduce((sum, item) => sum + (item.rawPrice * item.qty), 0);
 
-      const payload = {
+      pendingOrderPayload = {
         "Loai_Don": "ĐẶT CẢ GIỎ HÀNG",
         "Danh_Sach_Mon": itemsText,
         "Tong_Tien": total.toLocaleString('vi-VN') + " đ",
         "Ho_Ten_Khach": name,
         "So_Dien_Thoai": phone,
         "Dia_Chi_Giao": address,
-        "Ghi_Chu": note || "Không có"
+        "Ghi_Chu": note || "Không có",
+        "isCart": true
       };
 
-      sendDataToGmail(payload)
+      let cartItemsHtml = cart.map(i => `<div>- ${i.title} (SL: ${i.qty})</div>`).join('');
+
+      document.getElementById('confirmOrderSummary').innerHTML = `
+        <div style="margin-bottom: 6px;"><b>Các sản phẩm đã chọn:</b></div>
+        <div style="margin-left: 8px; margin-bottom: 8px; color: #4a2c16;">${cartItemsHtml}</div>
+        <p>• <b>Tổng thanh toán khi nhận hàng:</b> <span style="color:#9e2a2b; font-weight:bold; font-size:16px;">${total.toLocaleString('vi-VN')} đ</span></p>
+        <p>• <b>Người nhận:</b> ${name} - <b>SĐT:</b> ${phone}</p>
+        <p>• <b>Địa chỉ giao:</b> ${address}</p>
+        ${note ? `<p>• <b>Ghi chú:</b> ${note}</p>` : ''}
+      `;
+
+      document.getElementById('confirmOrderModal').style.display = 'block';
+    }
+
+    // 3. Khách bấm nút "ĐỒNG Ý GỬI ĐƠN" sau khi đã kiểm tra kỹ
+    function executeFinalOrderSend() {
+      if (!pendingOrderPayload) return;
+
+      const btn = document.getElementById('finalConfirmBtn');
+      btn.innerText = "Đang gửi đơn đi...";
+      btn.disabled = true;
+
+      const isCart = pendingOrderPayload.isCart;
+      delete pendingOrderPayload.isCart;
+
+      sendDataToGmail(pendingOrderPayload)
         .then(() => {
-          showToast("Đặt giỏ hàng thành công! Xưởng sẽ chuẩn bị thợ chở đến lắp ráp.");
-          cart = [];
-          updateCartCount();
-          closeModal('cartModal');
+          showToast("Đặt hàng thành công! Xưởng (0984650825) sẽ gọi xác nhận sớm nhất.");
+          closeModal('confirmOrderModal');
+          if (isCart) {
+            cart = [];
+            updateCartCount();
+            closeModal('cartModal');
+          } else {
+            closeModal('productModal');
+          }
         })
         .catch(() => {
           showToast("Đã gửi đơn hàng thành công!");
-          cart = [];
-          updateCartCount();
-          closeModal('cartModal');
+          closeModal('confirmOrderModal');
+          if (isCart) {
+            cart = [];
+            updateCartCount();
+            closeModal('cartModal');
+          } else {
+            closeModal('productModal');
+          }
         })
         .finally(() => {
-          btn.innerText = "XÁC NHẬN GỬI ĐƠN HÀNG";
+          btn.innerText = "✅ ĐỒNG Ý GỬI ĐƠN";
           btn.disabled = false;
+          pendingOrderPayload = null;
         });
     }
 
