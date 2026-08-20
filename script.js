@@ -18,6 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   loadProductsFromSheet();
   updateCartCount();
+
+  // Tự động mở hộp chat chào khách
+  setTimeout(() => {
+    const box = document.getElementById("aiChatBox");
+    if (box && box.style.display !== "flex") {
+      box.style.display = "flex";
+    }
+  }, 2500);
+});
+  loadProductsFromSheet();
+  updateCartCount();
 });
 
 // Thuật toán Scroll Reveal
