@@ -6,48 +6,41 @@ let currentSelectedProduct = null;
 let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
 let pendingOrderPayload = null;
 
-// Khởi tạo Swiper Slider
+// Khởi chạy khi DOM tải xong
 document.addEventListener("DOMContentLoaded", () => {
+  // Khởi tạo Swiper an toàn
   if (typeof Swiper !== 'undefined') {
-    new Swiper('.hero-swiper', {
-      loop: true,
-      effect: 'fade',
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true }
-    });
+    try {
+      new Swiper('.hero-swiper', {
+        loop: true,
+        effect: 'fade',
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }
+      });
+    } catch (e) {
+      console.warn("Lỗi Swiper:", e);
+    }
   }
+
+  // Tải dữ liệu sản phẩm & cập nhật giỏ hàng
   loadProductsFromSheet();
   updateCartCount();
 
-  // Tự động mở hộp chat chào khách
+  // Tự động mở Chatbox sau 2.5s
   setTimeout(() => {
     const box = document.getElementById("aiChatBox");
-    if (box && box.style.display !== "flex") {
-      box.style.display = "flex";
+    if (box && !box.classList.contains("active")) {
+      box.classList.add("active");
     }
   }, 2500);
 });
-  loadProductsFromSheet();
-  updateCartCount();
-});
 
-// Thuật toán Scroll Reveal
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    }
-  });
-}, { threshold: 0.1 });
-
-function observeElements() {
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  document.querySelectorAll('.product-card').forEach((el, index) => {
-    el.classList.add('reveal');
-    if (index % 5 === 1) el.classList.add('delay-1');
-    if (index % 5 === 2) el.classList.add('delay-2');
-    revealObserver.observe(el);
-  });
+// Bật/tắt Chat Box
+function toggleAIChat() {
+  const box = document.getElementById("aiChatBox");
+  if (box) {
+    box.classList.toggle("active");
+  }
 }
 
 function esc(str) {
@@ -58,6 +51,7 @@ function esc(str) {
 
 function showToast(message, isSuccess = true) {
   const container = document.getElementById("toastContainer");
+  if (!container) return;
   const toast = document.createElement("div");
   toast.className = "toast-msg";
   if (!isSuccess) toast.style.borderLeftColor = "#b22c22";
@@ -74,8 +68,10 @@ function showToast(message, isSuccess = true) {
 }
 
 function updateCartCount() {
+  const badge = document.getElementById('cartCountBadge');
+  if (!badge) return;
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-  document.getElementById('cartCountBadge').innerText = totalQty;
+  badge.innerText = totalQty;
   localStorage.setItem('user_cart', JSON.stringify(cart));
 }
 
@@ -90,7 +86,9 @@ function getEmbedYouTubeUrl(url) {
 
 async function loadProductsFromSheet() {
   const grid = document.getElementById("productGrid");
+  if (!grid) return;
   grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: 800; font-size: 16px;">Đang tải dữ liệu sản phẩm từ xưởng...</div>`;
+  
   try {
     const response = await fetch(GOOGLE_SHEET_DATA_URL);
     const rawText = await response.text();
@@ -119,6 +117,7 @@ async function loadProductsFromSheet() {
       obj.images = allImgs;
       return obj;
     });
+
     renderProducts(products);
   } catch (err) {
     grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #b22c22; font-weight: 800;">Hệ thống tải dữ liệu bị lỗi. Xin vui lòng tải lại trang.</div>`;
@@ -127,11 +126,13 @@ async function loadProductsFromSheet() {
 
 function renderProducts(list) {
   const grid = document.getElementById("productGrid");
+  if (!grid) return;
   grid.innerHTML = "";
   if (list.length === 0) {
     grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: 800;">Chưa có sản phẩm phù hợp.</div>`;
     return;
   }
+
   const sortedList = [...list].sort((a, b) => {
     const isAOut = (a.stock === 0) ? 1 : 0;
     const isBOut = (b.stock === 0) ? 1 : 0;
@@ -154,7 +155,6 @@ function renderProducts(list) {
     `;
     grid.appendChild(card);
   });
-  observeElements();
 }
 
 function filterCategory(cat, btn) {
@@ -163,11 +163,15 @@ function filterCategory(cat, btn) {
   else {
     const matchBtn = Array.from(document.querySelectorAll(".category-tags .tag-btn")).find(b => b.getAttribute("onclick") && b.getAttribute("onclick").includes(`'${cat}'`));
     if (matchBtn) matchBtn.classList.add("active");
-    else document.querySelector(".category-tags .tag-btn").classList.add("active");
+    else {
+      const firstBtn = document.querySelector(".category-tags .tag-btn");
+      if (firstBtn) firstBtn.classList.add("active");
+    }
   }
   let filtered = (cat === "all") ? products : products.filter(p => p.category === cat || p.sub === cat);
   renderProducts(filtered);
-  document.getElementById("products").scrollIntoView({ behavior: 'smooth' });
+  const prodSec = document.getElementById("products");
+  if (prodSec) prodSec.scrollIntoView({ behavior: 'smooth' });
 }
 
 function handleSearch() {
@@ -240,7 +244,8 @@ function openModal(id) {
 }
 
 function closeModal(modalId) {
-  document.getElementById(modalId).style.display = "none";
+  const modal = document.getElementById(modalId);
+  if (modal) modal.style.display = "none";
   if (modalId === "productModal") {
     const videoFrame = document.getElementById("modalVideoFrame");
     if (videoFrame) videoFrame.src = "";
@@ -257,6 +262,7 @@ function addToCartFromModal() {
 
 function openCartModal() {
   const area = document.getElementById('cartContentArea');
+  if (!area) return;
   if (cart.length === 0) {
     area.innerHTML = `<div style="text-align: center; padding: 50px; background: #fff; border-radius: 16px; border: 1px solid #e0d8d0;"><p style="font-size: 17px; margin-bottom: 25px; font-weight: 800; color: #555;">Giỏ hàng của bác đang trống.</p><button class="btn-solid" style="margin: auto;" onclick="closeModal('cartModal')">XEM THÊM SẢN PHẨM</button></div>`;
   } else {
@@ -339,11 +345,16 @@ function executeFinalOrderSend() {
   });
 }
 
-function toggleAIChat() { const box = document.getElementById("aiChatBox"); box.style.display = (box.style.display === "flex") ? "none" : "flex"; }
 function handleAISend() {
-  const input = document.getElementById("aiInput"); const text = input.value.trim(); if (!text) return;
+  const input = document.getElementById("aiInput"); 
+  const text = input.value.trim(); 
+  if (!text) return;
   const body = document.getElementById("aiChatBody");
-  const userMsg = document.createElement("div"); userMsg.className = "msg msg-user"; userMsg.innerText = text; body.appendChild(userMsg); input.value = "";
+  const userMsg = document.createElement("div"); 
+  userMsg.className = "msg msg-user"; 
+  userMsg.innerText = text; 
+  body.appendChild(userMsg); 
+  input.value = "";
 
   setTimeout(() => {
     let reply = "Xưởng nhận đóng theo kích thước yêu cầu của bác. Bác vui lòng gọi Hotline/Zalo 0984650825 để thợ tư vấn kỹ hơn nhé.";
@@ -353,15 +364,18 @@ function handleAISend() {
     else if (t.includes("giường")) reply = "Xưởng đang sẵn Giường 1m6 (1.800.000đ) và Giường 1m8 (2.100.000đ). Bao trọn gói lắp đặt.";
     else if (t.includes("tủ")) reply = "Tủ áo có dòng 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ). Trực tiếp thợ ráp.";
     else if (t.includes("sofa")) reply = "Sofa văng nỉ bán 3.200.000đ, Sofa Da hoặc góc L lớn là 4.800.000đ bác nhé.";
-    const aiMsg = document.createElement("div"); aiMsg.className = "msg msg-ai"; aiMsg.innerHTML = reply; body.appendChild(aiMsg); body.scrollTop = body.scrollHeight;
+    const aiMsg = document.createElement("div"); 
+    aiMsg.className = "msg msg-ai"; 
+    aiMsg.innerHTML = reply; 
+    body.appendChild(aiMsg); 
+    body.scrollTop = body.scrollHeight;
   }, 400);
 }
 
 function toggleMobileMenu(open) {
-  const overlay = document.getElementById('mobileMenuOverlay'); overlay.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : '';
-}
-function toggleMobileSubmenu(linkEl) {
-  const submenu = linkEl.nextElementSibling; const isOpen = submenu.classList.contains('open');
-  document.querySelectorAll('.mobile-submenu.open').forEach(s => { if (s !== submenu) s.classList.remove('open'); });
-  submenu.classList.toggle('open', !isOpen);
+  const overlay = document.getElementById('mobileMenuOverlay'); 
+  if (overlay) {
+    overlay.classList.toggle('open', open); 
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
 }
