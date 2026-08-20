@@ -79,57 +79,28 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .search-bar button { border: none; background: transparent; cursor: pointer; color: #555; padding: 0 16px; height: 100%; min-height: 42px; display: flex; align-items: center; transition: 0.2s;}
 
 /* ================= MAIN NAV & LOGO (Hiệu ứng Tab Thư Mục) ================= */
-.main-nav { 
-  background: #ffffff; 
-  border-bottom: 2px solid #794c2b; /* Tạo đường line móng cho Tab bám vào */
-  position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.04); width: 100%; 
-}
-.nav-container { 
-  max-width: 1250px; margin: auto; display: flex; justify-content: space-between; 
-  padding: 0 15px; height: 75px; /* Ép chiều cao cố định để Tab có điểm neo */
-}
+/* ================= MAIN NAV & LOGO ================= */
+.main-nav { background: #ffffff; border-bottom: 1px solid #e0d8d0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.04); width: 100%; }
+.nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; min-height: 75px; }
 
-.logo { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; align-self: center; }
+.logo { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
 .logo-img { width: 48px; height: 48px; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.5); }
 .logo-text { font-size: clamp(20px, 3.5vw, 26px); font-weight: 900; color: #4a2c16; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;}
 
-.nav-right-box { display: flex; align-items: center; gap: 12px; height: 100%; }
-.nav-links { display: flex; list-style: none; margin: 0; gap: 4px; height: 100%; align-items: flex-end; }
-.nav-item { position: relative; height: 100%; display: flex; align-items: flex-end; }
+.nav-right-box { display: flex; align-items: center; gap: 12px; }
+.nav-links { display: flex; list-style: none; margin: 0; gap: 4px; align-items: center; height: 100%; }
+.nav-item { position: relative; display: flex; align-items: center; height: 75px; }
 
-/* Nút Tab trồi lên khi hover */
-.nav-item > a { 
-  display: block; 
-  padding: 12px 16px; 
-  text-decoration: none; color: #333; font-weight: 800; font-size: 15px; 
-  cursor: pointer; white-space: nowrap;
-  background: transparent;
-  border-radius: 12px 12px 0 0; /* Vuốt tròn đỉnh, đáy làm phẳng */
-  margin-bottom: -2px; /* Kéo tụt xuống 2px để che đúng cái vạch line bên dưới, tạo cảm giác liền khối */
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+/* Menu dạng khối nổi ở giữa */
+.nav-item > a { display: block; padding: 10px 16px; text-decoration: none; color: #333; font-weight: 800; font-size: 15px; transition: 0.2s; cursor: pointer; white-space: nowrap; border-radius: 8px;}
+.nav-item:hover > a, .nav-item.active > a { background: #794c2b; color: #fff; }
 
-.nav-item:hover > a, .nav-item.active > a { 
-  background: #794c2b; /* Khối nổi lên đổi màu Nâu Gỗ */
-  color: #fff; 
-  padding-top: 18px; /* Tự động cao lên tạo hiệu ứng "Pop" */
-}
+.dropdown-menu { display: none; position: absolute; top: 75px; left: 0; min-width: 240px; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; border-top: 3px solid #794c2b; list-style: none; padding: 10px 0; z-index: 500; }
+.nav-item:hover .dropdown-menu { display: block; animation: slideDown 0.2s ease forwards; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Khối Menu xổ xuống liền mạch 1 khối với Tab Nâu Gỗ */
-.dropdown-menu { 
-  display: none; position: absolute; top: 100%; left: 0; min-width: 240px; 
-  background: #794c2b; /* Bắt buộc đồng màu với Tab phía trên */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-  border-radius: 0 12px 12px 12px; /* Góc trên bên trái vuốt thẳng vuông góc vì dính liền với chân Tab */
-  list-style: none; padding: 10px 0; z-index: 500; 
-}
-
-.nav-item:hover .dropdown-menu { display: block; animation: tabPop 0.2s ease forwards; }
-@keyframes tabPop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Chữ trong Dropdown phải đổi sang màu sáng */
-.dropdown-menu li a { display: block; padding: 12px 20px; color: #e5dbd3; text-decoration: none; font-size: 15px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: 0.2s;}
-.dropdown-menu li a:hover { background: #5c3a21; color: #fff; padding-left: 25px; border-bottom-color: transparent; }
+.dropdown-menu li a { display: block; padding: 12px 20px; color: #444; text-decoration: none; font-size: 15px; font-weight: 700; border-bottom: 1px solid #f6f4f0; cursor: pointer; transition: 0.2s;}
+.dropdown-menu li a:hover { background: #fdfaf6; color: #b22c22; padding-left: 25px; border-bottom-color: transparent;}
 
 .cart-btn-header { background: #fff; border: 2px solid #794c2b; color: #794c2b; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.25s ease; white-space: nowrap; }
 .cart-btn-header:hover { background: #794c2b; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(121,76,43,0.2);}
