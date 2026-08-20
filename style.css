@@ -299,7 +299,27 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .btn-scrolltop { background: #555; width: 48px; height: 48px;}
 .btn-ai-chat { background: #c0392b; width: 60px; height: 60px;}
 
-.native-ai-box { display: none; position: fixed; right: 100px; bottom: 35px; width: 380px; height: 500px; background: #fff; border-radius: 16px; box-shadow: 0 15px 50px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid #e0d8d0; }
+.native-ai-box { 
+  display: none; 
+  position: fixed; 
+  right: 100px; 
+  bottom: 35px; 
+  width: 380px; 
+  height: 500px; 
+  background: #fff; 
+  border-radius: 16px; 
+  box-shadow: 0 15px 50px rgba(0,0,0,0.25); 
+  z-index: 1000; 
+  flex-direction: column; 
+  overflow: hidden; 
+  border: 1px solid #e0d8d0; 
+  animation: chatPopUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes chatPopUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 .ai-header { background: #3e2723; color: white; padding: 20px; font-size: 16px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;}
 .ai-header button { background: transparent; border: none; color: white; font-size: 26px; font-weight: 700; cursor: pointer; transition: 0.2s;}
 .ai-header button:hover { color: #c0392b;}
