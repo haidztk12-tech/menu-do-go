@@ -113,7 +113,7 @@
 
     /* Product Grid */
     .product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 50px; }
-    .product-card { background: #fff; border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e0d8d0;}
+    .product-card { background: #fff; border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e0d8d0; position: relative;}
     .product-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #794c2b; }
     .product-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #f6f4f0;}
     .card-body { padding: 18px 15px; text-align: center; }
@@ -121,6 +121,14 @@
     .price { color: #c0392b; font-size: 18px; font-weight: 900; white-space: nowrap; }
     .view-detail-hint { font-size: 13px; font-weight: 800; color: #794c2b; border-bottom: 2px solid transparent; padding-bottom: 2px; margin-top: 12px; display: inline-block; transition: 0.2s; text-transform: uppercase; white-space: nowrap;}
     .product-card:hover .view-detail-hint { border-color: #794c2b; }
+
+    /* THẺ HẾT HÀNG TRÊN CARD NGOÀI TRANG CHỦ */
+    .product-card.card-out-of-stock { opacity: 0.75; filter: grayscale(20%); }
+    .badge-card-soldout {
+      position: absolute; top: 12px; left: 12px; background: #c0392b; color: #fff; 
+      font-size: 12px; font-weight: 900; padding: 4px 10px; border-radius: 4px; 
+      letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2;
+    }
 
     /* Section Giới Thiệu & Bản Đồ */
     .intro-section { background: #fff; padding: 50px 30px; border-radius: 8px; margin-bottom: 50px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #e0d8d0;}
@@ -166,7 +174,7 @@
 
     .detail-info { flex: 1.3; }
     
-    /* SKU và Tag Tồn kho: Flex xếp hàng ngang, cấm rớt chữ */
+    /* SKU và Tag Tồn kho */
     .product-sku { font-size: 15px; color: #666; margin-bottom: 15px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;}
     .stock-tag { font-weight: 800; padding: 4px 10px; border-radius: 4px; font-size: 13px; white-space: nowrap; display: inline-block;}
     .stock-in { color: #27ae60; background: #e8f8f5; }
@@ -245,7 +253,7 @@
     .mobile-submenu li a { display: block; padding: 14px 22px 14px 35px; font-size: 15px; font-weight: 700; color: #555; text-decoration: none; border-bottom: 1px solid #fcfcfc; cursor: pointer; }
     .mobile-menu-contact { padding: 22px; margin-top: 15px; }
 
-    /* ================= TỐI ƯU GIAO DIỆN MOBILE ================= */
+    /* ================= TỐI ƯU MOBILE ================= */
     @media (max-width: 1024px) {
       .hero-section { flex-direction: column; }
       .hero-sidebar { width: 100%; display: none; }
@@ -583,21 +591,18 @@
 
           <div class="specs-box" id="modalDesc"></div>
 
-          <div class="modal-actions">
-            <button type="button" class="btn-solid btn-full" onclick="addToCartFromModal()">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-              THÊM VÀO GIỎ HÀNG
-            </button>
+          <div class="modal-actions" id="modalActionArea">
+            <!-- Nút bấm thêm vào giỏ được tạo tự động bằng Javascript dựa trên stock -->
           </div>
 
-          <form class="order-form" onsubmit="event.preventDefault(); openConfirmModalDirect();">
+          <form class="order-form" id="directOrderForm" onsubmit="event.preventDefault(); openConfirmModalDirect();">
             <h4>THÔNG TIN ĐẶT MUA NHANH</h4>
             <p style="font-size: 14.5px; color: #555; margin-bottom: 15px; font-weight: 600;">Thanh toán tiền sau khi thợ dựng xong hoàn thiện.</p>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
             <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
             <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (Tầng mấy, ngõ xe tải vào được không...)"></textarea></div>
-            <button type="submit" class="btn-solid btn-full">XÁC NHẬN MẪU NÀY</button>
+            <button type="submit" class="btn-solid btn-full" id="directSubmitBtn">XÁC NHẬN MẪU NÀY</button>
           </form>
         </div>
       </div>
@@ -767,6 +772,7 @@
       }
     }
 
+    // TỰ ĐỘNG SẮP XẾP: SẢN PHẨM CÒN HÀNG LÊN TRÊN, HẾT HÀNG (STOCK = 0) DẠT XUỐNG ĐÁY
     function renderProducts(list) {
       const grid = document.getElementById("productGrid");
       grid.innerHTML = "";
@@ -774,16 +780,27 @@
         grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: 800;">Chưa có sản phẩm phù hợp.</div>`;
         return;
       }
-      list.forEach(p => {
+
+      // Thuật toán dạt sản phẩm hết hàng xuống cuối cùng
+      const sortedList = [...list].sort((a, b) => {
+        const isAOut = (a.stock === 0) ? 1 : 0;
+        const isBOut = (b.stock === 0) ? 1 : 0;
+        return isAOut - isBOut;
+      });
+
+      sortedList.forEach(p => {
+        const isSoldOut = (p.stock === 0);
         const card = document.createElement("div");
-        card.className = "product-card";
+        card.className = "product-card" + (isSoldOut ? " card-out-of-stock" : "");
         card.onclick = () => openModal(p.id);
+        
         card.innerHTML = `
+          ${isSoldOut ? '<div class="badge-card-soldout">Tạm Hết Hàng</div>' : ''}
           <img src="${p.mainImg}" alt="${esc(p.title)}" loading="lazy">
           <div class="card-body">
             <h4 class="product-title">${esc(p.title)}</h4>
             <p class="price">${esc(p.price)}</p>
-            <span class="view-detail-hint">XEM CHI TIẾT</span>
+            <span class="view-detail-hint">${isSoldOut ? 'Xem chi tiết (Đặt đóng)' : 'XEM CHI TIẾT'}</span>
           </div>
         `;
         grid.appendChild(card);
@@ -823,17 +840,32 @@
       document.getElementById("modalOldPrice").innerText = p.oldPrice;
       document.getElementById("modalDesc").innerHTML = p.desc;
       
-      // Cập nhật trạng thái tồn kho động từ Google Sheet
       const stockEl = document.getElementById("modalStock");
+      const actionArea = document.getElementById("modalActionArea");
+      const directForm = document.getElementById("directOrderForm");
+      
       if (p.stock === 0) {
         stockEl.className = "stock-tag stock-out";
         stockEl.innerText = "✖ Hết hàng sẵn (Nhận đặt làm)";
-      } else if (p.stock > 0) {
-        stockEl.className = "stock-tag stock-in";
-        stockEl.innerText = `✔ Còn ${p.stock} sản phẩm`;
+        
+        // Khi hết hàng: Thay nút giỏ hàng bằng nút liên hệ Zalo làm theo yêu cầu
+        actionArea.innerHTML = `
+          <a href="https://zalo.me/0984650825" target="_blank" class="btn-solid btn-full" style="background:#0068ff;">
+            💬 NHẮN ZALO ĐẶT ĐÓNG THEO YÊU CẦU
+          </a>
+        `;
+        document.getElementById("directSubmitBtn").innerText = "GỬI YÊU CẦU ĐẶT ĐÓNG THEO MẪU NÀY";
       } else {
         stockEl.className = "stock-tag stock-in";
-        stockEl.innerText = "✔ Có sẵn tại xưởng";
+        stockEl.innerText = (p.stock > 0) ? `✔ Còn ${p.stock} sản phẩm` : "✔ Có sẵn tại xưởng";
+        
+        actionArea.innerHTML = `
+          <button type="button" class="btn-solid btn-full" onclick="addToCartFromModal()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            THÊM VÀO GIỎ HÀNG
+          </button>
+        `;
+        document.getElementById("directSubmitBtn").innerText = "XÁC NHẬN MẪU NÀY";
       }
       
       const mainImg = document.getElementById("modalMainImg");
@@ -980,7 +1012,7 @@
       const note = document.getElementById('directNote').value.trim();
 
       pendingOrderPayload = {
-        "Loai_Don": "MUA TRỰC TIẾP",
+        "Loai_Don": (currentSelectedProduct.stock === 0) ? "ĐẶT ĐÓNG THEO YÊU CẦU" : "MUA TRỰC TIẾP",
         "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`,
         "Gia_Tien": currentSelectedProduct.price,
         "Ho_Ten_Khach": name,
@@ -991,11 +1023,11 @@
       };
 
       document.getElementById('confirmOrderSummary').innerHTML = `
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
            <span style="font-weight: 800;">Sản phẩm:</span> 
            <span style="text-align: right;">${esc(currentSelectedProduct.title)}<br><small style="color: #777;">(Mã: ${esc(currentSelectedProduct.code)})</small></span>
         </div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: baseline;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
            <span style="font-weight: 800;">Thanh toán (khi nhận):</span> 
            <span style="color:#b22c22; font-weight:900; font-size:20px; white-space: nowrap;">${esc(currentSelectedProduct.price)}</span>
         </div>
@@ -1028,12 +1060,12 @@
         "isCart": true
       };
 
-      let cartItemsHtml = cart.map(i => `<div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700;"><span>${esc(i.title)} <b style="color: #b22c22;">x${i.qty}</b></span> <span style="white-space: nowrap;">${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join('');
+      let cartItemsHtml = cart.map(i => `<div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700;"><span>${esc(i.title)} <b style="color: #b22c22;">x${i.qty}</b></span> <span>${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join('');
 
       document.getElementById('confirmOrderSummary').innerHTML = `
         <div style="margin-bottom: 12px; font-weight: 800;">Danh sách món:</div>
         <div style="background: #fdfaf6; padding: 15px; border: 1px solid #e0d8d0; border-radius: 6px; margin-bottom: 20px;">${cartItemsHtml}</div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: baseline;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
            <span style="font-weight: 800; font-size: 16px;">Tổng thanh toán (Khi nhận):</span> 
            <span style="color:#b22c22; font-weight:900; font-size:22px; white-space: nowrap;">${total.toLocaleString('vi-VN')} đ</span>
         </div>
