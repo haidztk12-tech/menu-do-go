@@ -33,7 +33,6 @@ function observeElements() {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   document.querySelectorAll('.product-card').forEach((el, index) => {
     el.classList.add('reveal');
-    // Tạo độ trễ xếp tầng cho mượt
     if (index % 5 === 1) el.classList.add('delay-1');
     if (index % 5 === 2) el.classList.add('delay-2');
     revealObserver.observe(el);
