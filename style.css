@@ -1,6 +1,10 @@
 /* ================= CƠ BẢN ================= */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
-html, body { background-color: #f6f4f0; color: #2c2523; line-height: 1.6; font-size: 15px; overflow-x: hidden; width: 100%; }
+html, body { 
+  background-color: #ece5d8; /* Nền màu be ấm */
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Pattern vân gỗ chìm */
+  color: #2c2523; line-height: 1.6; font-size: 15px; overflow-x: hidden; width: 100%; 
+}
 h1, h2, h3, h4, .hero-title, .price, .sale-price { font-family: 'Merriweather', serif; font-weight: 900; }
 
 /* ================= HỆ THỐNG NÚT BẤM ================= */
@@ -308,3 +312,40 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .ai-footer input:focus { border-color: #794c2b; background: #fff;}
 .ai-footer button { background: #794c2b; color: white; border: none; border-radius: 30px; padding: 0 24px; cursor: pointer; font-size: 15px; font-weight: 800; transition: 0.2s;}
 .ai-footer button:hover { background: #5c3a21; }
+/* ================= ANIMATION NÚT LIÊN HỆ ================= */
+
+/* 1. Hiệu ứng điện thoại rung chuông */
+@keyframes ringShake {
+  0%, 100% { transform: rotate(0); }
+  10%, 30%, 50% { transform: rotate(-15deg); }
+  20%, 40%, 60% { transform: rotate(15deg); }
+  70%, 80%, 90% { transform: rotate(0); }
+}
+.btn-phone svg { animation: ringShake 1.5s infinite ease-in-out; }
+
+/* 2. Hiệu ứng Zalo tỏa sóng radar */
+@keyframes pulseWaves {
+  0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(0, 104, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
+}
+.btn-zalo { animation: pulseWaves 2s infinite; }
+
+/* 3. Hiệu ứng Logo Chat nhấp nhô & Căn chỉnh ảnh logo */
+@keyframes floatChat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.btn-ai-chat { 
+  background: #fff; 
+  border: 2px solid #794c2b; /* Viền nâu gỗ */
+  padding: 4px; 
+  animation: floatChat 3s ease-in-out infinite; 
+}
+.btn-ai-chat img { 
+  width: 100%; height: 100%; 
+  object-fit: contain; 
+  border-radius: 50%; 
+  mix-blend-mode: multiply; /* Xóa nền thừa của ảnh logo */
+  filter: brightness(1.1) contrast(1.5);
+}
