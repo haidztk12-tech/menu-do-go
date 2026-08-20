@@ -92,7 +92,7 @@
     .map-card { background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; text-align: left; flex: 1; min-width: 300px; }
     .btn-call-outline { display: inline-block; margin-top: 10px; background: #27ae60; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; }
 
-    /* FOOTER KÍNH MỜ HIỆN RÕ ẢNH CỬA HÀNG */
+    /* FOOTER */
     .footer {
       position: relative;
       background: linear-gradient(rgba(45, 10, 10, 0.65), rgba(45, 10, 10, 0.75)), url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png') center/cover no-repeat;
@@ -445,21 +445,10 @@
   <script>
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwlewgqe";
 
-    const products = [
-      { id: 1, sub: "giuong-1m6", category: "giuong", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", rawPrice: 1800000, oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m<br>▶ Gỗ MDF chống trầy xước, dát giường dày chắc chắn.<br>▶ Khuyến mãi: Miễn phí vận chuyển & LẮP ĐẶT TẬN NƠI tại Nam Định." },
-      { id: 2, sub: "giuong-1m8", category: "giuong", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", rawPrice: 2100000, oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước: 1m8 x 2m (Rộng rãi cho gia đình)<br>▶ Bao thợ đến lắp ráp hoàn chỉnh mới thanh toán." },
-      { id: 3, sub: "tu-2canh", category: "tu", title: "Tủ Áo 2 Cánh Cửa Mở Tiện Lợi", code: "DN-T02", price: "1.950.000 đ", rawPrice: 1950000, oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m2 x Cao 2m x Sâu 55cm<br>▶ Tối ưu không gian cho phòng ngủ nhỏ." },
-      { id: 4, sub: "tu-3canh", category: "tu", title: "Tủ Quần Áo 3 Cánh Vân Gỗ Sồi", code: "DN-T03", price: "2.500.000 đ", rawPrice: 2500000, oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước: Rộng 1m6 x Cao 2m<br>▶ Bản lề hơi giảm chấn, êm ái chống ồn." },
-      { id: 5, sub: "tu-4canh", category: "tu", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", rawPrice: 3400000, oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước: Rộng 2m x Cao 2m x Sâu 55cm<br>▶ Sức chứa lớn cho gia đình nhiều đồ." },
-      { id: 6, sub: "ban-trang-diem", category: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn Mini", code: "DN-BTD01", price: "1.100.000 đ", rawPrice: 1100000, oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tròn sang trọng, kèm 1 ghế đôn nhỏ gọn gàng." },
-      { id: 7, sub: "ban-an-4ghe", category: "ban-an", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", rawPrice: 2800000, oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Gồm 1 bàn ăn + 4 ghế tựa bọc đệm êm ái." },
-      { id: 8, sub: "ban-an-6ghe", category: "ban-an", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", rawPrice: 3900000, oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế, phủ sơn bóng chống nước." },
-      { id: 9, sub: "sofa-vang", category: "sofa", title: "Sofa Văng Nệm Xanh Hiện Đại", code: "DN-SF01", price: "3.200.000 đ", rawPrice: 3200000, oldPrice: "3.800.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Khung gỗ dầu chịu lực, đệm mút D40 chống xẹp lún cực tốt." },
-      { id: 10, sub: "sofa-da", category: "sofa", title: "Bộ Sofa Da Phòng Khách Cao Cấp", code: "DN-SF02", price: "4.800.000 đ", rawPrice: 4800000, oldPrice: "5.600.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Da công nghiệp nhập khẩu cao cấp, dễ lau chùi, êm ái." },
-      { id: 11, sub: "ban-hoc", category: "ban-trang-diem", title: "Bàn Học Liền Giá Sách Tiện Lợi", code: "DN-BH01", price: "850.000 đ", rawPrice: 850000, oldPrice: "1.000.000 đ", mainImg: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80", images: ["https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80"], desc: "▶ Kích thước: 1m x 50cm, mặt bàn rộng rãi kèm kệ sách tiện dụng." },
-      { id: 12, sub: "khac", category: "khac", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", rawPrice: 950000, oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Sức chứa tới 20-25 đôi giày dép, bề dày chỉ 30cm siêu gọn." }
-    ];
+    // LINK DỮ LIỆU TỰ ĐỘNG TỪ GOOGLE SHEETS
+    const GOOGLE_SHEET_DATA_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3eTKG6gnblYZMIk_--2IC-yo-iJ0NTXky5V4ZLEiEE2VPCXSxszMi6f8jG0CYh4GyUhuxbf4rL2I_/pub?gid=0&single=true&output=tsv";
 
+    let products = [];
     let currentSelectedProduct = null;
     let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
 
@@ -467,6 +456,42 @@
       const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('cartCountBadge').innerText = totalQty;
       localStorage.setItem('user_cart', JSON.stringify(cart));
+    }
+
+    // Tự động kéo dữ liệu từ Google Sheets
+    async function loadProductsFromSheet() {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #cb7b26; font-weight: bold;">⏳ Đang đồng bộ danh sách sản phẩm từ xưởng...</div>`;
+
+      try {
+        const response = await fetch(GOOGLE_SHEET_DATA_URL);
+        const rawText = await response.text();
+
+        const lines = rawText.trim().split(/\r?\n/);
+        if (lines.length < 2) throw new Error("Dữ liệu rỗng");
+
+        // Tự nhận diện phân cách bằng Tab hoặc Phẩy
+        const isTSV = lines[0].includes("\t");
+        const delimiter = isTSV ? "\t" : ",";
+
+        const headers = lines[0].split(delimiter).map(h => h.trim().replace(/^"|"$/g, ''));
+
+        products = lines.slice(1).map(line => {
+          const values = line.split(delimiter).map(v => v.trim().replace(/^"|"$/g, ''));
+          let obj = {};
+          headers.forEach((h, i) => {
+            obj[h] = values[i] !== undefined ? values[i] : '';
+          });
+          obj.id = parseInt(obj.id) || 1;
+          obj.rawPrice = parseInt((obj.price || '').replace(/\D/g, '')) || 0;
+          obj.images = [obj.mainImg];
+          return obj;
+        });
+
+        renderProducts(products);
+      } catch (err) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: red;">Lỗi tải dữ liệu từ Google Sheets. Vui lòng kiểm tra lại!</div>`;
+      }
     }
 
     function renderProducts(list) {
@@ -745,8 +770,10 @@
       }, 350);
     }
 
-    renderProducts(products);
-    updateCartCount();
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProductsFromSheet();
+      updateCartCount();
+    });
   </script>
 </body>
 </html>
