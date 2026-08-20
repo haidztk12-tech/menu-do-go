@@ -6,10 +6,13 @@
   <title>ĐỒ GỖ ĐIỆN NGỌC - Xưởng Nội Thất Nam Định</title>
   <link rel="icon" type="image/png" href="logodogodienngoc.png">
 
-  <!-- Phông chữ Nunito -->
+  <!-- Phông chữ Nunito & Merriweather -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+  <!-- Thư viện Swiper (Làm Slide trượt kiểu Dora-world) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -23,7 +26,7 @@
     <div class="top-container">
       <div class="top-left">
         <span class="hotline-btn">0984650825</span>
-        <a href="#about" class="top-link">Giới thiệu</a>
+        <a href="#about" class="top-link">Giới thiệu xưởng</a>
         <a href="#map-section" class="top-link">Chỉ đường</a>
       </div>
       <div class="search-bar">
@@ -46,45 +49,33 @@
       <div class="nav-right-box">
         <ul class="nav-links">
           <li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>
-          
           <li class="nav-item">
             <a onclick="filterCategory('giuong')">Giường Ngủ</a>
             <ul class="dropdown-menu">
-              <li><a onclick="filterCategory('giuong-1m6')">Giường Hiện Đại 1m6</a></li>
-              <li><a onclick="filterCategory('giuong-1m8')">Giường Cao Cấp 1m8</a></li>
+              <li><a onclick="filterCategory('giuong-1m6')">Giường 1m6</a></li>
+              <li><a onclick="filterCategory('giuong-1m8')">Giường 1m8</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
             <a onclick="filterCategory('tu')">Tủ Quần Áo</a>
             <ul class="dropdown-menu">
-              <li><a onclick="filterCategory('tu-2canh')">Tủ Áo 2 Cánh</a></li>
-              <li><a onclick="filterCategory('tu-3canh')">Tủ Áo 3 Cánh</a></li>
-              <li><a onclick="filterCategory('tu-4canh')">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
+              <li><a onclick="filterCategory('tu-2canh')">Tủ 2 Cánh</a></li>
+              <li><a onclick="filterCategory('tu-3canh')">Tủ 3 Cánh</a></li>
+              <li><a onclick="filterCategory('tu-4canh')">Tủ 4 Cánh</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
             <a onclick="filterCategory('ban-an')">Bàn Ghế Ăn</a>
             <ul class="dropdown-menu">
-              <li><a onclick="filterCategory('ban-an-4ghe')">Bộ Bàn Ăn 4 Ghế</a></li>
-              <li><a onclick="filterCategory('ban-an-6ghe')">Bộ Bàn Ăn 6 Ghế</a></li>
+              <li><a onclick="filterCategory('ban-an-4ghe')">Bộ 4 Ghế</a></li>
+              <li><a onclick="filterCategory('ban-an-6ghe')">Bộ 6 Ghế</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <a onclick="filterCategory('sofa')">Sofa Phòng Khách</a>
+            <a onclick="filterCategory('sofa')">Sofa & Khách</a>
             <ul class="dropdown-menu">
-              <li><a onclick="filterCategory('sofa-vang')">Sofa Văng Hiện Đại</a></li>
-              <li><a onclick="filterCategory('sofa-da')">Sofa Da Phòng Khách</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm & Học</a>
-            <ul class="dropdown-menu">
-              <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm Gương Tròn</a></li>
-              <li><a onclick="filterCategory('ban-hoc')">Bàn Học Liền Giá Sách</a></li>
+              <li><a onclick="filterCategory('sofa-vang')">Sofa Văng</a></li>
+              <li><a onclick="filterCategory('sofa-da')">Sofa Da</a></li>
             </ul>
           </li>
         </ul>
@@ -101,7 +92,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Slide Menu -->
+  <!-- Mobile Menu (Ẩn mặc định) -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-header">
@@ -110,53 +101,11 @@
       </div>
       <ul class="mobile-menu-list">
         <li><a onclick="filterCategory('all'); toggleMobileMenu(false);">Trang chủ</a></li>
-
-        <li>
-          <a onclick="toggleMobileSubmenu(this)">Giường Ngủ <span>+</span></a>
-          <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('giuong'); toggleMobileMenu(false);">Tất cả giường ngủ</a></li>
-            <li><a onclick="filterCategory('giuong-1m6'); toggleMobileMenu(false);">Giường Hiện Đại 1m6</a></li>
-            <li><a onclick="filterCategory('giuong-1m8'); toggleMobileMenu(false);">Giường Cao Cấp 1m8</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a onclick="toggleMobileSubmenu(this)">Tủ Quần Áo <span>+</span></a>
-          <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('tu'); toggleMobileMenu(false);">Tất cả tủ quần áo</a></li>
-            <li><a onclick="filterCategory('tu-2canh'); toggleMobileMenu(false);">Tủ Áo 2 Cánh</a></li>
-            <li><a onclick="filterCategory('tu-3canh'); toggleMobileMenu(false);">Tủ Áo 3 Cánh</a></li>
-            <li><a onclick="filterCategory('tu-4canh'); toggleMobileMenu(false);">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a onclick="toggleMobileSubmenu(this)">Bàn Ghế Ăn <span>+</span></a>
-          <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('ban-an'); toggleMobileMenu(false);">Tất cả bàn ghế ăn</a></li>
-            <li><a onclick="filterCategory('ban-an-4ghe'); toggleMobileMenu(false);">Bộ Bàn Ăn 4 Ghế</a></li>
-            <li><a onclick="filterCategory('ban-an-6ghe'); toggleMobileMenu(false);">Bộ Bàn Ăn 6 Ghế</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a onclick="toggleMobileSubmenu(this)">Sofa Phòng Khách <span>+</span></a>
-          <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('sofa'); toggleMobileMenu(false);">Tất cả sofa</a></li>
-            <li><a onclick="filterCategory('sofa-vang'); toggleMobileMenu(false);">Sofa Văng Hiện Đại</a></li>
-            <li><a onclick="filterCategory('sofa-da'); toggleMobileMenu(false);">Sofa Da Phòng Khách</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a onclick="toggleMobileSubmenu(this)">Bàn Trang Điểm & Học <span>+</span></a>
-          <ul class="mobile-submenu">
-            <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm</a></li>
-            <li><a onclick="filterCategory('ban-hoc'); toggleMobileMenu(false);">Bàn Học Liền Giá Sách</a></li>
-          </ul>
-        </li>
-
-        <li><a onclick="filterCategory('khac'); toggleMobileMenu(false);">Kệ Tivi & Tủ Giày</a></li>
+        <li><a onclick="filterCategory('giuong'); toggleMobileMenu(false);">Giường Ngủ</a></li>
+        <li><a onclick="filterCategory('tu'); toggleMobileMenu(false);">Tủ Quần Áo</a></li>
+        <li><a onclick="filterCategory('ban-an'); toggleMobileMenu(false);">Bàn Ghế Ăn</a></li>
+        <li><a onclick="filterCategory('sofa'); toggleMobileMenu(false);">Sofa Phòng Khách</a></li>
+        <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm & Học</a></li>
       </ul>
       <div class="mobile-menu-contact">
         <a href="tel:0984650825" class="btn-solid btn-full">GỌI TƯ VẤN LẮP ĐẶT</a>
@@ -164,108 +113,110 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <div class="hero-section">
-    <div class="hero-sidebar">
-      <div class="hero-sidebar-title">Danh Mục Nội Thất</div>
-      <ul class="hero-sidebar-list">
-        <li><a onclick="filterCategory('giuong')">Giường Ngủ Hiện Đại <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('tu')">Tủ Quần Áo Cánh Mở <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('ban-an')">Bàn Ghế Ăn Gia Đình <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('sofa')">Ghế Sofa Phòng Khách <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm / Gương <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('ban-hoc')">Bàn Học / Bàn Làm Việc <span>&rsaquo;</span></a></li>
-        <li><a onclick="filterCategory('khac')">Kệ Tivi & Tủ Giày <span>&rsaquo;</span></a></li>
-      </ul>
-    </div>
-
-    <div class="hero-banner">
-      <div class="hero-overlay">
-        <div class="hero-text-content">
-          <span class="hero-badge-tag">Xưởng Sản Xuất Đồ Gỗ Nam Định</span>
-          <h1 class="hero-title">Giá Trị Thực, Chất Lượng Tốt</h1>
-          <p class="hero-desc">Bán hàng trực tiếp không qua trung gian. Miễn phí vận chuyển và có thợ lắp ráp tận phòng tại khu vực Nam Định. Khách hàng kiểm tra ưng ý mới thanh toán.</p>
-          <div class="hero-buttons">
-            <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
-            <a href="#map-section" class="btn-hero-outline">XEM CHỈ ĐƯỜNG</a>
+  <!-- Hero Slider (Hiệu ứng trượt) -->
+  <div class="hero-section reveal">
+    <!-- Swiper Container -->
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png');">
+            <div class="hero-overlay">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Sản Xuất Tại Xưởng Nam Định</span>
+                <h1 class="hero-title">Giá Trị Thực, Chất Lượng Tốt</h1>
+                <p class="hero-desc">Bán hàng trực tiếp không qua trung gian. Miễn phí vận chuyển và có thợ lắp ráp tận phòng. Kiểm tra ưng ý mới thanh toán.</p>
+                <div class="hero-buttons">
+                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
+                  <a href="#map-section" class="btn-hero-outline">XEM CHỈ ĐƯỜNG</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png');">
+            <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(121,76,43,0.95) 0%, rgba(121,76,43,0.6) 55%, rgba(0,0,0,0.2) 100%);">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Thợ Giao Hàng & Lắp Đặt Tận Nhà</span>
+                <h1 class="hero-title">Không Cần Đặt Cọc Trước</h1>
+                <p class="hero-desc">Chính sách đặc biệt cho khách hàng quanh khu vực Nam Định. Trực tiếp thợ mộc bốc vác, lắp đặt và căn chỉnh tận phòng.</p>
+                <div class="hero-buttons">
+                  <a href="#products" class="btn-solid">XEM MẪU SẢN PHẨM</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Nút chuyển Slide -->
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 
   <!-- Danh Sách Sản Phẩm -->
   <div class="container" id="products">
-    <div class="category-tags">
+    <div class="category-tags reveal">
       <button type="button" class="tag-btn active" onclick="filterCategory('all', this)">Tất cả</button>
       <button type="button" class="tag-btn" onclick="filterCategory('giuong', this)">Giường ngủ</button>
       <button type="button" class="tag-btn" onclick="filterCategory('tu', this)">Tủ quần áo</button>
       <button type="button" class="tag-btn" onclick="filterCategory('ban-an', this)">Bàn ghế ăn</button>
       <button type="button" class="tag-btn" onclick="filterCategory('sofa', this)">Ghế Sofa</button>
-      <button type="button" class="tag-btn" onclick="filterCategory('ban-trang-diem', this)">Bàn trang điểm</button>
       <button type="button" class="tag-btn" onclick="filterCategory('khac', this)">Kệ Tivi & Khác</button>
     </div>
 
-    <div class="product-grid" id="productGrid"></div>
+    <div class="product-grid" id="productGrid">
+      <!-- Mảng sản phẩm sẽ render vào đây -->
+    </div>
 
     <!-- Giới thiệu -->
-    <section class="intro-section" id="about">
+    <section class="intro-section reveal" id="about">
       <h2>Về Xưởng Đồ Gỗ Điện Ngọc</h2>
       <p class="sub-text">Cơ sở sản xuất và gia công nội thất uy tín tại Nam Định, mang đến không gian sống hoàn hảo với mức chi phí tối ưu nhất cho mọi nhà.</p>
       <div class="why-choose">
         <h3>Cam kết từ xưởng:</h3>
         <p>• Lấy công làm lãi, giá bán tận gốc xưởng không chịu phí mặt bằng showroom.<br>
            • Trực tiếp thợ mộc của xưởng bốc vác, vận chuyển và lắp ráp tận phòng.<br>
-           • Chất liệu chuẩn xác, phụ kiện ray trượt bản lề loại tốt vững chãi.<br>
            • Báo giá minh bạch, khách hàng kiểm tra chắc chắn mới nhận tiền (Ship COD).</p>
       </div>
     </section>
 
-    <!-- Địa chỉ xưởng & Bản đồ Google Maps -->
-    <section class="map-section" id="map-section">
+    <!-- Bản đồ -->
+    <section class="map-section reveal" id="map-section">
       <h2>Vị Trí Xưởng Sản Xuất</h2>
       <p class="sub-text">Kính mời các bác liên hệ hoặc ghé thăm trực tiếp xưởng để trao đổi kích thước chuẩn nhất.</p>
-      
       <div class="map-box">
         <div class="map-card">
           <h4>Cơ Sở Đồ Gỗ Điện Ngọc</h4>
-          <p><strong>Địa chỉ:</strong> Đường Tỉnh 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
-          <p><strong>Điện thoại / Zalo:</strong> 0984650825</p>
-          <p><strong>Giờ làm việc:</strong> 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
-          
+          <p><strong>Địa chỉ:</strong> Tỉnh lộ 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
+          <p><strong>Điện thoại:</strong> 0984650825</p>
+          <p><strong>Giờ làm việc:</strong> 7:30 - 21:00</p>
           <div class="map-buttons-wrapper">
             <a href="tel:0984650825" class="btn-outline">GỌI TƯ VẤN</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-solid">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-              CHỈ ĐƯỜNG MAPS
-            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-solid">MỞ BẢN ĐỒ MAPS</a>
           </div>
         </div>
-
-        <div style="flex: 1.2; min-width: 320px; border-radius: 8px; overflow: hidden; border: 1px solid #e0d8d0; min-height: 280px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-          <iframe 
-            src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-            width="100%" height="100%" style="border:0; min-height: 280px;" allowfullscreen="" loading="lazy">
-          </iframe>
+        <div class="map-iframe-box">
+          <iframe src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
     </section>
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer reveal">
     <div class="footer-container">
       <div class="footer-col">
-        <h3>Cơ Sở Nội Thất Điện Ngọc</h3>
-        <p>Điện thoại / Zalo: <strong>0984650825</strong></p>
-        <p>Địa chỉ: Đường Tỉnh 490C - Trực Thuận - Trực Ninh - Nam Định</p>
+        <h3>Cơ Sở Điện Ngọc</h3>
+        <p>Hotline: <strong>0984650825</strong></p>
+        <p>Địa chỉ: Đường 490C - Trực Thuận - Trực Ninh - Nam Định</p>
       </div>
       <div class="footer-col">
         <h3>Chính Sách Khách Hàng</h3>
         <ul>
           <li>Nhận hàng, kiểm tra lắp đặt hoàn thiện mới thanh toán.</li>
-          <li>Hỗ trợ chuyển khoản hoặc tiền mặt trực tiếp cho thợ.</li>
-          <li>Không yêu cầu đặt cọc trước với đơn hàng kích thước phổ thông.</li>
+          <li>Hỗ trợ chuyển khoản hoặc tiền mặt cho thợ.</li>
         </ul>
       </div>
     </div>
@@ -274,7 +225,7 @@
     </div>
   </footer>
 
-  <!-- Modal Chi Tiết Sản Phẩm -->
+  <!-- Các Modal (Popup) -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
       <button type="button" class="modal-close" onclick="closeModal('productModal')">&times;</button>
@@ -286,42 +237,35 @@
           </div>
           <div class="thumbnail-list" id="modalThumbnails"></div>
         </div>
-
         <div class="detail-info">
-          <h2 id="modalTitle" style="font-size: 28px; margin-bottom: 8px;">Tên sản phẩm</h2>
+          <h2 id="modalTitle">Tên sản phẩm</h2>
           <div class="product-sku">
-            <span>Mã: <b id="modalCode" style="color: #222;">DN-01</b></span>
+            <span>Mã: <b id="modalCode">DN-01</b></span>
             <span>|</span>
-            <span id="modalStock" class="stock-tag stock-in">✔ Có sẵn tại xưởng</span>
+            <span id="modalStock" class="stock-tag stock-in">✔ Có sẵn</span>
           </div>
-
           <div class="promo-box">
             <div class="promo-header">
               <div class="sale-price" id="modalPrice">0 đ</div>
               <div class="old-price" id="modalOldPrice">0 đ</div>
             </div>
-            <div style="font-size: 14.5px; font-weight: 600; color: #5c3a21;">Hỗ trợ: Miễn phí vận chuyển &amp; thợ kê ráp tận nhà tại Nam Định.</div>
+            <div class="promo-desc">Hỗ trợ: Miễn phí vận chuyển & thợ kê ráp tận nhà tại Nam Định.</div>
           </div>
-
           <div class="specs-box" id="modalDesc"></div>
-
           <div class="modal-actions" id="modalActionArea"></div>
-
           <form class="order-form" id="directOrderForm" onsubmit="event.preventDefault(); openConfirmModalDirect();">
             <h4>THÔNG TIN ĐẶT MUA NHANH</h4>
-            <p style="font-size: 14.5px; color: #555; margin-bottom: 15px; font-weight: 600;">Thanh toán tiền sau khi thợ dựng xong hoàn thiện.</p>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
-            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết tại Nam Định *" required></div>
-            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (Tầng mấy, ngõ xe tải vào được không...)"></textarea></div>
-            <button type="submit" class="btn-solid btn-full" id="directSubmitBtn">XÁC NHẬN MẪU NÀY</button>
+            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ (Thôn/Xã/Huyện) *" required></div>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú thêm..."></textarea></div>
+            <button type="submit" class="btn-action btn-full" id="directSubmitBtn">XÁC NHẬN MẪU NÀY</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal Giỏ Hàng -->
   <div class="modal-overlay" id="cartModal">
     <div class="modal-content" style="max-width: 900px;">
       <button type="button" class="modal-close" onclick="closeModal('cartModal')">&times;</button>
@@ -330,65 +274,45 @@
     </div>
   </div>
 
-  <!-- Modal Xác Nhận Đơn Hàng -->
   <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
     <div class="modal-content" style="max-width: 580px; padding: 35px;">
       <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">&times;</button>
-      <h3 style="color: #222; margin-bottom: 25px; font-size: 24px; border-bottom: 2px solid #e0d8d0; padding-bottom: 12px;">
-        Phiếu Xác Nhận Đơn Hàng
-      </h3>
-
+      <h3 style="color: #222; margin-bottom: 25px; font-size: 24px; border-bottom: 2px solid #e0d8d0; padding-bottom: 12px;">Phiếu Xác Nhận Đơn Hàng</h3>
       <div id="confirmOrderSummary"></div>
-
-      <div style="background: #fff8e1; border-left: 5px solid #d35400; padding: 18px; font-size: 15px; line-height: 1.6; color: #333; margin-bottom: 30px; border-radius: 0 6px 6px 0; font-weight: 600;">
-        <b style="color: #222; font-size: 16px;">Cam kết từ xưởng:</b><br>
-        - Đơn hàng không yêu cầu chuyển tiền cọc trước.<br>
-        - Xưởng sẽ chủ động gọi điện thoại hẹn giờ trước khi bốc hàng lên xe tải.<br>
-        - Thợ lắp ráp hoàn chỉnh, bác kiểm tra ưng ý mới giao tiền.
+      <div style="background: #fff8e1; border-left: 5px solid #d35400; padding: 18px; font-size: 15px; margin-bottom: 30px; border-radius: 0 6px 6px 0; font-weight: 600;">
+        <b style="color: #222;">Cam kết từ xưởng:</b><br>- Đơn hàng không yêu cầu chuyển tiền cọc trước.<br>- Thợ lắp ráp hoàn chỉnh, kiểm tra ưng ý mới giao tiền.
       </div>
-
       <div class="confirm-buttons-wrapper">
-        <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline btn-full">
-          QUAY LẠI SỬA
-        </button>
-        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-solid btn-full">
-          ĐỒNG Ý GỬI ĐƠN
-        </button>
+        <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline btn-full">QUAY LẠI SỬA</button>
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-action btn-full">ĐỒNG Ý GỬI ĐƠN</button>
       </div>
     </div>
   </div>
 
   <!-- Float Buttons -->
-  <div class="floating-contact-bar">
-    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện thoại">
+  <div class="floating-contact-bar reveal">
+    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </a>
-    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn tin Zalo">
+    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Zalo">
       <span class="zalo-text">Zalo</span>
     </a>
-    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
-    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Mở hộp chat tư vấn">
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Chat">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     </button>
   </div>
 
-  <!-- Chat Box -->
+  <!-- AI Chat -->
   <div class="native-ai-box" id="aiChatBox">
-    <div class="ai-header">
-      <span>TƯ VẤN KÍCH THƯỚC</span>
-      <button type="button" onclick="toggleAIChat()">&times;</button>
-    </div>
-    <div class="ai-body" id="aiChatBody">
-      <div class="msg msg-ai">Chào bác! Xưởng em chuyên đóng giường tủ gỗ ván công nghiệp và gỗ tự nhiên. Bác cần hỏi mẫu nào ạ?</div>
-    </div>
+    <div class="ai-header"><span>TƯ VẤN</span><button type="button" onclick="toggleAIChat()">&times;</button></div>
+    <div class="ai-body" id="aiChatBody"><div class="msg msg-ai">Chào bác! Xưởng em chuyên đóng giường tủ gỗ. Bác cần hỏi mẫu nào ạ?</div></div>
     <div class="ai-footer">
-      <input type="text" id="aiInput" placeholder="Nhập câu hỏi tại đây..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <input type="text" id="aiInput" placeholder="Nhập câu hỏi..." onkeypress="if(event.key === 'Enter') handleAISend()">
       <button type="button" onclick="handleAISend()">GỬI</button>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
