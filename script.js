@@ -6,9 +6,29 @@ let currentSelectedProduct = null;
 let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
 let pendingOrderPayload = null;
 
-// Khởi chạy khi DOM tải xong
+// Intersection Observer kích hoạt hiệu ứng cuộn trang
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { 
+  threshold: 0.05,
+  rootMargin: "0px 0px -30px 0px"
+});
+
+function observeElements() {
+  document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+  });
+}
+
+// Khởi chạy khi tải xong trang
 document.addEventListener("DOMContentLoaded", () => {
-  // Khởi tạo Swiper an toàn
+  // Quan sát các phần tĩnh có sẵn trong HTML
+  observeElements();
+
   if (typeof Swiper !== 'undefined') {
     try {
       new Swiper('.hero-swiper', {
@@ -22,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Tải dữ liệu sản phẩm & cập nhật giỏ hàng
   loadProductsFromSheet();
   updateCartCount();
 
@@ -35,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2500);
 });
 
-// Bật/tắt Chat Box
 function toggleAIChat() {
   const box = document.getElementById("aiChatBox");
   if (box) {
@@ -139,10 +157,11 @@ function renderProducts(list) {
     return isAOut - isBOut;
   });
 
-  sortedList.forEach(p => {
+  sortedList.forEach((p, index) => {
     const isSoldOut = (p.stock === 0);
+    const delayIndex = (index % 5) + 1;
     const card = document.createElement("div");
-    card.className = "product-card" + (isSoldOut ? " card-out-of-stock" : "");
+    card.className = `product-card reveal delay-${delayIndex}` + (isSoldOut ? " card-out-of-stock" : "");
     card.onclick = () => openModal(p.id);
     card.innerHTML = `
       ${isSoldOut ? '<div class="badge-card-soldout">Tạm Hết Hàng</div>' : ''}
@@ -155,6 +174,9 @@ function renderProducts(list) {
     `;
     grid.appendChild(card);
   });
+
+  // Kích hoạt quan sát cho từng thẻ sản phẩm vừa render
+  observeElements();
 }
 
 function filterCategory(cat, btn) {
