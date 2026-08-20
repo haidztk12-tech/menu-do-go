@@ -1,11 +1,9 @@
 /* ================= CƠ BẢN ================= */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
 html, body { background-color: #f6f4f0; color: #2c2523; line-height: 1.6; font-size: 15px; overflow-x: hidden; width: 100%; }
-
-/* Khối phông chữ tiêu đề */
 h1, h2, h3, h4, .hero-title, .price, .sale-price { font-family: 'Merriweather', serif; font-weight: 900; }
 
-/* ================= HỆ THỐNG NÚT BẤM (Thiết kế bo góc lớn, thân thiện như giao diện Nhật) ================= */
+/* ================= HỆ THỐNG NÚT BẤM ================= */
 .btn-solid {
   background: #794c2b; color: #fff; border: none; border-radius: 30px; 
   font-weight: 800; font-size: 14.5px; cursor: pointer; transition: all 0.3s ease; 
@@ -49,7 +47,7 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 }
 @keyframes processingPulse { from { opacity: 1; } to { opacity: 0.7; } }
 
-/* ================= HIỆU ỨNG SCROLL REVEAL (HIỆN DẦN LÊN) ================= */
+/* ================= HIỆU ỨNG SCROLL REVEAL ================= */
 .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.1s; }
@@ -105,14 +103,13 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .swiper-pagination-bullet { background: #fff !important; opacity: 0.5; width: 10px; height: 10px; }
 .swiper-pagination-bullet-active { opacity: 1; width: 25px; border-radius: 5px; }
 
-/* ================= MAIN CONTAINER & LƯỚI SẢN PHẨM ================= */
+/* ================= LƯỚI SẢN PHẨM ================= */
 .container { max-width: 1250px; margin: 50px auto; padding: 0 15px; }
 .category-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; justify-content: center;}
 .tag-btn { background: #fff; border: 1px solid #ccc; color: #333; padding: 12px 26px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
 .tag-btn.active, .tag-btn:hover { background: #794c2b; color: #fff; border-color: #794c2b; box-shadow: 0 6px 15px rgba(121,76,43,0.3); transform: translateY(-3px);}
 
 .product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-bottom: 60px; }
-/* Thiết kế khối bo tròn mềm mại chuẩn giao diện hiện đại */
 .product-card { background: #fff; border-radius: 20px; overflow: hidden; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 6px 20px rgba(0,0,0,0.05); border: 1px solid #e0d8d0; position: relative;}
 .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(121,76,43,0.15); border-color: #794c2b; }
 .product-card img { width: 100%; height: 210px; object-fit: cover; border-bottom: 1px solid #f6f4f0; transition: 0.5s ease;}
@@ -144,6 +141,8 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .map-card h4 { color: #222; margin-bottom: 20px; font-size: 26px;}
 .map-card p { margin-bottom: 15px; color: #444; font-weight: 600; font-size: 16px;}
 .map-buttons-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+.map-iframe-box { flex: 1.2; min-width: 320px; border-radius: 20px; overflow: hidden; border: 1px solid #e0d8d0; min-height: 300px; box-shadow: 0 6px 25px rgba(0,0,0,0.03);}
+.map-iframe-box iframe { width: 100%; height: 100%; border: 0; min-height: 300px; }
 
 /* ================= FOOTER ================= */
 .footer { background: #2c1a0d; color: #d7ccc8; padding: 70px 15px 30px 15px; border-top: 5px solid #794c2b;}
@@ -207,7 +206,22 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 #confirmOrderSummary { background: #fff; border: 1px solid #e0d8d0; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); font-size: 16px;}
 .confirm-buttons-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
 
-/* ================= TỐI ƯU MOBILE (CHỐNG TRÀN X) ================= */
+/* Menu Mobile Trồi Lên = VẤN ĐỀ ÔNG GẶP PHẢI NẰM TẠI ĐÂY */
+.mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1200; backdrop-filter: blur(3px);}
+.mobile-menu-overlay.open { display: block; }
+.mobile-menu-panel { position: fixed; top: 0; left: 0; width: 85%; max-width: 340px; height: 100%; background: #fff; z-index: 1201; transform: translateX(-100%); transition: transform 0.35s ease; overflow-y: auto; box-shadow: 5px 0 30px rgba(0,0,0,0.2); }
+.mobile-menu-overlay.open .mobile-menu-panel { transform: translateX(0); }
+.mobile-menu-header { background: #fdfaf6; color: #222; padding: 22px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0d8d0;}
+.mobile-menu-header span { font-weight: 900; font-size: 18px; text-transform: uppercase; }
+.mobile-menu-header button { background: #eee; border: none; color: #333; font-size: 22px; font-weight: bold; width: 38px; height: 38px; border-radius: 8px; cursor: pointer; }
+.mobile-menu-list { list-style: none; }
+.mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; font-size: 16px; font-weight: 800; color: #333; text-decoration: none; border-bottom: 1px solid #f6f4f0; cursor: pointer; }
+.mobile-submenu { list-style: none; background: #fcfbf9; display: none; border-bottom: 1px solid #e0d8d0;}
+.mobile-submenu.open { display: block; }
+.mobile-submenu li a { display: block; padding: 14px 22px 14px 35px; font-size: 15px; font-weight: 700; color: #555; text-decoration: none; border-bottom: 1px solid #fcfcfc; cursor: pointer; }
+.mobile-menu-contact { padding: 22px; margin-top: 15px; }
+
+/* ================= TỐI ƯU MOBILE (CHỐNG TRÀN X, CẤM VỠ KHUNG) ================= */
 @media (max-width: 1024px) {
   .hero-section { flex-direction: column; }
   .hero-sidebar { width: 100%; display: none; }
@@ -225,21 +239,19 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 @media (max-width: 600px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px;}
   
-  /* Cấu trúc lại Hero Banner trên Mobile để nút không bị kẹt */
   .hero-swiper, .hero-banner { min-height: 480px; border-radius: 16px;}
   .hero-overlay { padding: 30px 20px; text-align: center; justify-content: center; background: rgba(30,15,5,0.75);}
   .hero-buttons { flex-direction: column; width: 100%; gap: 12px;}
   .btn-hero-outline, .btn-solid { width: 100%; height: 50px; font-size: 15px;}
   .hero-title { font-size: 32px; }
   
-  /* Giấu chữ Giỏ hàng, thu nhỏ Logo */
   .cart-text-hide { display: none; }
   .logo-text { font-size: 19px; margin-top: 0;}
   .logo-img { width: 40px; height: 40px; }
   .cart-btn-header { padding: 8px 12px; border-radius: 12px;}
   .hamburger-btn { width: 42px; height: 42px; border-radius: 12px;}
   
-  .intro-section, .map-card { padding: 30px 20px; border-radius: 16px;}
+  .intro-section, .map-card, .map-iframe-box { padding: 30px 20px; border-radius: 16px;}
   .modal-content { padding: 25px 15px; margin: 0; border-radius: 0; min-height: 100vh;}
   .map-buttons-wrapper, .confirm-buttons-wrapper { grid-template-columns: 1fr; gap: 12px;}
   
