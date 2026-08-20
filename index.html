@@ -19,19 +19,19 @@
     /* ================= HỆ THỐNG NÚT BẤM CHUẨN ================= */
     .btn-solid {
       background: #794c2b; color: #fff; border: none; border-radius: 6px; 
-      font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.2s ease; 
+      font-weight: 800; font-size: 14px; cursor: pointer; transition: all 0.2s ease; 
       display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
       box-shadow: 0 4px 10px rgba(121,76,43,0.25); text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-      min-height: 48px; padding: 0 24px;
+      min-height: 48px; padding: 0 20px; white-space: nowrap;
     }
     .btn-solid:hover { background: #5c3a21; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(121,76,43,0.35); color: #fff; }
 
     .btn-outline {
       background: #fff; color: #794c2b; border: 2px solid #794c2b; border-radius: 6px; 
-      font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.2s ease; 
+      font-weight: 800; font-size: 14px; cursor: pointer; transition: all 0.2s ease; 
       display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
       text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-      min-height: 48px; padding: 0 24px;
+      min-height: 48px; padding: 0 20px; white-space: nowrap;
     }
     .btn-outline:hover { background: #794c2b; color: #fff; transform: translateY(-2px); }
 
@@ -40,9 +40,9 @@
     /* Nút dành riêng cho phần Banner (Nền đen/kính) */
     .btn-hero-outline {
       background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color: white; border-radius: 6px; 
-      text-decoration: none; font-weight: 800; font-size: 15px; border: 2px solid white; transition: all 0.2s ease; 
+      text-decoration: none; font-weight: 800; font-size: 14px; border: 2px solid white; transition: all 0.2s ease; 
       display: inline-flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: 0.5px;
-      min-height: 48px; padding: 0 24px;
+      min-height: 48px; padding: 0 24px; white-space: nowrap;
     }
     .btn-hero-outline:hover { background: white; color: #333; transform: translateY(-2px); }
 
@@ -63,9 +63,9 @@
     .main-nav { background: #ffffff; border-bottom: 1px solid #e0d8d0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
     .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
 
-    /* Khóa cứng Logo chống rớt dòng */
+    /* KHÓA LỖI NỀN LOGO BẰNG COMBO FILTER & BLEND-MODE */
     .logo { display: inline-flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
-    .logo-img { width: 48px; height: 48px; object-fit: contain; mix-blend-mode: darken; }
+    .logo-img { width: 48px; height: 48px; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.5); }
     .logo-text { font-size: clamp(20px, 3.5vw, 26px); font-weight: 900; color: #4a2c16; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;}
 
     .nav-right-box { display: flex; align-items: center; gap: 12px; }
@@ -79,7 +79,7 @@
     .dropdown-menu li a { display: block; padding: 12px 20px; color: #444; text-decoration: none; font-size: 15px; font-weight: 700; border-bottom: 1px solid #f6f4f0; cursor: pointer; transition: 0.2s;}
     .dropdown-menu li a:hover { background: #fdfaf6; color: #c0392b; padding-left: 25px; }
 
-    .cart-btn-header { background: #fff; border: 2px solid #794c2b; color: #794c2b; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.25s ease; }
+    .cart-btn-header { background: #fff; border: 2px solid #794c2b; color: #794c2b; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.25s ease; white-space: nowrap; }
     .cart-btn-header:hover { background: #794c2b; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(121,76,43,0.2);}
     .cart-badge { background: #c0392b; color: #fff; font-size: 13px; border-radius: 12px; padding: 2px 8px; font-weight: 900; }
 
@@ -94,7 +94,7 @@
     .hero-sidebar-list li a:hover { background: #fdfbf8; color: #c0392b; padding-left: 25px; }
 
     .hero-banner { flex: 1; position: relative; border-radius: 8px; overflow: hidden; min-height: 420px; display: flex; align-items: center; background: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png') center/cover no-repeat; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.7) 55%, rgba(30,15,5,0.1) 100%); display: flex; align-items: center; padding: 40px 50px; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(30,15,5,0.92) 0%, rgba(30,15,5,0.65) 55%, rgba(30,15,5,0.1) 100%); display: flex; align-items: center; padding: 40px 50px; }
     .hero-text-content { max-width: 600px; color: #fff; }
     .hero-badge-tag { background: transparent; color: #e5dbd3; font-size: 13px; font-weight: 900; border: 1px solid #e5dbd3; padding: 6px 14px; border-radius: 6px; display: inline-block; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
     .hero-title { font-size: 42px; font-weight: 900; line-height: 1.2; margin-bottom: 18px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
@@ -104,7 +104,7 @@
     /* ================= MAIN CONTAINER ================= */
     .container { max-width: 1250px; margin: 40px auto; padding: 0 15px; }
     .category-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; justify-content: center;}
-    .tag-btn { background: #fff; border: 1px solid #ccc; color: #333; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.25s ease; }
+    .tag-btn { background: #fff; border: 1px solid #ccc; color: #333; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.25s ease; white-space: nowrap; }
     .tag-btn.active, .tag-btn:hover { background: #794c2b; color: #fff; border-color: #794c2b; box-shadow: 0 4px 10px rgba(121,76,43,0.25); transform: translateY(-2px);}
 
     /* Product Grid */
@@ -129,10 +129,10 @@
     .map-section h2 { color: #3e2723; font-weight: 900; margin-bottom: 12px; font-size: 32px; }
     .map-box { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; max-width: 1100px; margin: 30px auto 0 auto; }
     .map-card { background: #fff; border-radius: 8px; padding: 35px; text-align: left; flex: 1; min-width: 320px; box-shadow: 0 2px 15px rgba(0,0,0,0.04); border: 1px solid #e0d8d0;}
-    .map-card h4 { color: #222; margin-bottom: 18px; font-size: 24px; font-weight: 900; }
+    .map-card h4 { color: #222; margin-bottom: 18px; font-size: 24px; font-weight: 900;}
     .map-card p { margin-bottom: 12px; color: #444; font-weight: 600; font-size: 15.5px;}
     
-    /* CSS Grid đảm bảo 2 nút chỉ đường bằng nhau tuyệt đối */
+    /* CSS Grid đảm bảo 2 nút chỉ đường bằng nhau tuyệt đối và không bóp chữ */
     .map-buttons-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
 
     /* Footer */
@@ -250,8 +250,6 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger-btn { display: flex; }
-      
-      /* Cấu trúc lại thanh Top-Bar để ô tìm kiếm tự rơi xuống dưới và dàn full ngang */
       .top-container { flex-direction: column; align-items: stretch; gap: 12px; }
       .top-left { justify-content: space-between; width: 100%; }
       .search-bar { max-width: 100%; width: 100%; }
@@ -263,21 +261,17 @@
       .hero-overlay { padding: 30px 20px; }
       .toast-msg { min-width: 250px; font-size: 14px; max-width: calc(100vw - 40px); }
       .toast-container { right: 10px; left: 10px; top: 15px;}
-      
-      /* Thu gọn padding Nav */
       .logo-text { font-size: 20px; }
       .logo-img { width: 40px; height: 40px; }
-      
       .floating-contact-bar { right: 15px; bottom: 20px; gap: 12px; }
       .btn-floating { width: 46px; height: 46px; }
       .native-ai-box { width: calc(100vw - 30px); right: 15px; height: 70vh; max-height: 480px; }
-      
       .modal-content { padding: 25px 20px; margin: 0; border-radius: 0; min-height: 100vh;}
       .cart-table { font-size: 14px; }
       .cart-table th, .cart-table td { padding: 12px 6px; }
       .cart-qty-btn { padding: 6px 10px; }
       
-      /* Xếp dọc Grid nút trên mobile để dễ bấm */
+      /* CĂN CHỈNH NÚT BẤM TRÊN MOBILE: Chuyển lưới từ ngang sang dọc để không bao giờ bóp chữ */
       .map-buttons-wrapper, .confirm-buttons-wrapper { grid-template-columns: 1fr; gap: 12px;}
     }
   </style>
@@ -506,7 +500,7 @@
             <a href="tel:0984650825" class="btn-outline">GỌI TƯ VẤN</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-solid">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-              MỞ GOOGLE MAPS
+              CHỈ ĐƯỜNG MAPS
             </a>
           </div>
         </div>
@@ -621,7 +615,7 @@
         <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline btn-full">
           QUAY LẠI SỬA
         </button>
-        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-solid btn-full">
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-action btn-full">
           ĐỒNG Ý GỬI ĐƠN
         </button>
       </div>
