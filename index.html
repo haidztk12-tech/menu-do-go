@@ -107,7 +107,7 @@
     .footer-col ul { list-style: none; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 25px; padding-top: 15px; text-align: center; font-size: 12px; color: #ddd; position: relative; z-index: 2; }
 
-    /* Modal Chi Tiết Nâng Cấp Chuyên Nghiệp */
+    /* Modal Chi Tiết Nâng Cấp */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; overflow-y: auto; padding: 15px; }
     .modal-content { background: #fff; max-width: 1050px; margin: 20px auto; border-radius: 8px; padding: 25px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     .modal-close { position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; z-index: 10; }
@@ -132,7 +132,6 @@
     .sale-price { font-size: 26px; font-weight: 900; }
     .old-price { font-size: 15px; text-decoration: line-through; color: #ffcccc; }
     
-    /* Khung mô tả chi tiết & thông số kỹ thuật */
     .specs-box { border: 1px dashed #27ae60; background: #fdfdfd; padding: 15px; border-radius: 6px; font-size: 13.5px; line-height: 1.7; margin-bottom: 15px; max-height: 250px; overflow-y: auto; }
     .specs-box b { color: #881b1b; }
 
@@ -150,6 +149,42 @@
     .cart-qty-btn { background: #ddd; border: none; padding: 2px 8px; font-weight: bold; cursor: pointer; border-radius: 3px; }
     .cart-del-btn { color: #e74c3c; background: none; border: none; cursor: pointer; font-weight: bold; }
     .cart-total-box { text-align: right; font-size: 16px; margin: 15px 0; font-weight: bold; color: #c0392b; }
+
+    /* TOAST NOTIFICATION CHUYÊN NGHIỆP */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .toast-msg {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #222;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+      border-left: 5px solid #27ae60;
+      min-width: 300px;
+      max-width: 420px;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .toast-msg.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .toast-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
 
     .floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
     .btn-floating { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s ease; }
@@ -186,10 +221,14 @@
       .search-bar input { width: 140px; }
       .hero-banner { min-height: 260px; }
       .hero-title { font-size: 20px; }
+      .toast-msg { min-width: 250px; font-size: 12.5px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Khung chứa thông báo Toast -->
+  <div class="toast-container" id="toastContainer"></div>
 
   <!-- Top Bar -->
   <header class="top-bar">
@@ -268,13 +307,13 @@
     <div class="hero-sidebar">
       <div class="hero-sidebar-title">☰ DANH MỤC NỘI THẤT</div>
       <ul class="hero-sidebar-list">
-        <li><a onclick="filterCategory('giuong')">Giường Ngủ MDF <span>›</span></a></li>
-        <li><a onclick="filterCategory('tu')">Tủ Quần Áo Cánh Mở <span>›</span></a></li>
-        <li><a onclick="filterCategory('ban-an')">Bàn Ghế Ăn Gia Đình <span>›</span></a></li>
-        <li><a onclick="filterCategory('sofa')">Ghế Sofa Phòng Khách <span>›</span></a></li>
-        <li><a onclick="filterCategory('ban-trang-diem')">Bàn Trang Điểm Hiện Đại <span>›</span></a></li>
-        <li><a onclick="filterCategory('ban-hoc')">Bàn Học / Làm Việc <span>›</span></a></li>
-        <li><a onclick="filterCategory('khac')">Kệ Tivi &amp; Tủ Giày <span>›</span></a></li>
+        <li><a onclick="filterCategory('giuong')">🛏️ Giường Ngủ MDF <span>›</span></a></li>
+        <li><a onclick="filterCategory('tu')">🚪 Tủ Quần Áo Cánh Mở <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-an')">🪑 Bàn Ghế Ăn Gia Đình <span>›</span></a></li>
+        <li><a onclick="filterCategory('sofa')">🛋️ Ghế Sofa Phòng Khách <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-trang-diem')">🪞 Bàn Trang Điểm Hiện Đại <span>›</span></a></li>
+        <li><a onclick="filterCategory('ban-hoc')">📚 Bàn Học / Làm Việc <span>›</span></a></li>
+        <li><a onclick="filterCategory('khac')">👟 Kệ Tivi &amp; Tủ Giày <span>›</span></a></li>
       </ul>
     </div>
 
@@ -286,7 +325,7 @@
           <p class="hero-desc">Sản xuất tận gốc tại xưởng - Bao phí vận chuyển và thợ lắp ráp tận phòng ngủ tại Nam Định. Kiểm tra chắc chắn mới thanh toán tiền (Ship COD).</p>
           <div class="hero-buttons">
             <a href="tel:0984650825" class="btn-hero-primary">📞 Gọi Ngay: 0984650825</a>
-            <a href="#map-section" class="btn-hero-outline">Xem Vị Trí Xưởng</a>
+            <a href="#map-section" class="btn-hero-outline">🧭 Xem Vị Trí Xưởng</a>
           </div>
         </div>
       </div>
@@ -313,8 +352,8 @@
       <p class="sub-text">Chuyên sản xuất, gia công lắp ráp giường, tủ, bàn ghế trực tiếp tại xưởng với giá gốc không qua trung gian.</p>
       <div class="why-choose">
         <h3>Tại sao nên chọn Đồ Gỗ Điện Ngọc?</h3>
-        <p>- Lấy công làm lãi, trực tiếp vận chuyển và lắp ráp tận phòng.<br>
-           - Báo giá minh bạch, kiểm tra hàng ưng ý mới thanh toán tiền.<br>
+        <p>- Lấy công làm lãi, trực tiếp vận chuyển và lắp ráp tận phòng tại Nam Định.<br>
+           - Báo giá minh bạch, kiểm tra hàng ưng ý mới thanh toán tiền (Ship COD uy tín).<br>
            - Cam kết ván gỗ chuẩn kích thước, ray trượt bản lề giảm chấn chắc chắn.</p>
       </div>
     </section>
@@ -364,7 +403,7 @@
       <div class="footer-col">
         <h3>HÌNH THỨC THANH TOÁN</h3>
         <ul>
-          <li>- Nhận hàng, kiểm tra lắp đặt xong mới trả tiền.</li>
+          <li>- Nhận hàng, kiểm tra lắp đặt xong mới trả tiền (COD).</li>
           <li>- Hỗ trợ chuyển khoản trực tiếp sau khi hoàn thiện.</li>
           <li>- Không cần đặt cọc trước với đơn hàng phổ thông.</li>
         </ul>
@@ -380,7 +419,7 @@
     <div class="modal-content">
       <button type="button" class="modal-close" onclick="closeModal('productModal')">✕ Đóng</button>
       <div class="detail-container">
-        <!-- Khung ảnh chính & Video góc nhìn -->
+        <!-- Khung ảnh chính & Video -->
         <div class="detail-gallery">
           <div class="main-view-box">
             <img id="modalMainImg" src="" alt="Ảnh sản phẩm">
@@ -402,7 +441,6 @@
             <div style="font-size: 13px; opacity: 0.9;">Miễn phí vận chuyển &amp; bao thợ lắp đặt tận nơi tại Nam Định</div>
           </div>
 
-          <!-- Bảng mô tả chi tiết & thông số kỹ thuật giống web mẫu -->
           <div class="specs-box" id="modalDesc"></div>
 
           <div class="modal-actions">
@@ -476,13 +514,35 @@
     let currentSelectedProduct = null;
     let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
 
+    // HÀM HIỂN THỊ THÔNG BÁO TOAST TINH TẾ
+    function showToast(message, isSuccess = true) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast-msg";
+      toast.style.borderLeftColor = isSuccess ? "#27ae60" : "#c0392b";
+      
+      const icon = isSuccess ? "✅" : "⚠️";
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <div style="font-weight: 500;">${message}</div>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => toast.classList.add("show"), 10);
+      
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 350);
+      }, 3500);
+    }
+
     function updateCartCount() {
       const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('cartCountBadge').innerText = totalQty;
       localStorage.setItem('user_cart', JSON.stringify(cart));
     }
 
-    // Chuyển link YouTube thường thành link nhúng Embed
     function getEmbedYouTubeUrl(url) {
       if (!url) return '';
       let videoId = '';
@@ -496,7 +556,6 @@
       return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : '';
     }
 
-    // Tự động kéo dữ liệu từ Google Sheets
     async function loadProductsFromSheet() {
       const grid = document.getElementById("productGrid");
       grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #cb7b26; font-weight: bold;">⏳ Đang đồng bộ danh sách sản phẩm từ xưởng...</div>`;
@@ -522,7 +581,6 @@
           obj.id = parseInt(obj.id) || 1;
           obj.rawPrice = parseInt((obj.price || '').replace(/\D/g, '')) || 0;
           
-          // Tập hợp tất cả các ảnh (ảnh chính + các ảnh phụ)
           let allImgs = [obj.mainImg];
           if (obj.extraImgs) {
             const extra = obj.extraImgs.split(';').map(s => s.trim()).filter(Boolean);
@@ -595,7 +653,6 @@
       const mainImg = document.getElementById("modalMainImg");
       const videoFrame = document.getElementById("modalVideoFrame");
       
-      // Mặc định hiển thị ảnh đầu tiên
       mainImg.style.display = "block";
       videoFrame.style.display = "none";
       videoFrame.src = "";
@@ -604,7 +661,6 @@
       const thumbBox = document.getElementById("modalThumbnails");
       thumbBox.innerHTML = "";
 
-      // Tạo thumbnail cho danh sách ảnh
       p.images.forEach((imgSrc, index) => {
         const thumb = document.createElement("img");
         thumb.src = imgSrc;
@@ -620,7 +676,6 @@
         thumbBox.appendChild(thumb);
       });
 
-      // Nếu có video YouTube -> tạo nút thumbnail video
       if (p.videoUrl) {
         const embedUrl = getEmbedYouTubeUrl(p.videoUrl);
         if (embedUrl) {
@@ -644,7 +699,7 @@
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = "none";
       const videoFrame = document.getElementById("modalVideoFrame");
-      if (videoFrame) videoFrame.src = ""; // Dừng video khi đóng modal
+      if (videoFrame) videoFrame.src = "";
     }
 
     function addToCartFromModal() {
@@ -653,7 +708,7 @@
       if (exist) exist.qty += 1;
       else cart.push({ ...currentSelectedProduct, qty: 1 });
       updateCartCount();
-      alert(`Đã thêm [${currentSelectedProduct.title}] vào Giỏ Hàng thành công!`);
+      showToast(`Đã thêm <b>${currentSelectedProduct.title}</b> vào Giỏ Hàng!`);
     }
 
     function openCartModal() {
@@ -750,11 +805,11 @@
 
       sendDataToGmail(payload)
         .then(() => {
-          alert("Đặt hàng thành công! Xưởng Đồ Gỗ Điện Ngọc (0984650825) đã nhận được đơn và sẽ liên hệ xác nhận sớm nhất.");
+          showToast("Đặt hàng thành công! Xưởng (0984650825) sẽ gọi xác nhận sớm nhất.");
           closeModal('productModal');
         })
         .catch(() => {
-          alert("Đặt hàng thành công! Thông tin đã được tiếp nhận.");
+          showToast("Đã gửi đơn hàng thành công!");
           closeModal('productModal');
         })
         .finally(() => {
@@ -788,13 +843,13 @@
 
       sendDataToGmail(payload)
         .then(() => {
-          alert("Đặt giỏ hàng thành công! Xưởng đã nhận được danh sách món và sẽ chuẩn bị thợ chở đến lắp ráp.");
+          showToast("Đặt giỏ hàng thành công! Xưởng sẽ chuẩn bị thợ chở đến lắp ráp.");
           cart = [];
           updateCartCount();
           closeModal('cartModal');
         })
         .catch(() => {
-          alert("Đặt hàng thành công!");
+          showToast("Đã gửi đơn hàng thành công!");
           cart = [];
           updateCartCount();
           closeModal('cartModal');
@@ -835,7 +890,7 @@
         } else if (t.includes("sofa")) {
           reply = "Xưởng có Sofa văng hiện đại giá 3.200.000đ và Sofa da phòng khách giá 4.800.000đ ạ.";
         } else if (t.includes("ship") || t.includes("vận chuyển") || t.includes("lắp")) {
-          reply = "Xưởng miễn phí vận chuyển và thợ trực tiếp đến lắp ráp tận phòng tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền ạ!";
+          reply = "Xưởng miễn phí vận chuyển và thợ trực tiếp đến lắp ráp tận phòng tại Nam Định, kiểm tra hàng ưng ý mới thanh toán tiền (COD) ạ!";
         }
         const aiMsg = document.createElement("div");
         aiMsg.className = "msg msg-ai";
