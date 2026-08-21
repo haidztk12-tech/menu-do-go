@@ -1,23 +1,24 @@
+This website is under construction, for academic research purposes. Thank you for reading :)))
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ĐỒ GỖ ĐIỆN NGỌC - Cửa Hàng Nội Thất Nam Định</title>
+  <title>ĐỒ GỖ ĐIỆN NGỌC - Nội Thất Cao Cấp</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logodogodienngoc.png?v=2">
-  <link rel="shortcut icon" type="image/png" href="logodogodienngoc.png?v=2">
-  <link rel="apple-touch-icon" href="logodogodienngoc.png?v=2">
+  <link rel="icon" type="image/png" href="logodogodienngoc.png?v=5">
+  <link rel="shortcut icon" type="image/png" href="logodogodienngoc.png?v=5">
+  <link rel="apple-touch-icon" href="logodogodienngoc.png?v=5">
 
-  <!-- Google Fonts: Nunito & Merriweather -->
+  <!-- Phông chữ Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Nunito:wght@500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Swiper CSS -->
+  <!-- Swiper CSS & File Style -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -28,10 +29,10 @@
   <header class="top-bar">
     <div class="top-container">
       <div class="top-left">
-        <span class="hotline-btn">☎️ 0984650825</span>
-        <a href="#about" class="top-link">Giới thiệu cửa hàng</a>
-        <a href="#reviews" class="top-link">Đánh giá Google</a>
-        <a href="#map-section" class="top-link">Dẫn đường</a>
+        <span class="hotline-btn">☎️ Hotline: 0984650825</span>
+        <a href="#about" class="top-link">Giới thiệu</a>
+        <a href="#reviews" class="top-link">Đánh giá</a>
+        <a href="#map-section" class="top-link">Liên hệ</a>
       </div>
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="handleSearch()">
@@ -100,7 +101,7 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-header">
-        <span>Danh Mục Nội Thất</span>
+        <span>Danh Mục Sản Phẩm</span>
         <button type="button" onclick="toggleMobileMenu(false)">✕</button>
       </div>
       <ul class="mobile-menu-list">
@@ -112,7 +113,7 @@
         <li><a onclick="filterCategory('ban-trang-diem'); toggleMobileMenu(false);">Bàn Trang Điểm & Học</a></li>
       </ul>
       <div class="mobile-menu-contact">
-        <a href="tel:0984650825" class="btn-solid btn-full">GỌI TƯ VẤN LẮP ĐẶT</a>
+        <a href="tel:0984650825" class="btn-solid btn-full">LIÊN HỆ TƯ VẤN</a>
       </div>
     </div>
   </div>
@@ -126,12 +127,12 @@
           <div class="hero-banner" style="background-image: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png');">
             <div class="hero-overlay">
               <div class="hero-text-content">
-                <span class="hero-badge-tag">Sản Xuất Tại Xưởng Nam Định</span>
-                <h1 class="hero-title">Giá Trị Thực, Chất Lượng Tốt</h1>
-                <p class="hero-desc">Bán hàng trực tiếp không qua trung gian. Miễn phí vận chuyển và có thợ lắp ráp tận phòng. Kiểm tra ưng ý mới thanh toán.</p>
+                <span class="hero-badge-tag">Nội Thất Gỗ Cao Cấp</span>
+                <h1 class="hero-title">Giá Trị Thực, Chất Lượng Bền Lâu</h1>
+                <p class="hero-desc">Cung cấp sản phẩm trực tiếp từ nhà sản xuất. Hỗ trợ vận chuyển, lắp đặt tận nơi và kiểm tra hàng trước khi thanh toán.</p>
                 <div class="hero-buttons">
-                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
-                  <a href="#map-section" class="btn-hero-outline">XEM CHỈ ĐƯỜNG</a>
+                  <a href="tel:0984650825" class="btn-solid">HOTLINE: 0984650825</a>
+                  <a href="#map-section" class="btn-hero-outline">XEM LIÊN HỆ</a>
                 </div>
               </div>
             </div>
@@ -143,12 +144,12 @@
           <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt9VI7BDbAO0ARmE1tlS-YWKWB2ik0FiRoqPyQcDXh35Fuj9nlBXrVQAE&s=10');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(74,44,22,0.95) 0%, rgba(74,44,22,0.65) 55%, rgba(0,0,0,0.2) 100%);">
               <div class="hero-text-content">
-                <span class="hero-badge-tag">Gia Công Theo Kích Thước</span>
-                <h1 class="hero-title">Đóng Giường Tủ Theo Yêu Cầu</h1>
-                <p class="hero-desc">Nhận đóng theo kích thước phòng ngủ, căn hộ. Đa dạng chất liệu từ gỗ MDF lõi xanh chống ẩm đến gỗ tự nhiên cao cấp.</p>
+                <span class="hero-badge-tag">Thiết Kế Theo Không Gian</span>
+                <h1 class="hero-title">Gia Công Theo Kích Thước Yêu Cầu</h1>
+                <p class="hero-desc">Đo đạc và thiết kế tối ưu cho phòng ngủ, phòng khách, căn hộ chung cư với các dòng gỗ MDF chống ẩm và gỗ tự nhiên.</p>
                 <div class="hero-buttons">
-                  <a href="https://zalo.me/0984650825" target="_blank" class="btn-solid" style="background: #0068ff;">NHẮN ZALO TƯ VẤN KÍCH THƯỚC</a>
-                  <a href="#products" class="btn-hero-outline">XEM MẪU ĐÃ LÀM</a>
+                  <a href="https://zalo.me/0984650825" target="_blank" class="btn-solid" style="background: #0068ff;">TƯ VẤN QUA ZALO</a>
+                  <a href="#products" class="btn-hero-outline">XEM BỘ SƯU TẬP</a>
                 </div>
               </div>
             </div>
@@ -160,12 +161,12 @@
           <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsCA8FCg5goLpmsSAcsYrcObvMKsyRSI-nPCoUALv8nue3d_A2_kmbDDm5&s=10');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(0,0,0,0.2) 100%);">
               <div class="hero-text-content">
-                <span class="hero-badge-tag">Chính Sách Khách Hàng</span>
-                <h1 class="hero-title">Không Cần Đặt Cọc Trước</h1>
-                <p class="hero-desc">Áp dụng cho toàn bộ các mẫu có sẵn. Thợ xưởng chở tận nhà lắp hoàn chỉnh, chắc chắn, đúng mẫu mới nhận tiền.</p>
+                <span class="hero-badge-tag">Chính Sách Bán Hàng</span>
+                <h1 class="hero-title">Thanh Toán Khi Nhận Hàng (COD)</h1>
+                <p class="hero-desc">Áp dụng cho các sản phẩm có sẵn. Giao hàng tận nơi, khách hàng kiểm tra đúng mẫu mã và chất lượng trước khi thanh toán.</p>
                 <div class="hero-buttons">
-                  <a href="#products" class="btn-solid">CHỌN MẪU CÓ SẴN</a>
-                  <a href="tel:0984650825" class="btn-hero-outline">HỖ TRỢ: 0984650825</a>
+                  <a href="#products" class="btn-solid">CHỌN MẪU SẢN PHẨM</a>
+                  <a href="tel:0984650825" class="btn-hero-outline">TƯ VẤN: 0984650825</a>
                 </div>
               </div>
             </div>
@@ -177,12 +178,12 @@
           <div class="hero-banner" style="background-image: url('https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/1/29/875334/A71A6748-01.JPG');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(62,39,35,0.95) 0%, rgba(62,39,35,0.65) 55%, rgba(0,0,0,0.2) 100%);">
               <div class="hero-text-content">
-                <span class="hero-badge-tag">Nội Thất Phòng Khách & Bếp</span>
+                <span class="hero-badge-tag">Không Gian Phòng Khách & Bếp</span>
                 <h1 class="hero-title">Bàn Ghế Ăn & Sofa Hiện Đại</h1>
-                <p class="hero-desc">Bộ bàn ăn 4 ghế, 6 ghế mặt đá, gỗ sồi và các mẫu sofa văng nỉ, da sang trọng với mức giá gốc tại xưởng.</p>
+                <p class="hero-desc">Bộ bàn ăn 4 ghế, 6 ghế mặt đá cao cấp và các dòng sofa văng, sofa bọc da sang trọng với mức giá cạnh tranh.</p>
                 <div class="hero-buttons">
-                  <a onclick="filterCategory('ban-an')" class="btn-solid">XEM BÀN GHẾ ĂN</a>
-                  <a onclick="filterCategory('sofa')" class="btn-hero-outline">XEM MẪU SOFA</a>
+                  <a onclick="filterCategory('ban-an')" class="btn-solid">BÀN GHẾ ĂN</a>
+                  <a onclick="filterCategory('sofa')" class="btn-hero-outline">BỘ SOFA</a>
                 </div>
               </div>
             </div>
@@ -208,13 +209,13 @@
 
     <!-- Giới Thiệu -->
     <section class="intro-section reveal" id="about">
-      <h2>Về Xưởng Đồ Gỗ Điện Ngọc</h2>
-      <p class="sub-text">Cơ sở sản xuất và gia công nội thất uy tín tại Nam Định, mang đến không gian sống hoàn hảo với mức chi phí tối ưu nhất cho mọi nhà.</p>
+      <h2>Về Đồ Gỗ Điện Ngọc</h2>
+      <p class="sub-text">Đơn vị chuyên sản xuất và cung ứng các sản phẩm nội thất gỗ chất lượng cao, mang lại không gian sống tiện nghi, thẩm mỹ và tối ưu chi phí.</p>
       <div class="why-choose">
-        <h3>Cam kết từ xưởng:</h3>
-        <p>• Đảm bảo giá trực tiếp tận xưởng, không qua trung gian mặt bằng showroom.<br>
-           • Trực tiếp chủ cửa hàng và thợ vận chuyển, lắp đặt và bảo hành chu đáo.<br>
-           • Báo giá minh bạch, khách hàng kiểm tra ưng ý hoàn chỉnh mới nhận tiền.</p>
+        <h3>Cam kết từ chúng tôi:</h3>
+        <p>• Giá thành trực tiếp từ xưởng sản xuất, minh bạch và cạnh tranh.<br>
+           • Đội ngũ kỹ thuật hỗ trợ vận chuyển, lắp đặt hoàn thiện tận nơi.<br>
+           • Khách hàng kiểm tra sản phẩm ưng ý và đúng quy cách trước khi thanh toán.</p>
       </div>
     </section>
 
@@ -224,11 +225,11 @@
         <div class="google-badge-main">
           <svg class="google-logo-svg" viewBox="0 0 24 24" width="36" height="36"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
           <div>
-            <h3 class="google-title">Đánh Giá Google Maps</h3>
+            <h3 class="google-title">Đánh Giá Trên Google Maps</h3>
             <div class="google-rating-summary">
               <span class="rating-val">5.0</span>
               <span class="stars-gold">★★★★★</span>
-              <span class="verified-text">Khách hàng thực tế tại cơ sở</span>
+              <span class="verified-text">(Đánh giá thực tế từ khách hàng)</span>
             </div>
           </div>
         </div>
@@ -277,8 +278,7 @@
           </div>
           <p class="g-content">
             여기 나무 가구가 정말 마음에 들고, 주인분도 아주 잘생기셨어요.
-            <a href="javascript:void(0)" class="g-trans-link">Xem bản dịch (Tiếng Việt)</a>
-            <span class="g-trans-box">"Rất ưng ý đồ gỗ ở đây, chất lượng tốt và chủ xưởng rất nhiệt tình chu đáo."</span>
+            <span class="g-trans-box">"Rất ưng ý đồ gỗ ở đây, chất lượng tốt và phục vụ rất nhiệt tình chu đáo."</span>
           </p>
           <div class="g-footer">
             <button type="button" class="g-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Thích</button>
@@ -344,7 +344,7 @@
             <span class="stars-gold">★★★★★</span>
             <span class="g-time">2 năm trước</span>
           </div>
-          <p class="g-content">Đồ gỗ xưởng đóng chuẩn kích thước yêu cầu, dùng rất chắc chắn và ưng ý.</p>
+          <p class="g-content">Sản phẩm gia công hoàn thiện sắc nét, chắc chắn và đúng hẹn.</p>
           <div class="g-footer">
             <button type="button" class="g-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Thích</button>
             <button type="button" class="g-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> Chia sẻ</button>
@@ -366,7 +366,7 @@
             <span class="g-time">1 ngày trước</span>
             <span class="g-badge-new">MỚI</span>
           </div>
-          <p class="g-content">Xưởng sản xuất trực tiếp không qua trung gian, thợ đến lắp ráp tận nhà nhanh nhẹn, chu đáo.</p>
+          <p class="g-content">Chất lượng sản phẩm tốt, dịch vụ giao hàng và lắp đặt nhanh chóng, nhiệt tình.</p>
           <div class="g-footer">
             <button type="button" class="g-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Thích</button>
             <button type="button" class="g-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> Chia sẻ</button>
@@ -375,21 +375,37 @@
       </div>
     </section>
 
-    <!-- Bản Đồ Google Maps -->
+    <!-- Khối Thông Tin Xưởng & Liên Hệ Kênh Mạng Xã Hội -->
     <section class="map-section reveal" id="map-section">
-      <h2>Vị Trí Cửa Hàng</h2>
-      <p class="sub-text">Kính mời các bác liên hệ hoặc ghé thăm trực tiếp xưởng để trao đổi kích thước chuẩn nhất.</p>
+      <h2>Vị Trí & Thông Tin Liên Hệ</h2>
+      <p class="sub-text">Quý khách có nhu cầu đặt hàng hoặc xem mẫu thực tế vui lòng liên hệ hoặc ghé thăm trực tiếp cơ sở.</p>
       <div class="map-box">
         <div class="map-card">
           <h4>Cơ Sở Đồ Gỗ Điện Ngọc</h4>
           <p><strong>Địa chỉ:</strong> Tỉnh lộ 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
-          <p><strong>Điện thoại:</strong> 0984650825</p>
-          <p><strong>Giờ mở cửa:</strong> 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
-          <div class="map-buttons-wrapper">
-            <a href="tel:0984650825" class="btn-outline">GỌI TƯ VẤN</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-solid">MỞ BẢN ĐỒ MAPS</a>
+          <p><strong>Hotline / Zalo:</strong> 0984650825</p>
+          <p><strong>Giờ mở cửa:</strong> 7:30 - 21:00 (Hàng ngày)</p>
+          
+          <!-- KHỐI MẠNG XÃ HỘI (CONTACT WITH US) -->
+          <div class="social-contact-wrapper">
+            <span class="social-title-label">KẾT NỐI VỚI CHÚNG TÔI</span>
+            <div class="social-icons-row">
+              <a href="#" target="_blank" class="social-badge sb-youtube" title="Xem video tại YouTube">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="#" target="_blank" class="social-badge sb-facebook" title="Theo dõi Facebook">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" target="_blank" class="social-badge sb-instagram" title="Xem hình ảnh tại Instagram">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="#" target="_blank" class="social-badge sb-tiktok" title="Xem video tại TikTok">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.27 1.76-.23 1.05.15 2.23.93 2.94.75.69 1.83.92 2.78.69.86-.18 1.6-.78 1.98-1.57.24-.52.37-1.1.37-1.68.07-4.75.02-9.51.04-14.26z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
+
         <div class="map-iframe-box">
           <iframe src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
         </div>
@@ -401,20 +417,20 @@
   <footer class="footer reveal">
     <div class="footer-container">
       <div class="footer-col">
-        <h3>Cơ Sở Điện Ngọc</h3>
+        <h3>Nội Thất Điện Ngọc</h3>
         <p>Hotline / Zalo: <strong>0984650825</strong></p>
         <p>Địa chỉ: Đường 490C - Trực Thuận - Trực Ninh - Nam Định</p>
       </div>
       <div class="footer-col">
-        <h3>Chính Sách Khách Hàng</h3>
+        <h3>Chính Sách Bán Hàng</h3>
         <ul>
-          <li>Nhận hàng, kiểm tra lắp đặt hoàn thiện mới thanh toán.</li>
-          <li>Hỗ trợ chuyển khoản hoặc tiền mặt.</li>
+          <li>Kiểm tra sản phẩm và thanh toán khi nhận hàng (COD).</li>
+          <li>Hỗ trợ thanh toán linh hoạt qua chuyển khoản hoặc tiền mặt.</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Đồ Gỗ Điện Ngọc - Đồ Gỗ Chất Lượng Cho Mọi Nhà.
+      &copy; 2026 Đồ Gỗ Điện Ngọc - Nội Thất Chất Lượng Cho Mọi Nhà.
     </div>
   </footer>
 
@@ -435,14 +451,14 @@
           <div class="product-sku">
             <span>Mã: <b id="modalCode">DN-01</b></span>
             <span>|</span>
-            <span id="modalStock" class="stock-tag stock-in">✔ Có sẵn</span>
+            <span id="modalStock" class="stock-tag stock-in">✔ Còn hàng</span>
           </div>
           <div class="promo-box">
             <div class="promo-header">
               <div class="sale-price" id="modalPrice">0 đ</div>
               <div class="old-price" id="modalOldPrice">0 đ</div>
             </div>
-            <div class="promo-desc">Hỗ trợ: Miễn phí vận chuyển & lắp ráp tận nhà.</div>
+            <div class="promo-desc">Hỗ trợ: Giao hàng và lắp đặt tận nơi.</div>
           </div>
           <div class="specs-box" id="modalDesc"></div>
           <div class="modal-actions" id="modalActionArea"></div>
@@ -450,9 +466,9 @@
             <h4>THÔNG TIN ĐẶT MUA NHANH</h4>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
-            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết (Thôn/Xã/Huyện) *" required></div>
-            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú thêm (Tầng mấy, kích thước cửa...)..."></textarea></div>
-            <button type="submit" class="btn-action btn-full" id="directSubmitBtn">XÁC NHẬN MẪU</button>
+            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ nhận hàng *" required></div>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú đơn hàng (tùy chọn)..."></textarea></div>
+            <button type="submit" class="btn-action btn-full" id="directSubmitBtn">ĐẶT MUA NGAY</button>
           </form>
         </div>
       </div>
@@ -463,7 +479,7 @@
   <div class="modal-overlay" id="cartModal">
     <div class="modal-content" style="max-width: 900px;">
       <button type="button" class="modal-close" onclick="closeModal('cartModal')">&times;</button>
-      <h2 style="margin-bottom: 25px; color: #222; font-size: 28px;">Giỏ Hàng</h2>
+      <h2 style="margin-bottom: 25px; color: #222; font-size: 28px;">Giỏ Hàng Của Bạn</h2>
       <div id="cartContentArea"></div>
     </div>
   </div>
@@ -472,10 +488,10 @@
   <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
     <div class="modal-content" style="max-width: 580px; padding: 35px;">
       <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">&times;</button>
-      <h3 style="color: #222; margin-bottom: 25px; font-size: 24px; border-bottom: 2px solid #e0d8d0; padding-bottom: 12px;">Phiếu Xác Nhận Đơn Hàng</h3>
+      <h3 style="color: #222; margin-bottom: 25px; font-size: 24px; border-bottom: 2px solid #e0d8d0; padding-bottom: 12px;">Xác Nhận Đơn Hàng</h3>
       <div id="confirmOrderSummary"></div>
       <div style="background: #fff8e1; border-left: 5px solid #d35400; padding: 18px; font-size: 15px; margin-bottom: 30px; border-radius: 0 6px 6px 0; font-weight: 600;">
-        <b style="color: #222;">Cam kết từ xưởng:</b><br>- Đơn hàng không yêu cầu chuyển tiền cọc trước.<br>- Thợ lắp ráp hoàn chỉnh, kiểm tra ưng ý mới thanh toán.
+        <b style="color: #222;">Cam kết chất lượng:</b><br>- Hỗ trợ thanh toán khi nhận hàng (COD).<br>- Kiểm tra sản phẩm đạt chuẩn chất lượng trước khi thanh toán.
       </div>
       <div class="confirm-buttons-wrapper">
         <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline btn-full">QUAY LẠI SỬA</button>
@@ -502,10 +518,10 @@
 
   <!-- Hộp Chat Tư Vấn -->
   <div class="native-ai-box" id="aiChatBox">
-    <div class="ai-header"><span>TƯ VẤN</span><button type="button" onclick="toggleAIChat()">&times;</button></div>
-    <div class="ai-body" id="aiChatBody"><div class="msg msg-ai">Chào bác! Xưởng em chuyên đóng giường tủ gỗ. Bác cần hỏi mẫu nào ạ?</div></div>
+    <div class="ai-header"><span>HỖ TRỢ TƯ VẤN</span><button type="button" onclick="toggleAIChat()">&times;</button></div>
+    <div class="ai-body" id="aiChatBody"><div class="msg msg-ai">Xin chào! Bạn đang quan tâm đến sản phẩm nội thất nào để chúng tôi hỗ trợ tư vấn chi tiết ạ?</div></div>
     <div class="ai-footer">
-      <input type="text" id="aiInput" placeholder="Nhập câu hỏi..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <input type="text" id="aiInput" placeholder="Nhập câu hỏi của bạn..." onkeypress="if(event.key === 'Enter') handleAISend()">
       <button type="button" onclick="handleAISend()">GỬI</button>
     </div>
   </div>
