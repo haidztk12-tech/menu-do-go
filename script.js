@@ -26,9 +26,10 @@ function observeElements() {
 
 // Khởi chạy khi tải xong trang
 document.addEventListener("DOMContentLoaded", () => {
-  // Quan sát các phần tĩnh có sẵn trong HTML
+  // Quan sát các khối tĩnh có sẵn
   observeElements();
 
+  // Khởi tạo Swiper Banner
   if (typeof Swiper !== 'undefined') {
     try {
       new Swiper('.hero-swiper', {
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2500);
 });
 
+// Bật / tắt Chatbox
 function toggleAIChat() {
   const box = document.getElementById("aiChatBox");
   if (box) {
@@ -175,7 +177,7 @@ function renderProducts(list) {
     grid.appendChild(card);
   });
 
-  // Kích hoạt quan sát cho từng thẻ sản phẩm vừa render
+  // Kích hoạt quan sát cuộn trang cho danh sách thẻ mới
   observeElements();
 }
 
@@ -330,18 +332,46 @@ async function sendDataToGmail(payload) {
 }
 
 function openConfirmModalDirect() {
-  const name = document.getElementById('directName').value.trim(); const phone = document.getElementById('directPhone').value.trim(); const address = document.getElementById('directAddress').value.trim(); const note = document.getElementById('directNote').value.trim();
-  pendingOrderPayload = { "Loai_Don": (currentSelectedProduct.stock === 0) ? "ĐẶT ĐÓNG THEO YÊU CẦU" : "MUA TRỰC TIẾP", "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`, "Gia_Tien": currentSelectedProduct.price, "Ho_Ten_Khach": name, "So_Dien_Thoai": phone, "Dia_Chi_Giao": address, "Ghi_Chu": note || "Không có", "isCart": false };
+  const name = document.getElementById('directName').value.trim(); 
+  const phone = document.getElementById('directPhone').value.trim(); 
+  const address = document.getElementById('directAddress').value.trim(); 
+  const note = document.getElementById('directNote').value.trim();
+
+  pendingOrderPayload = { 
+    "Loai_Don": (currentSelectedProduct.stock === 0) ? "ĐẶT ĐÓNG THEO YÊU CẦU" : "MUA TRỰC TIẾP", 
+    "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`, 
+    "Gia_Tien": currentSelectedProduct.price, 
+    "Ho_Ten_Khach": name, 
+    "So_Dien_Thoai": phone, 
+    "Dia_Chi_Giao": address, 
+    "Ghi_Chu": note || "Không có", 
+    "isCart": false 
+  };
 
   document.getElementById('confirmOrderSummary').innerHTML = `<div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap;"><span style="font-weight: 800;">Sản phẩm:</span><span style="text-align: right;">${esc(currentSelectedProduct.title)}<br><small style="color: #777;">(Mã: ${esc(currentSelectedProduct.code)})</small></span></div><div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: baseline;"><span style="font-weight: 800;">Thanh toán (khi nhận):</span><span style="color:#b22c22; font-weight:900; font-size:20px; white-space: nowrap; font-family: 'Merriweather', serif;">${esc(currentSelectedProduct.price)}</span></div><hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;"><p style="margin-bottom: 6px;"><b>Khách hàng:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p><p style="margin-bottom: 6px;"><b>Địa chỉ:</b> ${esc(address)}</p>${note ? `<p><b>Ghi chú:</b> ${esc(note)}</p>` : ''}`;
   document.getElementById('confirmOrderModal').style.display = 'block';
 }
 
 function openConfirmModalCart() {
-  const name = document.getElementById('cartCustName').value.trim(); const phone = document.getElementById('cartCustPhone').value.trim(); const address = document.getElementById('cartCustAddress').value.trim(); const note = document.getElementById('cartCustNote').value.trim();
+  const name = document.getElementById('cartCustName').value.trim(); 
+  const phone = document.getElementById('cartCustPhone').value.trim(); 
+  const address = document.getElementById('cartCustAddress').value.trim(); 
+  const note = document.getElementById('cartCustNote').value.trim();
+
   let itemsText = cart.map(i => `${i.title} (${i.code}) x SL:${i.qty} = ${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ`).join(' | ');
   let total = cart.reduce((sum, item) => sum + (item.rawPrice * item.qty), 0);
-  pendingOrderPayload = { "Loai_Don": "ĐẶT GIỎ HÀNG", "Danh_Sach_Mon": itemsText, "Tong_Tien": total.toLocaleString('vi-VN') + " đ", "Ho_Ten_Khach": name, "So_Dien_Thoai": phone, "Dia_Chi_Giao": address, "Ghi_Chu": note || "Không có", "isCart": true };
+
+  pendingOrderPayload = { 
+    "Loai_Don": "ĐẶT GIỎ HÀNG", 
+    "Danh_Sach_Mon": itemsText, 
+    "Tong_Tien": total.toLocaleString('vi-VN') + " đ", 
+    "Ho_Ten_Khach": name, 
+    "So_Dien_Thoai": phone, 
+    "Dia_Chi_Giao": address, 
+    "Ghi_Chu": note || "Không có", 
+    "isCart": true 
+  };
+
   let cartItemsHtml = cart.map(i => `<div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700;"><span>${esc(i.title)} <b style="color: #b22c22;">x${i.qty}</b></span> <span style="white-space: nowrap;">${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join('');
 
   document.getElementById('confirmOrderSummary').innerHTML = `<div style="margin-bottom: 12px; font-weight: 800;">Danh sách món:</div><div style="background: #fdfaf6; padding: 15px; border: 1px solid #e0d8d0; border-radius: 8px; margin-bottom: 20px;">${cartItemsHtml}</div><div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: baseline;"><span style="font-weight: 800; font-size: 16px;">Tổng thanh toán:</span><span style="color:#b22c22; font-weight:900; font-size:22px; white-space: nowrap; font-family: 'Merriweather', serif;">${total.toLocaleString('vi-VN')} đ</span></div><hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;"><p style="margin-bottom: 6px;"><b>Khách hàng:</b> ${esc(name)} - <b>SĐT:</b> ${esc(phone)}</p><p style="margin-bottom: 6px;"><b>Địa chỉ:</b> ${esc(address)}</p>${note ? `<p><b>Ghi chú:</b> ${esc(note)}</p>` : ''}`;
@@ -351,8 +381,10 @@ function openConfirmModalCart() {
 function executeFinalOrderSend() {
   if (!pendingOrderPayload) return;
   const btn = document.getElementById('finalConfirmBtn');
-  btn.innerText = "ĐANG LÊN ĐƠN..."; btn.disabled = true;
-  const isCart = pendingOrderPayload.isCart; delete pendingOrderPayload.isCart;
+  btn.innerText = "ĐANG LÊN ĐƠN..."; 
+  btn.disabled = true;
+  const isCart = pendingOrderPayload.isCart; 
+  delete pendingOrderPayload.isCart;
 
   sendDataToGmail(pendingOrderPayload).then(() => {
     showToast("Đã gửi đơn hàng thành công! Xưởng sẽ gọi lại ngay.");
@@ -363,7 +395,9 @@ function executeFinalOrderSend() {
     closeModal('confirmOrderModal');
     if (isCart) { cart = []; updateCartCount(); closeModal('cartModal'); } else { closeModal('productModal'); }
   }).finally(() => {
-    btn.innerText = "ĐỒNG Ý GỬI ĐƠN"; btn.disabled = false; pendingOrderPayload = null;
+    btn.innerText = "ĐỒNG Ý GỬI ĐƠN"; 
+    btn.disabled = false; 
+    pendingOrderPayload = null;
   });
 }
 
