@@ -1,32 +1,34 @@
-The website is currently under construction (for academic research purposes). Sincerely thank you! :)))
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ĐỒ GỖ ĐIỆN NGỌC - Cửa Hàng Nội Thất</title>
-  <link rel="icon" type="image/png" href="logodogodienngoc.png">
+  <title>ĐỒ GỖ ĐIỆN NGỌC - Cửa Hàng Nội Thất Nam Định</title>
+  
+  <!-- Khai báo Favicon ép trình duyệt xóa cache -->
+  <link rel="icon" type="image/png" href="logodogodienngoc.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="logodogodienngoc.png?v=2">
+  <link rel="apple-touch-icon" href="logodogodienngoc.png?v=2">
 
-  <!-- Phông chữ Nunito & Merriweather -->
+  <!-- Google Fonts: Nunito & Merriweather -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Thư viện Swiper -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Toast Notification -->
+  <!-- Thông báo Toast -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- Top Bar -->
+  <!-- Thanh Top Bar -->
   <header class="top-bar">
     <div class="top-container">
       <div class="top-left">
-        <span class="hotline-btn"> ☎️0984650825</span>
+        <span class="hotline-btn">☎️ 0984650825</span>
         <a href="#about" class="top-link">Giới thiệu cửa hàng</a>
         <a href="#map-section" class="top-link">Dẫn đường</a>
       </div>
@@ -39,11 +41,11 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </header>
 
-  <!-- Navigation -->
+  <!-- Menu Điều Hướng Chính -->
   <nav class="main-nav">
     <div class="nav-container">
       <a href="#" class="logo" onclick="filterCategory('all')">
-        <img src="logodogodienngoc.png" alt="Logo" class="logo-img">
+        <img src="logodogodienngoc.png" alt="Logo Đồ Gỗ Điện Ngọc" class="logo-img">
         <span class="logo-text">Đồ Gỗ Điện Ngọc</span>
       </a>
 
@@ -86,14 +88,14 @@ The website is currently under construction (for academic research purposes). Si
           <span class="cart-text-hide">Giỏ hàng</span> <span class="cart-badge" id="cartCountBadge">0</span>
         </button>
 
-        <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)">
+        <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)" aria-label="Mở menu">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
+  <!-- Menu Mobile -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-header">
@@ -114,12 +116,11 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </div>
 
-  <!-- Hero Slider -->
+  <!-- Banner Slider (Swiper) -->
   <div class="hero-section reveal">
     <div class="swiper hero-swiper">
       <div class="swiper-wrapper">
-        
-        <!-- Banner 1: Uy tín xưởng -->
+        <!-- Banner 1 -->
         <div class="swiper-slide">
           <div class="hero-banner" style="background-image: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png');">
             <div class="hero-overlay">
@@ -136,7 +137,7 @@ The website is currently under construction (for academic research purposes). Si
           </div>
         </div>
 
-        <!-- Banner 2: Đặt đóng theo yêu cầu -->
+        <!-- Banner 2 -->
         <div class="swiper-slide">
           <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt9VI7BDbAO0ARmE1tlS-YWKWB2ik0FiRoqPyQcDXh35Fuj9nlBXrVQAE&s=10');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(74,44,22,0.95) 0%, rgba(74,44,22,0.65) 55%, rgba(0,0,0,0.2) 100%);">
@@ -153,7 +154,7 @@ The website is currently under construction (for academic research purposes). Si
           </div>
         </div>
 
-        <!-- Banner 3: Chính sách không cọc -->
+        <!-- Banner 3 -->
         <div class="swiper-slide">
           <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsCA8FCg5goLpmsSAcsYrcObvMKsyRSI-nPCoUALv8nue3d_A2_kmbDDm5&s=10');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(0,0,0,0.2) 100%);">
@@ -170,7 +171,7 @@ The website is currently under construction (for academic research purposes). Si
           </div>
         </div>
 
-        <!-- Banner 4: Bàn ghế phòng khách & ăn -->
+        <!-- Banner 4 -->
         <div class="swiper-slide">
           <div class="hero-banner" style="background-image: url('https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/1/29/875334/A71A6748-01.JPG');">
             <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(62,39,35,0.95) 0%, rgba(62,39,35,0.65) 55%, rgba(0,0,0,0.2) 100%);">
@@ -186,7 +187,6 @@ The website is currently under construction (for academic research purposes). Si
             </div>
           </div>
         </div>
-
       </div>
       <div class="swiper-pagination"></div>
     </div>
@@ -205,19 +205,19 @@ The website is currently under construction (for academic research purposes). Si
 
     <div class="product-grid" id="productGrid"></div>
 
-    <!-- Giới thiệu -->
+    <!-- Giới Thiệu -->
     <section class="intro-section reveal" id="about">
       <h2>Về Xưởng Đồ Gỗ Điện Ngọc</h2>
       <p class="sub-text">Cơ sở sản xuất và gia công nội thất uy tín tại Nam Định, mang đến không gian sống hoàn hảo với mức chi phí tối ưu nhất cho mọi nhà.</p>
       <div class="why-choose">
         <h3>Cam kết từ xưởng:</h3>
-        <p>• Đảm bảo giá rẻ nhì thị trường, không dám đảm bảo nhất vì chưa có tài liệu chứng minh.<br>
-           • Trực tiếp chủ cửa hàng lắp đặt, vận chuyển và bảo hành.<br>
-           • Báo giá minh bạch, khách hàng OK mới chuyển tiền.</p>
+        <p>• Đảm bảo giá trực tiếp tận xưởng, không qua trung gian mặt bằng showroom.<br>
+           • Trực tiếp chủ cửa hàng và thợ vận chuyển, lắp đặt và bảo hành chu đáo.<br>
+           • Báo giá minh bạch, khách hàng kiểm tra ưng ý hoàn chỉnh mới nhận tiền.</p>
       </div>
     </section>
 
-    <!-- Bản đồ -->
+    <!-- Bản Đồ Google Maps -->
     <section class="map-section reveal" id="map-section">
       <h2>Vị Trí Cửa Hàng</h2>
       <p class="sub-text">Kính mời các bác liên hệ hoặc ghé thăm trực tiếp xưởng để trao đổi kích thước chuẩn nhất.</p>
@@ -226,7 +226,7 @@ The website is currently under construction (for academic research purposes). Si
           <h4>Cơ Sở Đồ Gỗ Điện Ngọc</h4>
           <p><strong>Địa chỉ:</strong> Tỉnh lộ 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
           <p><strong>Điện thoại:</strong> 0984650825</p>
-          <p><strong>Giờ bán việc:</strong> 7:30 - 21:00</p>
+          <p><strong>Giờ mở cửa:</strong> 7:30 - 21:00 (Tất cả các ngày trong tuần)</p>
           <div class="map-buttons-wrapper">
             <a href="tel:0984650825" class="btn-outline">GỌI TƯ VẤN</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-solid">MỞ BẢN ĐỒ MAPS</a>
@@ -244,14 +244,14 @@ The website is currently under construction (for academic research purposes). Si
     <div class="footer-container">
       <div class="footer-col">
         <h3>Cơ Sở Điện Ngọc</h3>
-        <p>Hotline: <strong>0984650825</strong></p>
+        <p>Hotline / Zalo: <strong>0984650825</strong></p>
         <p>Địa chỉ: Đường 490C - Trực Thuận - Trực Ninh - Nam Định</p>
       </div>
       <div class="footer-col">
         <h3>Chính Sách Khách Hàng</h3>
         <ul>
           <li>Nhận hàng, kiểm tra lắp đặt hoàn thiện mới thanh toán.</li>
-          <li>Hỗ trợ chuyển khoản hoặc tiền mặt.</li>
+          <li>Hỗ trợ chuyển khoản hoặc tiền mặt trực tiếp cho thợ.</li>
         </ul>
       </div>
     </div>
@@ -260,7 +260,7 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </footer>
 
-  <!-- Các Modal -->
+  <!-- Modal Chi Tiết Sản Phẩm -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
       <button type="button" class="modal-close" onclick="closeModal('productModal')">&times;</button>
@@ -284,7 +284,7 @@ The website is currently under construction (for academic research purposes). Si
               <div class="sale-price" id="modalPrice">0 đ</div>
               <div class="old-price" id="modalOldPrice">0 đ</div>
             </div>
-            <div class="promo-desc">Hỗ trợ: Miễn phí vận chuyển & lắp ráp tận nhà.</div>
+            <div class="promo-desc">Hỗ trợ: Miễn phí vận chuyển & lắp ráp tận nhà tại Nam Định.</div>
           </div>
           <div class="specs-box" id="modalDesc"></div>
           <div class="modal-actions" id="modalActionArea"></div>
@@ -292,8 +292,8 @@ The website is currently under construction (for academic research purposes). Si
             <h4>THÔNG TIN ĐẶT MUA NHANH</h4>
             <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
             <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
-            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ (Thôn/Xã/Huyện) *" required></div>
-            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú thêm..."></textarea></div>
+            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ chi tiết (Thôn/Xã/Huyện) *" required></div>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú thêm (Tầng mấy, kích thước cửa...)..."></textarea></div>
             <button type="submit" class="btn-action btn-full" id="directSubmitBtn">XÁC NHẬN MẪU NÀY</button>
           </form>
         </div>
@@ -301,6 +301,7 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </div>
 
+  <!-- Modal Giỏ Hàng -->
   <div class="modal-overlay" id="cartModal">
     <div class="modal-content" style="max-width: 900px;">
       <button type="button" class="modal-close" onclick="closeModal('cartModal')">&times;</button>
@@ -309,6 +310,7 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </div>
 
+  <!-- Modal Xác Nhận Đơn Hàng -->
   <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
     <div class="modal-content" style="max-width: 580px; padding: 35px;">
       <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">&times;</button>
@@ -324,12 +326,12 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </div>
 
- <!-- Float Buttons -->
+  <!-- Cụm Nút Nổi Góc Phải -->
   <div class="floating-contact-bar reveal">
-    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện">
+    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện thoại">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </a>
-    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Zalo">
+    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn Zalo">
       <span class="zalo-text">Zalo</span>
     </a>
     <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Mở hộp chat tư vấn">
@@ -340,7 +342,7 @@ The website is currently under construction (for academic research purposes). Si
     </button>
   </div>
 
-  <!-- AI Chat -->
+  <!-- Hộp Chat Tư Vấn -->
   <div class="native-ai-box" id="aiChatBox">
     <div class="ai-header"><span>TƯ VẤN</span><button type="button" onclick="toggleAIChat()">&times;</button></div>
     <div class="ai-body" id="aiChatBody"><div class="msg msg-ai">Chào bác! Xưởng em chuyên đóng giường tủ gỗ. Bác cần hỏi mẫu nào ạ?</div></div>
@@ -350,6 +352,7 @@ The website is currently under construction (for academic research purposes). Si
     </div>
   </div>
 
+  <!-- Swiper JS & Script Chính -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
