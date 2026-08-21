@@ -33,7 +33,8 @@ Quy tắc tư vấn:
 5. Trả lời ngắn gọn, đúng trọng tâm câu hỏi.`;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    // Đã cập nhật lên model gemini-3.6-flash theo yêu cầu của Google API
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
