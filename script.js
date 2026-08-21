@@ -2,10 +2,6 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwlewgqe";
 const GOOGLE_SHEET_DATA_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3eTKG6gnblYZMIk_--2IC-yo-iJ0NTXky5V4ZLEiEE2VPCXSxszMi6f8jG0CYh4GyUhuxbf4rL2I_/pub?gid=0&single=true&output=tsv";
 
 // ================= NGUỒN DỮ LIỆU DANH MỤC DUY NHẤT =================
-// Trước đây menu desktop, menu mobile, và filter sản phẩm mỗi nơi khai báo category
-// một kiểu khác nhau (tên lệch, thiếu mục). Giờ chỉ khai báo MỘT LẦN ở đây,
-// desktop nav / mobile nav / category-tags filter đều render tự động từ đây,
-// nên không bao giờ bị lệch dữ liệu nữa.
 const categoryTree = [
   { id: "giuong", label: "Giường Ngủ", children: [
     { id: "giuong-1m6", label: "Giường 1m6" },
@@ -122,8 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ================= HỖ TRỢ URL RIÊNG CHO TỪNG SẢN PHẨM =================
-// Khi mở modal sản phẩm, gắn ?sp=<id> vào URL để khách có thể copy link chia sẻ,
-// và nút Back của trình duyệt đóng được modal thay vì thoát hẳn trang.
 window.addEventListener('popstate', () => {
   const params = new URLSearchParams(window.location.search);
   const spId = params.get('sp');
@@ -218,7 +212,6 @@ async function loadProductsFromSheet() {
 
     renderProducts(products);
 
-    // Nếu URL có sẵn ?sp=<id> (ví dụ khách bấm link chia sẻ), tự động mở đúng sản phẩm đó
     const params = new URLSearchParams(window.location.search);
     const spId = params.get('sp');
     if (spId) {
@@ -350,7 +343,6 @@ function openModal(id, skipHistory) {
   }
   document.getElementById("productModal").style.display = "block";
 
-  // Cập nhật URL để có thể copy link chia sẻ sản phẩm này, và hỗ trợ nút Back
   if (!skipHistory) {
     const url = new URL(window.location.href);
     url.searchParams.set('sp', id);
@@ -497,31 +489,53 @@ function executeFinalOrderSend() {
   });
 }
 
-function handleAISend() {
+// ================= TÍCH HỢP GEMINI AI QUA /api/chat =================
+async function handleAISend() {
   const input = document.getElementById("aiInput");
   const text = input.value.trim();
   if (!text) return;
+
   const body = document.getElementById("aiChatBody");
+
+  // 1. Hiển thị tin nhắn người dùng
   const userMsg = document.createElement("div");
   userMsg.className = "msg msg-user";
   userMsg.innerText = text;
   body.appendChild(userMsg);
   input.value = "";
+  body.scrollTop = body.scrollHeight;
 
-  setTimeout(() => {
-    let reply = "Cơ sở nhận gia công và sản xuất theo kích thước yêu cầu. Quý khách vui lòng liên hệ Hotline/Zalo 0984650825 để được tư vấn chi tiết.";
-    const t = text.toLowerCase();
-    const found = products.find(p => t.split(" ").some(w => w.length > 2 && p.title.toLowerCase().includes(w)));
-    if (found) reply = `Sản phẩm <b>${esc(found.title)}</b> hiện có giá <b>${esc(found.price)}</b>. Hỗ trợ vận chuyển và lắp đặt tận nơi.`;
-    else if (t.includes("giường")) reply = "Giường ngủ hiện sẵn các kích thước tiêu chuẩn 1m6 (1.800.000đ) và 1m8 (2.100.000đ).";
-    else if (t.includes("tủ")) reply = "Tủ quần áo gồm các dòng 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ).";
-    else if (t.includes("sofa")) reply = "Sofa văng nỉ có giá 3.200.000đ, các dòng Sofa Da cao cấp hoặc sofa góc L giá từ 4.800.000đ.";
-    const aiMsg = document.createElement("div");
-    aiMsg.className = "msg msg-ai";
-    aiMsg.innerHTML = reply;
-    body.appendChild(aiMsg);
-    body.scrollTop = body.scrollHeight;
-  }, 400);
+  // 2. Tạo khung tin nhắn chờ phản hồi từ AI
+  const aiMsg = document.createElement("div");
+  aiMsg.className = "msg msg-ai";
+  aiMsg.innerText = "Đang kiểm tra dữ liệu sản phẩm...";
+  body.appendChild(aiMsg);
+  body.scrollTop = body.scrollHeight;
+
+  // 3. Tự động lấy danh mục sản phẩm làm ngữ cảnh
+  const catalogContext = products.map(p => `- ${p.title} (Mã: ${p.code}): Giá ${p.price}, Trạng thái: ${p.stock === 0 ? 'Tạm hết hàng (nhận đặt theo yêu cầu)' : 'Còn hàng'}`).join('\n');
+
+  // 4. Gửi dữ liệu về endpoint /api/chat
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: text,
+        catalog: catalogContext
+      })
+    });
+
+    const data = await res.json();
+    if (res.ok && data.reply) {
+      aiMsg.innerHTML = data.reply.replace(/\n/g, "<br>");
+    } else {
+      aiMsg.innerText = "Hệ thống tư vấn đang bận. Quý khách vui lòng liên hệ Hotline/Zalo 0984650825 để được hỗ trợ nhanh nhất!";
+    }
+  } catch (error) {
+    aiMsg.innerText = "Lỗi kết nối. Quý khách vui lòng liên hệ Hotline/Zalo 0984650825 để được hỗ trợ ngay!";
+  }
+  body.scrollTop = body.scrollHeight;
 }
 
 function toggleMobileMenu(open) {
