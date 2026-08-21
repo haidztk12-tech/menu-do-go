@@ -1,517 +1,431 @@
-/* ================= CƠ BẢN ================= */
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
-html, body { 
-  background-color: #f7f5f0; 
-  color: #2c2523; line-height: 1.6; font-size: 15px; overflow-x: hidden; width: 100%; 
-}
-h1, h2, h3, h4, .hero-title, .price, .sale-price { font-family: 'Merriweather', serif; font-weight: 900; }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ĐỒ GỖ ĐIỆN NGỌC - Nội Thất Cao Cấp</title>
+  <meta name="description" content="Đồ Gỗ Điện Ngọc - Nội thất gỗ cao cấp, giường ngủ, tủ quần áo, bàn ghế ăn, sofa. Giao hàng và lắp đặt tận nơi, thanh toán khi nhận hàng (COD).">
 
-/* ================= HỆ THỐNG NÚT BẤM ================= */
-.btn-solid {
-  background: #794c2b; color: #fff; border: none; border-radius: 30px; 
-  font-weight: 800; font-size: 14.5px; cursor: pointer; transition: all 0.3s ease; 
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-  box-shadow: 0 4px 12px rgba(121,76,43,0.25); text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-  min-height: 48px; padding: 0 28px; white-space: nowrap;
-}
-.btn-solid:hover { background: #5c3a21; transform: translateY(-3px); box-shadow: 0 6px 18px rgba(121,76,43,0.35); color: #fff; }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logodogodienngoc.png?v=7">
+  <link rel="shortcut icon" type="image/png" href="logodogodienngoc.png?v=7">
+  <link rel="apple-touch-icon" href="logodogodienngoc.png?v=7">
 
-.btn-outline {
-  background: #fff; color: #794c2b; border: 2px solid #794c2b; border-radius: 30px; 
-  font-weight: 800; font-size: 14.5px; cursor: pointer; transition: all 0.3s ease; 
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-  text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-  min-height: 48px; padding: 0 28px; white-space: nowrap;
-}
-.btn-outline:hover { background: #794c2b; color: #fff; transform: translateY(-3px); }
+  <!-- Phông chữ Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Nunito:wght@500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-.btn-action {
-  background: #b22c22; color: #fff; border: none; border-radius: 30px; 
-  font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.3s ease; 
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-  box-shadow: 0 4px 15px rgba(178,44,34,0.3); text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-  min-height: 50px; padding: 0 28px; white-space: nowrap;
-}
-.btn-action:hover { background: #8e231b; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(178,44,34,0.4); }
+  <!-- Swiper CSS & File Style -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
 
-.btn-hero-outline {
-  background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color: white; border-radius: 30px; 
-  text-decoration: none; font-weight: 800; font-size: 14.5px; border: 2px solid white; transition: all 0.3s ease; 
-  display: inline-flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: 0.5px;
-  min-height: 48px; padding: 0 28px; white-space: nowrap;
-}
-.btn-hero-outline:hover { background: white; color: #333; transform: translateY(-3px); }
-.btn-full { width: 100%; }
+  <!-- Thông báo Toast -->
+  <div class="toast-container" id="toastContainer"></div>
 
-button:disabled, .btn-solid:disabled, .btn-action:disabled {
-  background: #888 !important; color: #fff !important; cursor: wait !important;
-  box-shadow: none !important; transform: none !important; border: none !important;
-}
+  <!-- Thanh Top Bar -->
+  <header class="top-bar">
+    <div class="top-container">
+      <div class="top-left">
+        <span class="hotline-btn">☎️ Hotline: 0984650825</span>
+        <a href="#about" class="top-link">Giới thiệu</a>
+        <a href="#reviews" class="top-link">Đánh giá</a>
+        <a href="#map-section" class="top-link">Liên hệ</a>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="handleSearch()">
+        <button type="button" aria-label="Tìm kiếm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-/* ================= HIỆU ỨNG CUỘN TRANG ================= */
-.reveal { 
-  opacity: 0; 
-  transform: translateY(35px); 
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
-  will-change: opacity, transform;
-}
-.reveal.active { 
-  opacity: 1; 
-  transform: translateY(0); 
-}
+  <!-- ================= MENU ĐIỀU HƯỚNG CHÍNH ================= -->
+  <!-- Danh mục dùng chung cho cả desktop dropdown và mobile menu (categoryTree trong script.js) -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <a href="#" class="logo" onclick="filterCategory('all')">
+        <img src="logodogodienngoc.png" alt="Logo Đồ Gỗ Điện Ngọc" class="logo-img">
+        <span class="logo-text">Đồ Gỗ Điện Ngọc</span>
+      </a>
 
-.delay-1 { transition-delay: 0.08s; }
-.delay-2 { transition-delay: 0.16s; }
-.delay-3 { transition-delay: 0.24s; }
-.delay-4 { transition-delay: 0.32s; }
-.delay-5 { transition-delay: 0.40s; }
+      <div class="nav-right-box">
+        <ul class="nav-links" id="desktopNavLinks">
+          <!-- Được render tự động từ categoryTree bằng script.js để tránh lệch dữ liệu với menu mobile -->
+        </ul>
 
-/* ================= TOP BAR ================= */
-.top-bar { background-color: #3e2723; padding: 12px 15px; width: 100%; }
-.top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-.top-left { display: flex; align-items: center; gap: 20px; }
-.hotline-btn { color: #fff; font-weight: 800; text-decoration: none; font-size: 14px; background: #c0392b; padding: 6px 16px; border-radius: 20px;}
-.top-link { 
-  color: #d7ccc8; text-decoration: none; font-size: 14px; font-weight: 700; 
-  transition: all 0.2s ease; padding: 4px 12px; border: 1px solid transparent; border-radius: 6px; 
-}
-.top-link:hover { 
-  color: #fff; border-color: #d7ccc8; background-color: rgba(215, 204, 200, 0.1); 
-}
-.search-bar { display: flex; background: #fff; border-radius: 30px; overflow: hidden; align-items: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); max-width: 320px; width: 100%;}
-.search-bar input { border: none; outline: none; padding: 10px 18px; font-size: 14.5px; width: 100%; font-weight: 600; color: #333; background: transparent;}
-.search-bar button { border: none; background: transparent; cursor: pointer; color: #555; padding: 0 16px; height: 100%; min-height: 42px; display: flex; align-items: center; transition: 0.2s;}
+        <button type="button" class="cart-btn-header" onclick="openCartModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-text-hide">Giỏ hàng</span> <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
 
-/* ================= MAIN NAV & LOGO ================= */
-.main-nav { background: #ffffff; border-bottom: 1px solid #e0d8d0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.04); width: 100%; }
-.nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; min-height: 75px; }
+        <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)" aria-label="Mở menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-.logo { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
-.logo-img { width: 48px; height: 48px; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.1) contrast(1.5); }
-.logo-text { font-size: clamp(20px, 3.5vw, 26px); font-weight: 900; color: #4a2c16; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;}
+  <!-- Menu Mobile -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <span>Danh Mục Sản Phẩm</span>
+        <button type="button" onclick="toggleMobileMenu(false)">✕</button>
+      </div>
+      <ul class="mobile-menu-list" id="mobileNavLinks">
+        <!-- Được render tự động từ categoryTree bằng script.js -->
+      </ul>
+      <div class="mobile-menu-contact">
+        <a href="tel:0984650825" class="btn-solid btn-full">GỌI NGAY: 0984650825</a>
+      </div>
+    </div>
+  </div>
 
-.nav-right-box { display: flex; align-items: center; gap: 12px; }
-.nav-links { display: flex; list-style: none; margin: 0; gap: 4px; align-items: center; height: 100%; }
-.nav-item { position: relative; display: flex; align-items: center; height: 75px; }
+  <!-- ================= HERO SLIDER ================= -->
+  <!-- CTA chuẩn hoá: "GỌI NGAY" luôn là nút chính (primary) lặp lại xuyên suốt, nút phụ đổi theo ngữ cảnh -->
+  <div class="hero-section reveal">
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        <!-- Banner 1 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://i.postimg.cc/tJ0Zt9yF/cua-hang.png');">
+            <div class="hero-overlay">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Nội Thất Gỗ Cao Cấp</span>
+                <h1 class="hero-title">Giá Trị Thực, Chất Lượng Bền Lâu</h1>
+                <p class="hero-desc">Cung cấp sản phẩm trực tiếp từ nhà sản xuất. Hỗ trợ vận chuyển, lắp đặt tận nơi và kiểm tra hàng trước khi thanh toán.</p>
+                <div class="hero-buttons">
+                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
+                  <a href="#products" class="btn-hero-outline">XEM SẢN PHẨM</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-.nav-item > a { display: block; padding: 10px 16px; text-decoration: none; color: #333; font-weight: 800; font-size: 15px; transition: 0.2s; cursor: pointer; white-space: nowrap; border-radius: 8px;}
-.nav-item:hover > a, .nav-item.active > a { background: #794c2b; color: #fff; }
+        <!-- Banner 2 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt9VI7BDbAO0ARmE1tlS-YWKWB2ik0FiRoqPyQcDXh35Fuj9nlBXrVQAE&s=10');">
+            <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(74,44,22,0.95) 0%, rgba(74,44,22,0.65) 55%, rgba(0,0,0,0.2) 100%);">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Thiết Kế Theo Không Gian</span>
+                <h1 class="hero-title">Gia Công Theo Kích Thước Yêu Cầu</h1>
+                <p class="hero-desc">Đo đạc và thiết kế tối ưu cho phòng ngủ, phòng khách, căn hộ chung cư với các dòng gỗ MDF chống ẩm và gỗ tự nhiên.</p>
+                <div class="hero-buttons">
+                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
+                  <a href="https://zalo.me/0984650825" target="_blank" class="btn-hero-outline">NHẮN ZALO</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-.dropdown-menu { display: none; position: absolute; top: 75px; left: 0; min-width: 240px; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; border-top: 3px solid #794c2b; list-style: none; padding: 10px 0; z-index: 500; }
-.nav-item:hover .dropdown-menu { display: block; animation: slideDown 0.2s ease forwards; }
-@keyframes slideDown { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        <!-- Banner 3 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsCA8FCg5goLpmsSAcsYrcObvMKsyRSI-nPCoUALv8nue3d_A2_kmbDDm5&s=10');">
+            <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(0,0,0,0.2) 100%);">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Chính Sách Bán Hàng</span>
+                <h1 class="hero-title">Thanh Toán Khi Nhận Hàng (COD)</h1>
+                <p class="hero-desc">Áp dụng cho các sản phẩm có sẵn. Giao hàng tận nơi, khách hàng kiểm tra đúng mẫu mã và chất lượng trước khi thanh toán.</p>
+                <div class="hero-buttons">
+                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
+                  <a href="#products" class="btn-hero-outline">XEM SẢN PHẨM</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-.dropdown-menu li a { display: block; padding: 12px 20px; color: #444; text-decoration: none; font-size: 15px; font-weight: 700; border-bottom: 1px solid #f6f4f0; cursor: pointer; transition: 0.2s;}
-.dropdown-menu li a:hover { background: #fdfaf6; color: #b22c22; padding-left: 25px; border-bottom-color: transparent;}
+        <!-- Banner 4 -->
+        <div class="swiper-slide">
+          <div class="hero-banner" style="background-image: url('https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/1/29/875334/A71A6748-01.JPG');">
+            <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(62,39,35,0.95) 0%, rgba(62,39,35,0.65) 55%, rgba(0,0,0,0.2) 100%);">
+              <div class="hero-text-content">
+                <span class="hero-badge-tag">Không Gian Phòng Khách & Bếp</span>
+                <h1 class="hero-title">Bàn Ghế Ăn & Sofa Hiện Đại</h1>
+                <p class="hero-desc">Bộ bàn ăn 4 ghế, 6 ghế mặt đá cao cấp và các dòng sofa văng, sofa bọc da sang trọng với mức giá cạnh tranh.</p>
+                <div class="hero-buttons">
+                  <a href="tel:0984650825" class="btn-solid">GỌI NGAY: 0984650825</a>
+                  <a onclick="filterCategory('ban-an')" class="btn-hero-outline">XEM BÀN GHẾ & SOFA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
 
-.cart-btn-header { background: #fff; border: 2px solid #794c2b; color: #794c2b; padding: 10px 18px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.25s ease; white-space: nowrap; }
-.cart-btn-header:hover { background: #794c2b; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(121,76,43,0.2);}
-.cart-badge { background: #c0392b; color: #fff; font-size: 13px; border-radius: 12px; padding: 2px 8px; font-weight: 900; }
+  <div class="container">
 
-.hamburger-btn { display: none; background: transparent; border: 1px solid #ccc; color: #333; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; align-items: center; justify-content: center; }
+    <!-- ================= GIỚI THIỆU (đưa lên trước để xây dựng lòng tin trước khi khách xem giá) ================= -->
+    <section class="intro-section reveal" id="about">
+      <h2>Về Đồ Gỗ Điện Ngọc</h2>
+      <p class="sub-text">Đơn vị chuyên sản xuất và cung ứng các sản phẩm nội thất gỗ chất lượng cao, mang lại không gian sống tiện nghi, thẩm mỹ và tối ưu chi phí.</p>
+      <div class="why-choose">
+        <h3>Cam kết từ chúng tôi:</h3>
+        <p>• Giá thành trực tiếp từ xưởng sản xuất, minh bạch và cạnh tranh.<br>
+           • Đội ngũ kỹ thuật hỗ trợ vận chuyển, lắp đặt hoàn thiện tận nơi.<br>
+           • Khách hàng kiểm tra sản phẩm ưng ý và đúng quy cách trước khi thanh toán.</p>
+      </div>
+    </section>
 
-/* ================= SWIPER HERO SLIDER ================= */
-.hero-section { max-width: 1250px; margin: 25px auto; padding: 0 15px; }
-.hero-swiper { 
-  border-radius: 20px; 
-  overflow: hidden; 
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
-  width: 100%; 
-  height: 480px;
-  position: relative;
-}
-.hero-swiper .swiper-wrapper { height: 100%; }
-.hero-swiper .swiper-slide { height: 100%; }
-.hero-banner { 
-  position: relative; 
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  align-items: center; 
-  background-size: cover; 
-  background-position: center; 
-}
-.hero-overlay { 
-  position: absolute; 
-  inset: 0; 
-  background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(30,15,5,0.1) 100%); 
-  display: flex; 
-  align-items: center; 
-  padding: 50px 60px; 
-}
-.hero-text-content { max-width: 650px; color: #fff; }
-.hero-badge-tag { background: transparent; color: #e5dbd3; font-size: 13px; font-weight: 900; border: 2px solid #e5dbd3; padding: 6px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-.hero-title { font-size: 46px; margin-bottom: 18px; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.6); }
-.hero-desc { font-size: 16px; margin-bottom: 35px; color: #eee; line-height: 1.7; font-weight: 600; }
-.hero-buttons { display: flex; gap: 15px; flex-wrap: wrap;}
-.swiper-pagination-bullet { background: #fff !important; opacity: 0.5; width: 10px; height: 10px; }
-.swiper-pagination-bullet-active { opacity: 1; width: 25px; border-radius: 5px; }
+    <!-- ================= ĐÁNH GIÁ THỰC TẾ TỪ GOOGLE MAPS ================= -->
+    <section class="reviews-section reveal" id="reviews">
+      <div class="reviews-header-bar">
+        <div class="google-badge-main">
+          <svg class="google-logo-svg" viewBox="0 0 24 24" width="36" height="36"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+          <div>
+            <h3 class="google-title">Đánh Giá Trên Google Maps</h3>
+            <div class="google-rating-summary">
+              <span class="rating-val">5.0</span>
+              <span class="stars-gold">★★★★★</span>
+              <span class="verified-text">(Đánh giá thực tế từ khách hàng)</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Đồ+Gỗ+Điện+Ngọc" target="_blank" class="btn-google-verify">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          MỞ TRÊN GOOGLE MAPS
+        </a>
+      </div>
 
-/* ================= LƯỚI SẢN PHẨM ================= */
-.container { max-width: 1250px; margin: 50px auto; padding: 0 15px; }
-.category-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; justify-content: center;}
-.tag-btn { background: #fff; border: 1px solid #ccc; color: #333; padding: 12px 26px; border-radius: 30px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
-.tag-btn.active, .tag-btn:hover { background: #794c2b; color: #fff; border-color: #794c2b; box-shadow: 0 6px 15px rgba(121,76,43,0.3); transform: translateY(-3px);}
+      <div class="reviews-grid">
+        <div class="google-card">
+          <div class="g-head">
+            <div class="g-avatar avt-jotun">NT</div>
+            <div class="g-info">
+              <h4 class="g-name">Nguyễn Tuyến (Jotun Nam Định)</h4>
+              <div class="g-sub"><span class="badge-guide">★ Local Guide</span> • 42 bài đánh giá • 5 ảnh</div>
+            </div>
+            <span class="g-dots">⋮</span>
+          </div>
+          <div class="g-rating">
+            <span class="stars-gold">★★★★★</span>
+            <span class="g-time">4 năm trước</span>
+          </div>
+          <p class="g-content">Rất tuyệt vời . Sản phẩm chất lượng và chủ hàng rất nhiệt tình.</p>
+          <div class="g-footer">
+            <button type="button" class="g-btn">Thích 1</button>
+            <button type="button" class="g-btn">Chia sẻ</button>
+          </div>
+        </div>
 
-.product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-bottom: 60px; }
-.product-card { 
-  background: #fff; border-radius: 20px; overflow: hidden; cursor: pointer; 
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05); border: 1px solid #e0d8d0; position: relative;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-.product-card.active:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(121,76,43,0.15); border-color: #794c2b; }
-.product-card img { width: 100%; height: 210px; object-fit: cover; border-bottom: 1px solid #f6f4f0; transition: transform 0.5s ease;}
-.product-card:hover img { transform: scale(1.05); }
-.card-body { padding: 22px 18px; text-align: center; position: relative; background: #fff;}
-.product-title { font-size: 16px; color: #222; font-weight: 800; margin-bottom: 12px; line-height: 1.5; min-height: 48px; }
-.price { color: #c0392b; font-size: 19px; }
-.view-detail-hint { font-size: 13px; font-weight: 900; color: #794c2b; border-bottom: 2px solid transparent; padding-bottom: 2px; margin-top: 15px; display: inline-block; transition: 0.2s; text-transform: uppercase; white-space: nowrap;}
-.product-card:hover .view-detail-hint { border-color: #794c2b; color: #b22c22;}
+        <div class="google-card">
+          <div class="g-head">
+            <div class="g-avatar avt-hai">😏</div>
+            <div class="g-info">
+              <h4 class="g-name">Hoàng Hải</h4>
+              <div class="g-sub">4 bài đánh giá • 1 ảnh</div>
+            </div>
+            <span class="g-dots">⋮</span>
+          </div>
+          <div class="g-rating">
+            <span class="stars-gold">★★★★★</span>
+            <span class="g-time">2 năm trước</span>
+          </div>
+          <p class="g-content">Sản phẩm gia công hoàn thiện sắc nét, chắc chắn và đúng hẹn.</p>
+          <div class="g-footer">
+            <button type="button" class="g-btn">Thích</button>
+            <button type="button" class="g-btn">Chia sẻ</button>
+          </div>
+        </div>
 
-.product-card.card-out-of-stock { opacity: 0.7; filter: grayscale(15%); }
-.badge-card-soldout {
-  position: absolute; top: 15px; left: 15px; background: #c0392b; color: #fff; 
-  font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 6px; 
-  letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10;
-}
+        <div class="google-card">
+          <div class="g-head">
+            <div class="g-avatar avt-son">⛵</div>
+            <div class="g-info">
+              <h4 class="g-name">Văn Sơn Nguyễn</h4>
+              <div class="g-sub">9 ảnh</div>
+            </div>
+            <span class="g-dots">⋮</span>
+          </div>
+          <div class="g-rating">
+            <span class="stars-gold">★★★★★</span>
+            <span class="g-time">1 tuần trước</span>
+          </div>
+          <p class="g-content">Chất lượng sản phẩm tốt, dịch vụ giao hàng và lắp đặt nhanh chóng, nhiệt tình.</p>
+          <div class="g-footer">
+            <button type="button" class="g-btn">Thích</button>
+            <button type="button" class="g-btn">Chia sẻ</button>
+          </div>
+        </div>
+      </div>
 
-/* ================= INTRO ================= */
-.intro-section { background: #fff; padding: 60px 40px; border-radius: 20px; margin-bottom: 60px; text-align: center; box-shadow: 0 6px 25px rgba(0,0,0,0.03); border: 1px solid #e0d8d0;}
-.intro-section h2 { font-size: 34px; margin-bottom: 15px; color: #3e2723; }
-.sub-text { color: #555; font-size: 16px; font-weight: 600; max-width: 800px; margin: 0 auto; line-height: 1.6;}
-.why-choose { background: #fdfaf6; padding: 35px; border-radius: 16px; text-align: left; font-size: 15.5px; font-weight: 600; line-height: 1.8; margin: 35px auto 0; max-width: 850px; color: #333; border: 1px solid #e0d8d0; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);}
-.why-choose h3 { font-size: 22px; margin-bottom: 15px; color: #222;}
+      <!--
+        LƯU Ý: Đã rút gọn còn 3 review có mốc thời gian tự nhiên, rải rác (4 năm trước / 2 năm trước / 1 tuần trước)
+        thay vì 6 review dồn "1 ngày trước MỚI" cùng lúc. Nếu các review "MỚI" là thật, có thể thêm lại — 
+        nhưng nên để đúng ngày thật của Google Maps, tránh nhìn giống review ảo/seed hàng loạt.
+      -->
+    </section>
 
-/* ================= CHUẨN GIAO DIỆN GOOGLE MAPS REVIEW CARD ================= */
-.reviews-section { margin-bottom: 60px; }
+    <!-- ================= DANH SÁCH SẢN PHẨM ================= -->
+    <div id="products">
+      <h2 class="section-title-plain">Bộ Sưu Tập Sản Phẩm</h2>
+      <div class="category-tags reveal" id="categoryTagsBar">
+        <!-- Được render tự động từ categoryTree bằng script.js để đồng bộ với menu -->
+      </div>
 
-/* Thanh tổng quan đầu mục */
-.reviews-header-bar {
-  background: #ffffff;
-  border: 1px solid #dadce0;
-  border-radius: 16px;
-  padding: 22px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.google-badge-main { display: flex; align-items: center; gap: 16px; }
-.google-logo-svg { flex-shrink: 0; }
-.google-title { font-size: 20px; color: #202124; font-family: 'Nunito', sans-serif; font-weight: 900; margin: 0 0 3px 0; }
-.google-rating-summary { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #5f6368; }
-.rating-val { font-size: 20px; font-weight: 900; color: #202124; font-family: 'Roboto', sans-serif; }
-.stars-gold { color: #fbbc04; font-size: 16px; letter-spacing: 2px; }
-.verified-text { color: #70757a; font-size: 13.5px; font-weight: 500; }
+      <div class="product-grid" id="productGrid"></div>
+    </div>
 
-.btn-google-verify {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #1a73e8;
-  color: #fff;
-  font-size: 13.5px;
-  font-weight: 800;
-  padding: 10px 22px;
-  border-radius: 24px;
-  text-decoration: none;
-  transition: 0.25s ease;
-  box-shadow: 0 2px 6px rgba(26,115,232,0.3);
-}
-.btn-google-verify:hover { background: #1557b0; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(26,115,232,0.4); color: #fff; }
+    <!-- ================= LIÊN HỆ ================= -->
+    <section class="map-section reveal" id="map-section">
+      <h2>Vị Trí & Thông Tin Liên Hệ</h2>
+      <p class="sub-text">Quý khách có nhu cầu đặt hàng hoặc xem mẫu thực tế vui lòng liên hệ hoặc ghé thăm trực tiếp cơ sở.</p>
+      <div class="map-box">
+        <div class="map-card">
+          <h4>Cơ Sở Đồ Gỗ Điện Ngọc</h4>
+          <p><strong>Địa chỉ:</strong> Tỉnh lộ 490C, Trực Thuận, Trực Ninh, Nam Định (Cách cổng chào Liễu Đề 500m)</p>
+          <p><strong>Hotline / Zalo:</strong> 0984650825</p>
+          <p><strong>Giờ mở cửa:</strong> 7:30 - 21:00 (Hàng ngày)</p>
 
-/* Khối lưới danh sách Review */
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+          <div class="social-contact-wrapper" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #d7ccc8;">
+            <span class="social-title-label" style="display: block; font-size: 13.5px; font-weight: 900; color: #794c2b; margin-bottom: 14px;">KẾT NỐI VỚI CHÚNG TÔI</span>
+            <div class="social-icons-row" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <a href="https://www.youtube.com/@HoangHai-xd6iq" target="_blank" class="social-badge sb-youtube" title="Xem video tại YouTube" style="width: 46px; height: 46px; min-width: 46px; border-radius: 12px; background: #ff0000; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(255,0,0,0.3); text-decoration: none;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#ffffff" style="display: block;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="https://www.facebook.com/hngmhai.04" target="_blank" class="social-badge sb-facebook" title="Theo dõi Facebook" style="width: 46px; height: 46px; min-width: 46px; border-radius: 12px; background: #1877f2; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(24,119,242,0.3); text-decoration: none;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#ffffff" style="display: block;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/__hoangminhhai_/" target="_blank" class="social-badge sb-instagram" title="Xem hình ảnh tại Instagram" style="width: 46px; height: 46px; min-width: 46px; border-radius: 12px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(225,48,108,0.3); text-decoration: none;">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#ffffff" style="display: block;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://www.tiktok.com/@hngmhai_" target="_blank" class="social-badge sb-tiktok" title="Xem video tại TikTok" style="width: 46px; height: 46px; min-width: 46px; border-radius: 12px; background: #000000; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.4); text-decoration: none;">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff" style="display: block;"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.27 1.76-.23 1.05.15 2.23.93 2.94.75.69 1.83.92 2.78.69.86-.18 1.6-.78 1.98-1.57.24-.52.37-1.1.37-1.68.07-4.75.02-9.51.04-14.26z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
 
-/* Từng thẻ đánh giá trắng chuẩn Google */
-.google-card {
-  background: #ffffff;
-  border: 1px solid #dadce0;
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  display: flex;
-  flex-direction: column;
-  transition: all 0.25s ease;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-.google-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: #bbb; }
+        <div class="map-iframe-box">
+          <iframe src="https://maps.google.com/maps?q=Đồ+Gỗ+Điện+Ngọc&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
 
-.g-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; position: relative; }
+  <!-- ================= FOOTER (đã bỏ phần lặp lại địa chỉ/hotline chi tiết — chỉ còn tóm tắt) ================= -->
+  <footer class="footer reveal">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Nội Thất Điện Ngọc</h3>
+        <p>Hotline / Zalo: <strong>0984650825</strong> · Trực Ninh, Nam Định</p>
+      </div>
+      <div class="footer-col">
+        <h3>Chính Sách Bán Hàng</h3>
+        <ul>
+          <li>Kiểm tra sản phẩm và thanh toán khi nhận hàng (COD).</li>
+          <li>Hỗ trợ thanh toán linh hoạt qua chuyển khoản hoặc tiền mặt.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Đồ Gỗ Điện Ngọc - Nội Thất Chất Lượng Cho Mọi Nhà.
+    </div>
+  </footer>
 
-/* Avatar hình tròn cố định */
-.g-avatar {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  max-width: 44px;
-  border-radius: 50%;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  user-select: none;
-}
-.avt-jotun { background: #1a73e8; }
-.avt-park { background: #c2185b; }
-.avt-duc { background: #e8f5e9; font-size: 22px; border: 1px solid #c8e6c9; }
-.avt-trung { background: #546e7a; }
-.avt-hai { background: #fff3e0; font-size: 22px; border: 1px solid #ffe0b2; }
-.avt-son { background: #e1f5fe; font-size: 22px; border: 1px solid #b3e5fc; }
+  <!-- Modal Chi Tiết Sản Phẩm -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('productModal')">&times;</button>
+      <div class="detail-container">
+        <div class="detail-gallery">
+          <div class="main-view-box">
+            <img id="modalMainImg" src="" alt="Ảnh sản phẩm">
+            <iframe id="modalVideoFrame" src="" allowfullscreen allow="autoplay"></iframe>
+          </div>
+          <div class="thumbnail-list" id="modalThumbnails"></div>
+        </div>
+        <div class="detail-info">
+          <h2 id="modalTitle">Tên sản phẩm</h2>
+          <div class="product-sku">
+            <span>Mã: <b id="modalCode">DN-01</b></span>
+            <span>|</span>
+            <span id="modalStock" class="stock-tag stock-in">✔ Còn hàng</span>
+          </div>
+          <div class="promo-box">
+            <div class="promo-header">
+              <div class="sale-price" id="modalPrice">0 đ</div>
+              <div class="old-price" id="modalOldPrice">0 đ</div>
+            </div>
+            <div class="promo-desc">Hỗ trợ: Giao hàng và lắp đặt tận nơi.</div>
+          </div>
+          <div class="specs-box" id="modalDesc"></div>
+          <div class="modal-actions" id="modalActionArea"></div>
+          <form class="order-form" id="directOrderForm" onsubmit="event.preventDefault(); openConfirmModalDirect();">
+            <h4>THÔNG TIN ĐẶT MUA NHANH</h4>
+            <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
+            <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại liên hệ *" required></div>
+            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ nhận hàng *" required></div>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú đơn hàng (tùy chọn)..."></textarea></div>
+            <button type="submit" class="btn-action btn-full" id="directSubmitBtn">ĐẶT MUA NGAY</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-.g-info { flex: 1; overflow: hidden; }
-.g-name { font-size: 14.5px; font-weight: 700; color: #202124; margin: 0 0 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Roboto', sans-serif; }
-.g-sub { font-size: 12px; color: #70757a; font-weight: 400; display: flex; align-items: center; gap: 4px; }
-.badge-guide { color: #e37400; font-weight: 700; }
-.badge-new-pill { background: #e6f4ea; color: #137333; padding: 1px 6px; border-radius: 4px; font-weight: 700; font-size: 11px; }
-.g-dots { color: #70757a; font-size: 18px; font-weight: bold; cursor: pointer; padding: 0 4px; }
+  <!-- Modal Giỏ Hàng -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <button type="button" class="modal-close" onclick="closeModal('cartModal')">&times;</button>
+      <h2 style="margin-bottom: 25px; color: #222; font-size: 28px;">Giỏ Hàng Của Bạn</h2>
+      <div id="cartContentArea"></div>
+    </div>
+  </div>
 
-.g-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.g-time { font-size: 12px; color: #70757a; }
-.g-badge-new { background: #e8f0fe; color: #1a73e8; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+  <!-- Modal Xác Nhận Đơn Hàng -->
+  <div class="modal-overlay" id="confirmOrderModal" style="z-index: 1100;">
+    <div class="modal-content" style="max-width: 580px; padding: 35px;">
+      <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">&times;</button>
+      <h3 style="color: #222; margin-bottom: 25px; font-size: 24px; border-bottom: 2px solid #e0d8d0; padding-bottom: 12px;">Xác Nhận Đơn Hàng</h3>
+      <div id="confirmOrderSummary"></div>
+      <div style="background: #fff8e1; border-left: 5px solid #d35400; padding: 18px; font-size: 15px; margin-bottom: 30px; border-radius: 0 6px 6px 0; font-weight: 600;">
+        <b style="color: #222;">Cam kết chất lượng:</b><br>- Hỗ trợ thanh toán khi nhận hàng (COD).<br>- Kiểm tra sản phẩm đạt chuẩn chất lượng trước khi thanh toán.
+      </div>
+      <div class="confirm-buttons-wrapper">
+        <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline btn-full">QUAY LẠI SỬA</button>
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-action btn-full">ĐỒNG Ý GỬI ĐƠN</button>
+      </div>
+    </div>
+  </div>
 
-.g-content { font-size: 14px; color: #3c4043; line-height: 1.6; margin: 0 0 16px 0; flex: 1; font-family: 'Roboto', sans-serif; font-weight: 400; }
-.g-trans-link { display: block; color: #1a73e8; text-decoration: none; font-size: 13px; font-weight: 500; margin-top: 6px; }
-.g-trans-link:hover { text-decoration: underline; }
-.g-trans-box { display: block; margin-top: 6px; color: #5f6368; font-style: italic; font-size: 13px; background: #f8f9fa; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #1a73e8; }
+  <!-- Cụm Nút Nổi Góc Phải -->
+  <div class="floating-contact-bar reveal">
+    <a href="tel:0984650825" class="btn-floating btn-phone" title="Gọi điện thoại">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+    <a href="https://zalo.me/0984650825" target="_blank" class="btn-floating btn-zalo" title="Nhắn Zalo">
+      <span class="zalo-text">Zalo</span>
+    </a>
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Mở hộp chat tư vấn">
+      <img src="logodogodienngoc.png" alt="Logo Xưởng">
+    </button>
+    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu trang">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+  </div>
 
-.g-footer { display: flex; gap: 16px; border-top: 1px solid #f1f3f4; padding-top: 12px; }
-.g-btn { background: none; border: none; font-size: 12.5px; font-weight: 600; color: #5f6368; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 4px; transition: 0.2s; font-family: 'Roboto', sans-serif;}
-.g-btn:hover { background: #f1f3f4; color: #202124; }
+  <!-- Hộp Chat Tư Vấn -->
+  <div class="native-ai-box" id="aiChatBox">
+    <div class="ai-header"><span>HỖ TRỢ TƯ VẤN</span><button type="button" onclick="toggleAIChat()">&times;</button></div>
+    <div class="ai-body" id="aiChatBody"><div class="msg msg-ai">Xin chào! Bạn đang quan tâm đến sản phẩm nội thất nào để chúng tôi hỗ trợ tư vấn chi tiết ạ?</div></div>
+    <div class="ai-footer">
+      <input type="text" id="aiInput" placeholder="Nhập câu hỏi của bạn..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <button type="button" onclick="handleAISend()">GỬI</button>
+    </div>
+  </div>
 
-/* ================= BẢN ĐỒ ================= */
-.map-section { text-align: center; margin-bottom: 60px; }
-.map-section h2 { color: #3e2723; margin-bottom: 15px; font-size: 34px; }
-.map-box { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 1100px; margin: 35px auto 0 auto; }
-.map-card { background: #fff; border-radius: 20px; padding: 40px; text-align: left; flex: 1; min-width: 320px; box-shadow: 0 6px 25px rgba(0,0,0,0.04); border: 1px solid #e0d8d0;}
-.map-card h4 { color: #222; margin-bottom: 20px; font-size: 26px;}
-.map-card p { margin-bottom: 15px; color: #444; font-weight: 600; font-size: 16px;}
-.map-buttons-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-.map-iframe-box { flex: 1.2; min-width: 320px; border-radius: 20px; overflow: hidden; border: 1px solid #e0d8d0; min-height: 300px; box-shadow: 0 6px 25px rgba(0,0,0,0.03);}
-.map-iframe-box iframe { width: 100%; height: 100%; border: 0; min-height: 300px; }
-
-/* ================= FOOTER ================= */
-.footer { background: #2c1a0d; color: #d7ccc8; padding: 70px 15px 30px 15px; border-top: 5px solid #794c2b;}
-.footer-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; gap: 50px; flex-wrap: wrap; }
-.footer-col { flex: 1; min-width: 280px; font-size: 15px; line-height: 1.8; font-weight: 500;}
-.footer-col h3 { font-size: 20px; margin-bottom: 25px; color: #fff; letter-spacing: 0.5px; text-transform: uppercase;}
-.footer-col ul { list-style: none; }
-.footer-col p, .footer-col li { margin-bottom: 12px; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 50px; padding-top: 25px; text-align: center; font-size: 14px; color: #999; font-weight: 600;}
-
-/* ================= MODALS ================= */
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; overflow-y: auto; padding: 20px 10px; backdrop-filter: blur(5px);}
-.modal-content { background: #fff; max-width: 1100px; margin: auto; border-radius: 20px; padding: 45px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); }
-.modal-close { position: absolute; top: 20px; right: 25px; background: #f0f0f0; color: #333; border: none; font-size: 24px; font-weight: 900; cursor: pointer; z-index: 10; transition: 0.3s; width: 44px; height: 44px; border-radius: 50%; display:flex; align-items:center; justify-content:center;}
-.modal-close:hover { background: #c0392b; color: #fff; transform: rotate(90deg);}
-
-.detail-container { display: flex; gap: 50px; margin-top: 15px; }
-.detail-gallery { flex: 1.1; display: flex; flex-direction: column; }
-.main-view-box { width: 100%; height: 480px; border-radius: 16px; border: 1px solid #e0d8d0; background: #fafafa; display: flex; align-items: center; justify-content: center; overflow: hidden;}
-#modalMainImg { width: 100%; height: 100%; object-fit: contain; }
-#modalVideoFrame { width: 100%; height: 100%; border: none; display: none; }
-
-.thumbnail-list { display: flex; gap: 15px; margin-top: 20px; overflow-x: auto; padding-bottom: 8px; }
-.thumb-item { width: 90px; height: 90px; min-width: 90px; object-fit: cover; cursor: pointer; border: 3px solid transparent; border-radius: 8px; opacity: 0.5; transition: 0.3s; }
-.thumb-item:hover, .thumb-item.active-thumb { opacity: 1; border-color: #794c2b; box-shadow: 0 4px 12px rgba(121,76,43,0.3); transform: translateY(-3px);}
-.thumb-video-btn { width: 90px; height: 90px; min-width: 90px; background: #fdfbf8; color: #333; border-radius: 8px; display: flex; flex-direction: column align-items: center; justify-content: center; font-size: 13px; font-weight: 800; cursor: pointer; border: 2px solid #ddd; text-align: center; transition: 0.3s;}
-.thumb-video-btn.active-thumb { border-color: #b22c22; background: #b22c22; color: #fff; transform: translateY(-3px);}
-
-.detail-info { flex: 1.3; }
-.product-sku { font-size: 15px; color: #666; margin-bottom: 15px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;}
-.stock-tag { font-weight: 800; padding: 4px 12px; border-radius: 6px; font-size: 13.5px; white-space: nowrap; display: inline-block;}
-.stock-in { color: #27ae60; background: #e8f8f5; border: 1px solid #c3e6cb;}
-.stock-out { color: #c0392b; background: #fdeaea; border: 1px solid #f5c6cb;}
-
-.promo-box { background: #fdfaf6; border-left: 5px solid #794c2b; padding: 25px; margin-bottom: 30px; border-radius: 0 12px 12px 0; border: 1px solid #e0d8d0; border-left-width: 5px;}
-.promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 8px; flex-wrap: wrap;}
-.sale-price { font-size: 36px; color: #c0392b; white-space: nowrap;}
-.old-price { font-size: 18px; text-decoration: line-through; color: #999; white-space: nowrap;}
-.promo-desc { font-size: 15.5px; font-weight: 600; color: #5c3a21;}
-
-.specs-box { background: transparent; font-size: 16px; line-height: 1.8; margin-bottom: 35px; max-height: 300px; overflow-y: auto; color: #333; font-weight: 600;}
-.specs-box b { color: #000; font-weight: 900;}
-
-.modal-actions { margin-bottom: 40px; width: 100%;}
-.order-form { background: #fdfbf8; border: 1px solid #e0d8d0; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);}
-.order-form h4 { font-size: 20px; margin-bottom: 8px; color: #222;}
-.form-group { margin-bottom: 18px; }
-.form-group input, .form-group textarea { width: 100%; padding: 16px 20px; border: 1px solid #ccc; border-radius: 8px; font-size: 15.5px; outline: none; background: #fff; font-weight: 600; transition: 0.3s;}
-.form-group input:focus, .form-group textarea:focus { border-color: #794c2b; box-shadow: 0 0 0 4px rgba(121,76,43,0.15);}
-
-.cart-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15.5px; }
-.cart-table th { background: #f6f4f0; padding: 16px; text-align: left; border-bottom: 2px solid #ddd; color: #222; font-weight: 900;}
-.cart-table td { padding: 20px 16px; border-bottom: 1px solid #eee; vertical-align: middle; font-weight: 600;}
-.cart-qty-btn { background: #fff; border: 1px solid #bbb; color: #333; padding: 8px 16px; border-radius: 6px; font-weight: 900; cursor: pointer; font-size: 16px; transition: 0.2s;}
-.cart-qty-btn:hover { background: #e9ecef; }
-.cart-del-btn { color: #c0392b; background: #fff1f0; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-weight: 800; font-size: 14px; transition: 0.2s;}
-.cart-del-btn:hover { background: #c0392b; color: #fff; transform: scale(1.05); }
-.cart-total-box { text-align: right; font-size: 24px; margin: 30px 0; color: #c0392b;}
-
-#confirmOrderSummary { background: #fff; border: 1px solid #e0d8d0; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); font-size: 16px;}
-.confirm-buttons-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
-
-/* Menu Mobile */
-.mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1200; backdrop-filter: blur(3px);}
-.mobile-menu-overlay.open { display: block; }
-.mobile-menu-panel { position: fixed; top: 0; left: 0; width: 85%; max-width: 340px; height: 100%; background: #fff; z-index: 1201; transform: translateX(-100%); transition: transform 0.35s ease; overflow-y: auto; box-shadow: 5px 0 30px rgba(0,0,0,0.2); }
-.mobile-menu-overlay.open .mobile-menu-panel { transform: translateX(0); }
-.mobile-menu-header { background: #fdfaf6; color: #222; padding: 22px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0d8d0;}
-.mobile-menu-header span { font-weight: 900; font-size: 18px; text-transform: uppercase; }
-.mobile-menu-header button { background: #eee; border: none; color: #333; font-size: 22px; font-weight: bold; width: 38px; height: 38px; border-radius: 8px; cursor: pointer; }
-.mobile-menu-list { list-style: none; }
-.mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; font-size: 16px; font-weight: 800; color: #333; text-decoration: none; border-bottom: 1px solid #f6f4f0; cursor: pointer; }
-.mobile-menu-contact { padding: 22px; margin-top: 15px; }
-
-/* ================= TỐI ƯU GIAO DIỆN MOBILE ================= */
-@media (max-width: 1024px) {
-  .hero-section { flex-direction: column; }
-  .product-grid { grid-template-columns: repeat(3, 1fr); }
-  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-  .detail-container { flex-direction: column; gap: 30px;}
-  .main-view-box { height: 380px; }
-}
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger-btn { display: flex; }
-  .top-container { flex-direction: column; align-items: stretch; gap: 12px; }
-  .top-left { justify-content: space-between; width: 100%; }
-  .search-bar { max-width: 100%; width: 100%; }
-}
-@media (max-width: 600px) {
-  .nav-container { padding: 0 10px; min-height: 65px; }
-  .logo { gap: 6px; }
-  .logo-text { font-size: 16.5px; }
-  .logo-img { width: 36px; height: 36px; }
-  .cart-text-hide { display: none; }
-  .cart-btn-header { padding: 6px 10px; border-radius: 10px; }
-  .hamburger-btn { width: 38px; height: 38px; border-radius: 10px; }
-
-  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px;}
-  .hero-swiper, .hero-banner { height: 440px; border-radius: 14px;}
-  .hero-overlay { padding: 25px 15px; text-align: center; justify-content: center; background: rgba(30,15,5,0.78);}
-  .hero-buttons { flex-direction: column; width: 100%; gap: 10px;}
-  .btn-hero-outline, .btn-solid { width: 100%; height: 46px; font-size: 14px; padding: 0 15px;}
-  .hero-title { font-size: 28px; line-height: 1.3; }
-  .hero-desc { font-size: 14px; margin-bottom: 20px; }
-
-  /* Reviews Mobile */
-  .reviews-header-bar { padding: 18px 15px; flex-direction: column; text-align: center; }
-  .google-badge-main { flex-direction: column; text-align: center; }
-  .google-rating-summary { justify-content: center; }
-  .btn-google-verify { width: 100%; justify-content: center; }
-  .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
-  .google-card { padding: 16px; }
-
-  .intro-section, .map-card, .map-iframe-box { padding: 25px 15px; border-radius: 14px;}
-  .modal-content { padding: 25px 15px; margin: 0; border-radius: 0; min-height: 100vh;}
-  .map-buttons-wrapper, .confirm-buttons-wrapper { grid-template-columns: 1fr; gap: 10px;}
-  
-  .floating-contact-bar { right: 10px; bottom: 15px; gap: 8px; z-index: 998; }
-  .btn-floating { width: 44px; height: 44px; }
-  .btn-ai-chat { width: 50px; height: 50px; }
-
-  .native-ai-box { 
-    left: 10px !important; 
-    right: 10px !important; 
-    width: auto !important; 
-    max-width: calc(100vw - 20px) !important; 
-    bottom: 75px !important; 
-    height: 55vh !important; 
-    max-height: 400px !important; 
-    border-radius: 14px;
-    z-index: 1001 !important;
-  }
-  .native-ai-box .ai-header { padding: 14px 16px; font-size: 15px; }
-  .native-ai-box .ai-body { padding: 14px; gap: 10px; }
-  .native-ai-box .msg { max-width: 92%; font-size: 14px; padding: 10px 14px; }
-  .native-ai-box .ai-footer { padding: 10px; gap: 8px; }
-  .native-ai-box .ai-footer input { padding: 10px 14px; font-size: 14px; }
-  .native-ai-box .ai-footer button { padding: 0 16px; font-size: 14px; }
-
-  .toast-msg { min-width: 240px; font-size: 13.5px; max-width: calc(100vw - 30px); }
-  .toast-container { right: 10px; left: 10px; top: 10px;}
-}
-
-/* Toast, Float, AI */
-.toast-container { position: fixed; top: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-.toast-msg { background: #2c2523; padding: 18px 24px; border-radius: 12px; display: flex; align-items: center; gap: 15px; font-size: 15.5px; font-weight: 700; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.25); min-width: 320px; max-width: 450px; transform: translateX(120%); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 6px solid #27ae60;}
-.toast-msg.show { transform: translateX(0); opacity: 1; }
-
-.floating-contact-bar { position: fixed; right: 25px; bottom: 35px; display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 999; }
-.btn-floating { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none;}
-.btn-floating:hover { transform: translateY(-6px) scale(1.05); }
-.btn-phone { background: #27ae60; }
-.btn-zalo { background: #0068ff; }
-.zalo-text { color: #ffffff; font-weight: 900; font-size: 14px;}
-.btn-scrolltop { background: #555; width: 48px; height: 48px;}
-.btn-ai-chat { background: #c0392b; width: 60px; height: 60px;}
-
-.native-ai-box { 
-  display: none; position: fixed; right: 100px; bottom: 35px; width: 380px; height: 500px; 
-  background: #fff; border-radius: 16px; box-shadow: 0 15px 50px rgba(0,0,0,0.25); 
-  z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid #e0d8d0; 
-  animation: chatPopUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.native-ai-box.active {
-  display: flex !important;
-}
-
-@keyframes chatPopUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.ai-header { background: #3e2723; color: white; padding: 20px; font-size: 16px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase;}
-.ai-header button { background: transparent; border: none; color: white; font-size: 26px; font-weight: 700; cursor: pointer; transition: 0.2s;}
-.ai-header button:hover { color: #c0392b;}
-.ai-body { flex: 1; padding: 20px; overflow-y: auto; background: #f6f4f0; display: flex; flex-direction: column; gap: 15px; }
-.msg { padding: 15px 18px; font-size: 15px; font-weight: 600; line-height: 1.5; max-width: 85%; }
-.msg-ai { background: #fff; color: #222; align-self: flex-start; border: 1px solid #e0d8d0; border-radius: 0 16px 16px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);}
-.msg-user { background: #794c2b; color: white; align-self: flex-end; border-radius: 16px 0 16px 16px; box-shadow: 0 2px 6px rgba(121,76,43,0.2);}
-.ai-footer { display: flex; border-top: 1px solid #e0d8d0; padding: 15px; background: #fff; gap: 10px;}
-.ai-footer input { flex: 1; border: 1px solid #ccc; padding: 14px 18px; border-radius: 30px; outline: none; font-size: 15px; font-weight: 600; background: #fcfbf9;}
-.ai-footer input:focus { border-color: #794c2b; background: #fff;}
-.ai-footer button { background: #794c2b; color: white; border: none; border-radius: 30px; padding: 0 24px; cursor: pointer; font-size: 15px; font-weight: 800; transition: 0.2s;}
-.ai-footer button:hover { background: #5c3a21; }
-
-/* ================= ANIMATION NÚT LIÊN HỆ ================= */
-@keyframes ringShake {
-  0%, 100% { transform: rotate(0); }
-  10%, 30%, 50% { transform: rotate(-15deg); }
-  20%, 40%, 60% { transform: rotate(15deg); }
-  70%, 80%, 90% { transform: rotate(0); }
-}
-.btn-phone svg { animation: ringShake 1.5s infinite ease-in-out; }
-
-@keyframes pulseWaves {
-  0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.6); }
-  70% { box-shadow: 0 0 0 15px rgba(0, 104, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
-}
-.btn-zalo { animation: pulseWaves 2s infinite; }
-
-@keyframes floatChat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.btn-ai-chat { 
-  background: #fff; 
-  border: 2px solid #794c2b; 
-  padding: 4px; 
-  animation: floatChat 3s ease-in-out infinite; 
-}
-.btn-ai-chat img { 
-  width: 100%; height: 100%; 
-  object-fit: contain; 
-  border-radius: 50%; 
-  mix-blend-mode: multiply; 
-  filter: brightness(1.1) contrast(1.5);
-}
+  <!-- Swiper JS & Script Chính -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
