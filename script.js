@@ -1,6 +1,33 @@
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwlewgqe";
 const GOOGLE_SHEET_DATA_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3eTKG6gnblYZMIk_--2IC-yo-iJ0NTXky5V4ZLEiEE2VPCXSxszMi6f8jG0CYh4GyUhuxbf4rL2I_/pub?gid=0&single=true&output=tsv";
 
+// ================= NGUỒN DỮ LIỆU DANH MỤC DUY NHẤT =================
+// Trước đây menu desktop, menu mobile, và filter sản phẩm mỗi nơi khai báo category
+// một kiểu khác nhau (tên lệch, thiếu mục). Giờ chỉ khai báo MỘT LẦN ở đây,
+// desktop nav / mobile nav / category-tags filter đều render tự động từ đây,
+// nên không bao giờ bị lệch dữ liệu nữa.
+const categoryTree = [
+  { id: "giuong", label: "Giường Ngủ", children: [
+    { id: "giuong-1m6", label: "Giường 1m6" },
+    { id: "giuong-1m8", label: "Giường 1m8" }
+  ]},
+  { id: "tu", label: "Tủ Quần Áo", children: [
+    { id: "tu-2canh", label: "Tủ 2 Cánh" },
+    { id: "tu-3canh", label: "Tủ 3 Cánh" },
+    { id: "tu-4canh", label: "Tủ 4 Cánh" }
+  ]},
+  { id: "ban-an", label: "Bàn Ghế Ăn", children: [
+    { id: "ban-an-4ghe", label: "Bộ 4 Ghế" },
+    { id: "ban-an-6ghe", label: "Bộ 6 Ghế" }
+  ]},
+  { id: "sofa", label: "Sofa Phòng Khách", children: [
+    { id: "sofa-vang", label: "Sofa Văng" },
+    { id: "sofa-da", label: "Sofa Da" }
+  ]},
+  { id: "ban-trang-diem", label: "Bàn Trang Điểm & Học", children: [] },
+  { id: "khac", label: "Khác (Kệ Tivi...)", children: [] }
+];
+
 let products = [];
 let currentSelectedProduct = null;
 let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
@@ -13,7 +40,7 @@ const revealObserver = new IntersectionObserver((entries) => {
       entry.target.classList.add('active');
     }
   });
-}, { 
+}, {
   threshold: 0.05,
   rootMargin: "0px 0px -30px 0px"
 });
@@ -24,8 +51,49 @@ function observeElements() {
   });
 }
 
+// ================= RENDER MENU (desktop + mobile) TỪ categoryTree =================
+function renderNavMenus() {
+  const desktopBox = document.getElementById("desktopNavLinks");
+  const mobileBox = document.getElementById("mobileNavLinks");
+  if (desktopBox) {
+    let html = `<li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>`;
+    categoryTree.forEach(cat => {
+      html += `<li class="nav-item"><a onclick="filterCategory('${cat.id}')">${esc(cat.label)}</a>`;
+      if (cat.children && cat.children.length) {
+        html += `<ul class="dropdown-menu">`;
+        cat.children.forEach(sub => {
+          html += `<li><a onclick="filterCategory('${sub.id}')">${esc(sub.label)}</a></li>`;
+        });
+        html += `</ul>`;
+      }
+      html += `</li>`;
+    });
+    desktopBox.innerHTML = html;
+  }
+  if (mobileBox) {
+    let html = `<li><a onclick="filterCategory('all'); toggleMobileMenu(false);">Trang chủ</a></li>`;
+    categoryTree.forEach(cat => {
+      html += `<li><a onclick="filterCategory('${cat.id}'); toggleMobileMenu(false);">${esc(cat.label)}</a></li>`;
+    });
+    mobileBox.innerHTML = html;
+  }
+}
+
+// ================= RENDER NÚT LỌC SẢN PHẨM TỪ categoryTree =================
+function renderCategoryTags() {
+  const bar = document.getElementById("categoryTagsBar");
+  if (!bar) return;
+  let html = `<button type="button" class="tag-btn active" onclick="filterCategory('all', this)">Tất cả</button>`;
+  categoryTree.forEach(cat => {
+    html += `<button type="button" class="tag-btn" onclick="filterCategory('${cat.id}', this)">${esc(cat.label.replace(' & Học', '').replace(' (Kệ Tivi...)', ''))}</button>`;
+  });
+  bar.innerHTML = html;
+}
+
 // Khởi chạy khi tải xong trang
 document.addEventListener("DOMContentLoaded", () => {
+  renderNavMenus();
+  renderCategoryTags();
   observeElements();
 
   if (typeof Swiper !== 'undefined') {
@@ -53,6 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2500);
 });
 
+// ================= HỖ TRỢ URL RIÊNG CHO TỪNG SẢN PHẨM =================
+// Khi mở modal sản phẩm, gắn ?sp=<id> vào URL để khách có thể copy link chia sẻ,
+// và nút Back của trình duyệt đóng được modal thay vì thoát hẳn trang.
+window.addEventListener('popstate', () => {
+  const params = new URLSearchParams(window.location.search);
+  const spId = params.get('sp');
+  if (spId && products.length) {
+    openModal(parseInt(spId), true);
+  } else {
+    closeModal('productModal');
+  }
+});
+
 function toggleAIChat() {
   const box = document.getElementById("aiChatBox");
   if (box) {
@@ -72,7 +153,7 @@ function showToast(message, isSuccess = true) {
   const toast = document.createElement("div");
   toast.className = "toast-msg";
   if (!isSuccess) toast.style.borderLeftColor = "#b22c22";
-  
+
   toast.innerHTML = `
     <div style="display: flex; align-items: center; justify-content: center; background: ${isSuccess ? '#27ae60' : '#b22c22'}; border-radius: 50%; width: 26px; height: 26px; color: white; font-weight:bold;">
        ${isSuccess ? '✓' : '!'}
@@ -105,7 +186,7 @@ async function loadProductsFromSheet() {
   const grid = document.getElementById("productGrid");
   if (!grid) return;
   grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #555; font-weight: 800; font-size: 16px;">Đang tải danh sách sản phẩm...</div>`;
-  
+
   try {
     const response = await fetch(GOOGLE_SHEET_DATA_URL);
     const rawText = await response.text();
@@ -122,10 +203,10 @@ async function loadProductsFromSheet() {
       headers.forEach((h, i) => { obj[h] = values[i] !== undefined ? values[i] : ''; });
       obj.id = parseInt(obj.id) || 1;
       obj.rawPrice = parseInt((obj.price || '').replace(/\D/g, '')) || 0;
-      
+
       const stockVal = obj.stock || obj.tonKho;
       obj.stock = (stockVal !== undefined && stockVal !== '') ? parseInt(stockVal) : -1;
-      
+
       let allImgs = [obj.mainImg];
       if (obj.extraImgs) {
         const extra = obj.extraImgs.split(';').map(s => s.trim()).filter(Boolean);
@@ -136,6 +217,13 @@ async function loadProductsFromSheet() {
     });
 
     renderProducts(products);
+
+    // Nếu URL có sẵn ?sp=<id> (ví dụ khách bấm link chia sẻ), tự động mở đúng sản phẩm đó
+    const params = new URLSearchParams(window.location.search);
+    const spId = params.get('sp');
+    if (spId) {
+      openModal(parseInt(spId), true);
+    }
   } catch (err) {
     grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #b22c22; font-weight: 800;">Hệ thống tải dữ liệu bị lỗi. Vui lòng tải lại trang.</div>`;
   }
@@ -200,7 +288,7 @@ function handleSearch() {
   renderProducts(filtered);
 }
 
-function openModal(id) {
+function openModal(id, skipHistory) {
   const p = products.find(item => item.id === id);
   if (!p) return;
   currentSelectedProduct = p;
@@ -210,10 +298,10 @@ function openModal(id) {
   document.getElementById("modalPrice").innerText = p.price;
   document.getElementById("modalOldPrice").innerText = p.oldPrice;
   document.getElementById("modalDesc").innerHTML = p.desc;
-  
+
   const stockEl = document.getElementById("modalStock");
   const actionArea = document.getElementById("modalActionArea");
-  
+
   if (p.stock === 0) {
     stockEl.className = "stock-tag stock-out";
     stockEl.innerText = "✖ Tạm hết hàng (Nhận đặt theo yêu cầu)";
@@ -225,7 +313,7 @@ function openModal(id) {
     actionArea.innerHTML = `<button type="button" class="btn-action btn-full" onclick="addToCartFromModal()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg> THÊM VÀO GIỎ HÀNG</button>`;
     document.getElementById("directSubmitBtn").innerText = "ĐẶT MUA NGAY";
   }
-  
+
   const mainImg = document.getElementById("modalMainImg");
   const videoFrame = document.getElementById("modalVideoFrame");
   mainImg.style.display = "block";
@@ -261,6 +349,13 @@ function openModal(id) {
     }
   }
   document.getElementById("productModal").style.display = "block";
+
+  // Cập nhật URL để có thể copy link chia sẻ sản phẩm này, và hỗ trợ nút Back
+  if (!skipHistory) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('sp', id);
+    history.pushState({ productId: id }, '', url);
+  }
 }
 
 function closeModal(modalId) {
@@ -269,6 +364,11 @@ function closeModal(modalId) {
   if (modalId === "productModal") {
     const videoFrame = document.getElementById("modalVideoFrame");
     if (videoFrame) videoFrame.src = "";
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('sp')) {
+      url.searchParams.delete('sp');
+      history.pushState({}, '', url);
+    }
   }
 }
 
@@ -328,20 +428,20 @@ async function sendDataToGmail(payload) {
 }
 
 function openConfirmModalDirect() {
-  const name = document.getElementById('directName').value.trim(); 
-  const phone = document.getElementById('directPhone').value.trim(); 
-  const address = document.getElementById('directAddress').value.trim(); 
+  const name = document.getElementById('directName').value.trim();
+  const phone = document.getElementById('directPhone').value.trim();
+  const address = document.getElementById('directAddress').value.trim();
   const note = document.getElementById('directNote').value.trim();
 
-  pendingOrderPayload = { 
-    "Loai_Don": (currentSelectedProduct.stock === 0) ? "ĐẶT HÀNG THEO YÊU CẦU" : "ĐƠN MUA TRỰC TIẾP", 
-    "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`, 
-    "Gia_Tien": currentSelectedProduct.price, 
-    "Ho_Ten_Khach": name, 
-    "So_Dien_Thoai": phone, 
-    "Dia_Chi_Giao": address, 
-    "Ghi_Chu": note || "Không có", 
-    "isCart": false 
+  pendingOrderPayload = {
+    "Loai_Don": (currentSelectedProduct.stock === 0) ? "ĐẶT HÀNG THEO YÊU CẦU" : "ĐƠN MUA TRỰC TIẾP",
+    "San_Pham": `${currentSelectedProduct.title} (${currentSelectedProduct.code})`,
+    "Gia_Tien": currentSelectedProduct.price,
+    "Ho_Ten_Khach": name,
+    "So_Dien_Thoai": phone,
+    "Dia_Chi_Giao": address,
+    "Ghi_Chu": note || "Không có",
+    "isCart": false
   };
 
   document.getElementById('confirmOrderSummary').innerHTML = `<div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap;"><span style="font-weight: 800;">Sản phẩm:</span><span style="text-align: right;">${esc(currentSelectedProduct.title)}<br><small style="color: #777;">(Mã: ${esc(currentSelectedProduct.code)})</small></span></div><div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: baseline;"><span style="font-weight: 800;">Tổng thanh toán:</span><span style="color:#b22c22; font-weight:900; font-size:20px; white-space: nowrap; font-family: 'Merriweather', serif;">${esc(currentSelectedProduct.price)}</span></div><hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;"><p style="margin-bottom: 6px;"><b>Khách hàng:</b> ${esc(name)} - <b>Số điện thoại:</b> ${esc(phone)}</p><p style="margin-bottom: 6px;"><b>Địa chỉ:</b> ${esc(address)}</p>${note ? `<p><b>Ghi chú:</b> ${esc(note)}</p>` : ''}`;
@@ -349,23 +449,23 @@ function openConfirmModalDirect() {
 }
 
 function openConfirmModalCart() {
-  const name = document.getElementById('cartCustName').value.trim(); 
-  const phone = document.getElementById('cartCustPhone').value.trim(); 
-  const address = document.getElementById('cartCustAddress').value.trim(); 
+  const name = document.getElementById('cartCustName').value.trim();
+  const phone = document.getElementById('cartCustPhone').value.trim();
+  const address = document.getElementById('cartCustAddress').value.trim();
   const note = document.getElementById('cartCustNote').value.trim();
 
   let itemsText = cart.map(i => `${i.title} (${i.code}) x SL:${i.qty} = ${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ`).join(' | ');
   let total = cart.reduce((sum, item) => sum + (item.rawPrice * item.qty), 0);
 
-  pendingOrderPayload = { 
-    "Loai_Don": "ĐƠN ĐẶT GIỎ HÀNG", 
-    "Danh_Sach_Mon": itemsText, 
-    "Tong_Tien": total.toLocaleString('vi-VN') + " đ", 
-    "Ho_Ten_Khach": name, 
-    "So_Dien_Thoai": phone, 
-    "Dia_Chi_Giao": address, 
-    "Ghi_Chu": note || "Không có", 
-    "isCart": true 
+  pendingOrderPayload = {
+    "Loai_Don": "ĐƠN ĐẶT GIỎ HÀNG",
+    "Danh_Sach_Mon": itemsText,
+    "Tong_Tien": total.toLocaleString('vi-VN') + " đ",
+    "Ho_Ten_Khach": name,
+    "So_Dien_Thoai": phone,
+    "Dia_Chi_Giao": address,
+    "Ghi_Chu": note || "Không có",
+    "isCart": true
   };
 
   let cartItemsHtml = cart.map(i => `<div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700;"><span>${esc(i.title)} <b style="color: #b22c22;">x${i.qty}</b></span> <span style="white-space: nowrap;">${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join('');
@@ -377,9 +477,9 @@ function openConfirmModalCart() {
 function executeFinalOrderSend() {
   if (!pendingOrderPayload) return;
   const btn = document.getElementById('finalConfirmBtn');
-  btn.innerText = "ĐANG XỬ LÝ ĐƠN HÀNG..."; 
+  btn.innerText = "ĐANG XỬ LÝ ĐƠN HÀNG...";
   btn.disabled = true;
-  const isCart = pendingOrderPayload.isCart; 
+  const isCart = pendingOrderPayload.isCart;
   delete pendingOrderPayload.isCart;
 
   sendDataToGmail(pendingOrderPayload).then(() => {
@@ -391,21 +491,21 @@ function executeFinalOrderSend() {
     closeModal('confirmOrderModal');
     if (isCart) { cart = []; updateCartCount(); closeModal('cartModal'); } else { closeModal('productModal'); }
   }).finally(() => {
-    btn.innerText = "ĐỒNG Ý GỬI ĐƠN"; 
-    btn.disabled = false; 
+    btn.innerText = "ĐỒNG Ý GỬI ĐƠN";
+    btn.disabled = false;
     pendingOrderPayload = null;
   });
 }
 
 function handleAISend() {
-  const input = document.getElementById("aiInput"); 
-  const text = input.value.trim(); 
+  const input = document.getElementById("aiInput");
+  const text = input.value.trim();
   if (!text) return;
   const body = document.getElementById("aiChatBody");
-  const userMsg = document.createElement("div"); 
-  userMsg.className = "msg msg-user"; 
-  userMsg.innerText = text; 
-  body.appendChild(userMsg); 
+  const userMsg = document.createElement("div");
+  userMsg.className = "msg msg-user";
+  userMsg.innerText = text;
+  body.appendChild(userMsg);
   input.value = "";
 
   setTimeout(() => {
@@ -416,18 +516,18 @@ function handleAISend() {
     else if (t.includes("giường")) reply = "Giường ngủ hiện sẵn các kích thước tiêu chuẩn 1m6 (1.800.000đ) và 1m8 (2.100.000đ).";
     else if (t.includes("tủ")) reply = "Tủ quần áo gồm các dòng 2 cánh (1.950.000đ), 3 cánh (2.500.000đ) và 4 cánh (3.400.000đ).";
     else if (t.includes("sofa")) reply = "Sofa văng nỉ có giá 3.200.000đ, các dòng Sofa Da cao cấp hoặc sofa góc L giá từ 4.800.000đ.";
-    const aiMsg = document.createElement("div"); 
-    aiMsg.className = "msg msg-ai"; 
-    aiMsg.innerHTML = reply; 
-    body.appendChild(aiMsg); 
+    const aiMsg = document.createElement("div");
+    aiMsg.className = "msg msg-ai";
+    aiMsg.innerHTML = reply;
+    body.appendChild(aiMsg);
     body.scrollTop = body.scrollHeight;
   }, 400);
 }
 
 function toggleMobileMenu(open) {
-  const overlay = document.getElementById('mobileMenuOverlay'); 
+  const overlay = document.getElementById('mobileMenuOverlay');
   if (overlay) {
-    overlay.classList.toggle('open', open); 
+    overlay.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   }
 }
