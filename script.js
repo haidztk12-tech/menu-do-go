@@ -29,7 +29,7 @@ let currentSelectedProduct = null;
 let cart = JSON.parse(localStorage.getItem('user_cart') || '[]');
 let pendingOrderPayload = null;
 
-// Intersection Observer kích hoạt hiệu ứng cuộn trang
+// Hiệu ứng cuộn trang
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -47,7 +47,7 @@ function observeElements() {
   });
 }
 
-// ================= RENDER MENU (desktop + mobile) TỪ categoryTree =================
+// Render Menu điều hướng
 function renderNavMenus() {
   const desktopBox = document.getElementById("desktopNavLinks");
   const mobileBox = document.getElementById("mobileNavLinks");
@@ -75,7 +75,7 @@ function renderNavMenus() {
   }
 }
 
-// ================= RENDER NÚT LỌC SẢN PHẨM TỪ categoryTree =================
+// Render nút lọc danh mục
 function renderCategoryTags() {
   const bar = document.getElementById("categoryTagsBar");
   if (!bar) return;
@@ -86,7 +86,7 @@ function renderCategoryTags() {
   bar.innerHTML = html;
 }
 
-// Khởi chạy khi tải xong trang
+// Khởi chạy khi load xong DOM
 document.addEventListener("DOMContentLoaded", () => {
   renderNavMenus();
   renderCategoryTags();
@@ -108,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProductsFromSheet();
   updateCartCount();
 
-  // Tự động mở Chatbox sau 2.5s
   setTimeout(() => {
     const box = document.getElementById("aiChatBox");
     if (box && !box.classList.contains("active")) {
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2500);
 });
 
-// ================= HỖ TRỢ URL RIÊNG CHO TỪNG SẢN PHẨM =================
+// Điều hướng popstate (nút Back)
 window.addEventListener('popstate', () => {
   const params = new URLSearchParams(window.location.search);
   const spId = params.get('sp');
@@ -489,7 +488,7 @@ function executeFinalOrderSend() {
   });
 }
 
-// ================= TÍCH HỢP GEMINI AI QUA /api/chat =================
+// Tích hợp gọi AI Backend
 async function handleAISend() {
   const input = document.getElementById("aiInput");
   const text = input.value.trim();
@@ -505,17 +504,17 @@ async function handleAISend() {
   input.value = "";
   body.scrollTop = body.scrollHeight;
 
-  // 2. Tạo khung tin nhắn chờ phản hồi từ AI
+  // 2. Tạo khung tin nhắn AI chờ
   const aiMsg = document.createElement("div");
   aiMsg.className = "msg msg-ai";
   aiMsg.innerText = "Đang kiểm tra dữ liệu sản phẩm...";
   body.appendChild(aiMsg);
   body.scrollTop = body.scrollHeight;
 
-  // 3. Tự động lấy danh mục sản phẩm làm ngữ cảnh
+  // 3. Lấy dữ liệu sản phẩm thực tế làm ngữ cảnh
   const catalogContext = products.map(p => `- ${p.title} (Mã: ${p.code}): Giá ${p.price}, Trạng thái: ${p.stock === 0 ? 'Tạm hết hàng (nhận đặt theo yêu cầu)' : 'Còn hàng'}`).join('\n');
 
-  // 4. Gửi dữ liệu về endpoint /api/chat
+  // 4. Gửi về /api/chat
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
