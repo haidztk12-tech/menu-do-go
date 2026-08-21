@@ -49,12 +49,12 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
   box-shadow: none !important; transform: none !important; border: none !important;
 }
 
-/* ================= HIỆU ỨNG CUỘN TRANG TRƯỢT TỪ TỪ LÊN ================= */
+/* ================= HIỆU ỨNG CUỘN TRANG (SCROLL REVEAL) ================= */
 .reveal { 
   opacity: 0; 
-  transform: translateY(45px); 
-  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1); 
+  transform: translateY(35px); 
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
   will-change: opacity, transform;
 }
 .reveal.active { 
@@ -62,7 +62,6 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
   transform: translateY(0); 
 }
 
-/* Độ trễ xếp tầng cho từng cột sản phẩm */
 .delay-1 { transition-delay: 0.08s; }
 .delay-2 { transition-delay: 0.16s; }
 .delay-3 { transition-delay: 0.24s; }
@@ -244,7 +243,7 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 .mobile-menu-list > li > a { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; font-size: 16px; font-weight: 800; color: #333; text-decoration: none; border-bottom: 1px solid #f6f4f0; cursor: pointer; }
 .mobile-menu-contact { padding: 22px; margin-top: 15px; }
 
-/* ================= TỐI ƯU MOBILE ================= */
+/* ================= TỐI ƯU GIAO DIỆN MOBILE ================= */
 @media (max-width: 1024px) {
   .hero-section { flex-direction: column; }
   .product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -259,29 +258,50 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
   .search-bar { max-width: 100%; width: 100%; }
 }
 @media (max-width: 600px) {
-  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px;}
-  .hero-swiper, .hero-banner { min-height: 480px; border-radius: 16px;}
-  .hero-overlay { padding: 30px 20px; text-align: center; justify-content: center; background: rgba(30,15,5,0.75);}
-  .hero-buttons { flex-direction: column; width: 100%; gap: 12px;}
-  .btn-hero-outline, .btn-solid { width: 100%; height: 50px; font-size: 15px;}
-  .hero-title { font-size: 32px; }
-  
+  .nav-container { padding: 0 10px; min-height: 65px; }
+  .logo { gap: 6px; }
+  .logo-text { font-size: 16.5px; }
+  .logo-img { width: 36px; height: 36px; }
   .cart-text-hide { display: none; }
-  .logo-text { font-size: 19px; margin-top: 0;}
-  .logo-img { width: 40px; height: 40px; }
-  .cart-btn-header { padding: 8px 12px; border-radius: 12px;}
-  .hamburger-btn { width: 42px; height: 42px; border-radius: 12px;}
-  
-  .intro-section, .map-card, .map-iframe-box { padding: 30px 20px; border-radius: 16px;}
+  .cart-btn-header { padding: 6px 10px; border-radius: 10px; }
+  .hamburger-btn { width: 38px; height: 38px; border-radius: 10px; }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px;}
+  .hero-swiper, .hero-banner { min-height: 440px; border-radius: 14px;}
+  .hero-overlay { padding: 25px 15px; text-align: center; justify-content: center; background: rgba(30,15,5,0.78);}
+  .hero-buttons { flex-direction: column; width: 100%; gap: 10px;}
+  .btn-hero-outline, .btn-solid { width: 100%; height: 46px; font-size: 14px; padding: 0 15px;}
+  .hero-title { font-size: 28px; line-height: 1.3; }
+  .hero-desc { font-size: 14px; margin-bottom: 20px; }
+
+  .intro-section, .map-card, .map-iframe-box { padding: 25px 15px; border-radius: 14px;}
   .modal-content { padding: 25px 15px; margin: 0; border-radius: 0; min-height: 100vh;}
-  .map-buttons-wrapper, .confirm-buttons-wrapper { grid-template-columns: 1fr; gap: 12px;}
+  .map-buttons-wrapper, .confirm-buttons-wrapper { grid-template-columns: 1fr; gap: 10px;}
   
-  .toast-msg { min-width: 250px; font-size: 14px; max-width: calc(100vw - 40px); }
-  .toast-container { right: 10px; left: 10px; top: 15px;}
-  
-  .floating-contact-bar { right: 12px; bottom: 20px; gap: 10px; }
-  .btn-floating { width: 46px; height: 46px; }
-  .native-ai-box { width: calc(100vw - 24px); right: 12px; height: 70vh; max-height: 480px; }
+  .floating-contact-bar { right: 10px; bottom: 15px; gap: 8px; z-index: 998; }
+  .btn-floating { width: 44px; height: 44px; }
+  .btn-ai-chat { width: 50px; height: 50px; }
+
+  .native-ai-box { 
+    left: 10px !important; 
+    right: 10px !important; 
+    width: auto !important; 
+    max-width: calc(100vw - 20px) !important; 
+    bottom: 75px !important; 
+    height: 55vh !important; 
+    max-height: 400px !important; 
+    border-radius: 14px;
+    z-index: 1001 !important;
+  }
+  .native-ai-box .ai-header { padding: 14px 16px; font-size: 15px; }
+  .native-ai-box .ai-body { padding: 14px; gap: 10px; }
+  .native-ai-box .msg { max-width: 92%; font-size: 14px; padding: 10px 14px; }
+  .native-ai-box .ai-footer { padding: 10px; gap: 8px; }
+  .native-ai-box .ai-footer input { padding: 10px 14px; font-size: 14px; }
+  .native-ai-box .ai-footer button { padding: 0 16px; font-size: 14px; }
+
+  .toast-msg { min-width: 240px; font-size: 13.5px; max-width: calc(100vw - 30px); }
+  .toast-container { right: 10px; left: 10px; top: 10px;}
 }
 
 /* Toast, Float, AI */
