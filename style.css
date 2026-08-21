@@ -112,11 +112,35 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
 
 .hamburger-btn { display: none; background: transparent; border: 1px solid #ccc; color: #333; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; align-items: center; justify-content: center; }
 
-/* ================= SWIPER HERO SLIDER ================= */
+/* ================= SWIPER HERO SLIDER (ĐÃ KHÓA CHIỀU CAO CHUẨN) ================= */
 .hero-section { max-width: 1250px; margin: 25px auto; padding: 0 15px; }
-.hero-swiper { border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; background: #000;}
-.hero-banner { position: relative; width: 100%; min-height: 460px; display: flex; align-items: center; background-size: cover; background-position: center; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(30,15,5,0.1) 100%); display: flex; align-items: center; padding: 50px 60px; }
+.hero-swiper { 
+  border-radius: 20px; 
+  overflow: hidden; 
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+  width: 100%; 
+  height: 480px; /* Khóa cứng chiều cao trên máy tính */
+  position: relative;
+}
+.hero-swiper .swiper-wrapper { height: 100%; }
+.hero-swiper .swiper-slide { height: 100%; }
+.hero-banner { 
+  position: relative; 
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  align-items: center; 
+  background-size: cover; 
+  background-position: center; 
+}
+.hero-overlay { 
+  position: absolute; 
+  inset: 0; 
+  background: linear-gradient(90deg, rgba(30,15,5,0.95) 0%, rgba(30,15,5,0.65) 55%, rgba(30,15,5,0.1) 100%); 
+  display: flex; 
+  align-items: center; 
+  padding: 50px 60px; 
+}
 .hero-text-content { max-width: 650px; color: #fff; }
 .hero-badge-tag { background: transparent; color: #e5dbd3; font-size: 13px; font-weight: 900; border: 2px solid #e5dbd3; padding: 6px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 .hero-title { font-size: 46px; margin-bottom: 18px; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.6); }
@@ -267,7 +291,7 @@ button:disabled, .btn-solid:disabled, .btn-action:disabled {
   .hamburger-btn { width: 38px; height: 38px; border-radius: 10px; }
 
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px;}
-  .hero-swiper, .hero-banner { min-height: 440px; border-radius: 14px;}
+  .hero-swiper, .hero-banner { height: 440px; border-radius: 14px;}
   .hero-overlay { padding: 25px 15px; text-align: center; justify-content: center; background: rgba(30,15,5,0.78);}
   .hero-buttons { flex-direction: column; width: 100%; gap: 10px;}
   .btn-hero-outline, .btn-solid { width: 100%; height: 46px; font-size: 14px; padding: 0 15px;}
